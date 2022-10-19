@@ -1,0 +1,16 @@
+.header {
+    @include desktop {
+        background-image: url(../images/bg/header_main_1280px.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+
+        @include retinaBgImg {
+            background-image: url(../images/bg/header_main_1280px@2x.jpg);
+        }
+
+    }
+}
+
+;

@@ -1,0 +1,49 @@
+@mixin font ($font-size, $font-weight, $line-height, $letter-spacing) {
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+}
+
+@mixin mobile {
+    @media screen and (min-width: 320px) {
+        @content;
+    }
+}
+
+@mixin only_mobile {
+    @media screen and (min-width: 320px) and (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin only_tablet {
+    @media screen and (min-width: 768px) and (max-width: 1279px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin retinaBgImg {
+
+    @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+        @content;
+    }
+}
+
+@mixin transition ($selector) {
+    transition: 250ms $selector cubic-bezier(.23, .63, .71, .51);
+}

@@ -1,0 +1,94 @@
+// Все кнопки
+.button {
+
+    min-width: 62px;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: $thirdTexColor;
+
+    transition-property: color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    border-radius: 22px;
+
+    @include transition (background-color);
+
+    &:hover,
+    &:focus {
+        background-color: $hoverLiteButton;
+    }
+
+}
+
+.current-btn {
+  background-color: $currentBgGolor;
+  color: $whiteTextColor;
+
+  &:hover {
+    color: $hoverBtnColor;
+  }
+
+
+    @include desktop {
+        width: 107px;
+
+    }
+}
+
+.button__arrow {
+    margin-left: 12px;
+    fill: currentColor;
+
+
+}
+
+.button-buy {
+  display: none;
+
+  @include tablet {
+    display: block;
+    width: 160px;
+    height: 44px;
+  }
+}
+
+.btn__bio-eco {
+  @mixin transition($selector) {
+    transition: 250ms $selector cubic-bezier(0.23, 0.63, 0.71, 0.51);
+  }
+
+  @include tablet {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    background-color: $whiteBgColor;
+    border-radius: 50%;
+    display: block;
+    margin-top: 7px;
+
+    transition-property: color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+      background-color: $hoverLiteButton;
+    }
+
+  }
+
+  @include desktop {
+    width: 26px;
+    height: 26px;
+  }
+
+  .btn__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    fill: #d41443;
+  }
+}
+
