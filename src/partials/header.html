@@ -1,13 +1,35 @@
 <header class="header">
     <div class="container header__conrainer">
-        <nav class="header__nav">
-            <a href="" class="header__logo">
+
+        <nav>
+            <a href="./index.html" class="header__logo">
                 <svg class="header__logo-svg">
                     <use href="./images/symbol-defs.svg#icon-film" width="24px" height="24px"></use>
                 </svg>
-                Filmoteka
+                <span class="header__logo-name">Filmoteka</span>
+
             </a>
+
+            <ul class="header__nav">
+                <li class="header__nav-item">
+                    <a class="header__nav-link header__nav-link--current" href="./index.html">HOME</a>
+                <li class="header__nav-item">
+                    <a class="header__nav-link" href="">MY LIBRARY</a>
+                </li>
+
+
+            </ul>
         </nav>
+        <form class="header__form">
+            <input type="text" name="search-movie" placeholder="Movie search">
+            <button class="header__search-btn" type="submit">
+                <svg class="search-svg" width="12" height="12px">
+                    <use href="./images/symbol-defs.svg#icon-search">
+                    </use>
+                </svg>
+            </button>
+        </form>
+
     </div>
 
 
