@@ -1,0 +1,57 @@
+.footer {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: var(--bg-footer-color);
+    font-size: 16px;
+
+    color: var(--first-text-color);
+
+    @include only_mobile {
+        font-size: 14px;
+
+    }
+}
+
+.footer__list {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 400;
+}
+
+.footer__item {
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: 1px solid var(--first-text-color);
+
+
+    &:last-child {
+        border-right: none;
+
+        @include only_mobile {
+            margin-top: 10px;
+
+
+        }
+    }
+
+}
+
+.footer__heart {
+    color: var(--hover-color);
+
+}
+
+.footer__team-open-btn {
+    cursor: pointer;
+    border-bottom: 1px solid;
+
+    &:hover,
+    &:focus {
+        color: var(--hover-color);
+    }
+}
