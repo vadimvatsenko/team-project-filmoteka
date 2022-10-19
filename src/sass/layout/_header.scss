@@ -4,12 +4,23 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
+        min-height: 216px;
+        padding-top: 40px;
+        padding-bottom: 80px;
 
 
         @include retinaBgImg {
             background-image: url(../images/bg/header_main_1280px@2x.jpg);
         }
 
+    }
+
+    @include tablet {
+        background-image: url(../images/bg/header_main_768px.jpg);
+
+        @include retinaBgImg {
+            background-image: url(../images/bg/header_main_768px@2x.jpg);
+        }
     }
 }
 
