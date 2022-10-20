@@ -1,9 +1,11 @@
 @import './base/reset';
 @import './utils/colors';
+@import './components/buttons';
 @import './utils/mixins';
 @import './base/body-style';
 @import './base/container';
 @import './base/section';
 @import './layout/header';
 @import './layout/top_movie';
+@import './components/spinner';
 @import './layout/footer';

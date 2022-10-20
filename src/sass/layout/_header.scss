@@ -1,13 +1,13 @@
 .header {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
-
 
     @include mobile {
         background-image: url(../images/bg/header_main_320px.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
         height: 230px;
+        padding-top: 40px;
+        padding-bottom: 90px;
 
         @include retinaBgImg {
             background-image: url(../images/bg/header_main_320px@2x.jpg);
@@ -18,6 +18,8 @@
         background-image: url(../images/bg/header_main_768px.jpg);
         height: 216px;
 
+        padding-bottom: 80px;
+
         @include retinaBgImg {
             background-image: url(../images/bg/header_main_768px@2x.jpg);
         }
@@ -26,11 +28,6 @@
 
     @include desktop {
         background-image: url(../images/bg/header_main_1280px.jpg);
-
-        min-height: 216px;
-        padding-top: 40px;
-        padding-bottom: 80px;
-
 
         @include retinaBgImg {
             background-image: url(../images/bg/header_main_1280px@2x.jpg);
@@ -41,10 +38,38 @@
 
 }
 
+.header--lib {
+    @include mobile {
+        background-image: url(../images/bg/header_lib_320px.jpg);
+
+        @include retinaBgImg {
+            background-image: url(../images/bg/header_lib_320px@2x.jpg);
+        }
+    }
+
+    @include tablet {
+        background-image: url(../images/bg/header_lib_768px.jpg);
+
+        @include retinaBgImg {
+            background-image: url(../images/bg/header_lib_768px@2x.jpg);
+        }
+    }
+
+    @include desktop {
+        background-image: url(../images/bg/header_lib_1280px.jpg);
+
+        @include retinaBgImg {
+            background-image: url(../images/bg/header_lib_1280px@2x.jpg);
+        }
+
+    }
+}
+
 .header__conrainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 
 }
 
@@ -67,6 +92,10 @@ nav {
 }
 
 .header__logo-name {
+    @include only-mobile {
+        font-size: 0;
+    }
+
     font-size: 30px;
     color: var(--bg-main-color);
     margin-left: 10px;
@@ -106,16 +135,25 @@ nav {
 }
 
 .header__form {
+    width: 100%;
+    display: flex;
     margin-top: auto;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    width: 394px;
     border-bottom: 0.5px solid var(--bg-main-color);
+
+    @include tablet {
+        width: 336px;
+    }
+
+    @include desktop {
+        width: 394px;
+    }
+
 }
 
 .header__form input {
-    width: 384px;
+    width: inherit;
     background-color: transparent;
     border: none;
     outline: none;

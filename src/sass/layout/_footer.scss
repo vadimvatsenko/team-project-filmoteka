@@ -24,6 +24,7 @@
 }
 
 .footer__item {
+    display: flex;
     padding-left: 6px;
     padding-right: 6px;
     border-right: 1px solid var(--first-text-color);
@@ -41,14 +42,31 @@
 
 }
 
+.footer__item span {
+    margin-right: 5px;
+}
+
 .footer__heart {
     color: var(--hover-color);
+    animation: beat .400s infinite alternate;
+    transform-origin: center;
+    margin-left: 5px;
+    margin-right: 5px;
 
+}
+
+@keyframes beat {
+    to {
+        transform: scale(1.5);
+    }
 }
 
 .footer__team-open-btn {
     cursor: pointer;
     border-bottom: 1px solid;
+
+    @include transition(color);
+
 
     &:hover,
     &:focus {
