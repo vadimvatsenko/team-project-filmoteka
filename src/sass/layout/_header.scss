@@ -1,4 +1,6 @@
 .header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56));
 
     @include mobile {
         background-image: url(../images/bg/header_main_320px.jpg);
@@ -40,6 +42,7 @@
 
 .header--lib {
     @include mobile {
+        padding-bottom: 60px;
         background-image: url(../images/bg/header_lib_320px.jpg);
 
         @include retinaBgImg {
@@ -56,6 +59,7 @@
     }
 
     @include desktop {
+
         background-image: url(../images/bg/header_lib_1280px.jpg);
 
         @include retinaBgImg {
