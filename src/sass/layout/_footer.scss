@@ -52,12 +52,15 @@
     transform-origin: center;
     margin-left: 5px;
     margin-right: 5px;
+    width: 14px;
+    height: 13px;
+
 
 }
 
 @keyframes beat {
     to {
-        transform: scale(1.5);
+        transform: scale(1.3);
     }
 }
 
