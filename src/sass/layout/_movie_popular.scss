@@ -1,0 +1,77 @@
+.movie-popular__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+
+    cursor: pointer;
+
+    @include tablet {
+        justify-content: space-between;
+        margin-top: -32px;
+
+    }
+
+    @include desktop {
+        justify-content: start;
+        margin-right: -16px;
+
+    }
+
+
+}
+
+.movie-popular__item {
+    width: 100%;
+
+    @include only-mobile {
+        &:not(:first-child) {
+            margin-top: 20px;
+        }
+    }
+
+    @include tablet {
+        width: calc((100% - 32px) / 2);
+        margin-top: 32px;
+
+    }
+
+    @include desktop {
+        width: calc((100% - 48px) / 3);
+        margin-right: 16px;
+
+    }
+
+}
+
+.movie-popular__img {
+    height: 398px;
+    width: 100%;
+    border-radius: 5px;
+
+    @include tablet {
+        height: 455px;
+    }
+
+    @include desktop {
+        height: 574px;
+    }
+
+}
+
+
+.movie-popular__wrap-info {
+    margin-top: 10px;
+}
+
+.movie-popular__title {
+    font-size: 12px;
+    color: var(--btn-text-color);
+
+    @include desktop {
+        font-size: 20px;
+    }
+}
+
+// * {
+//     outline: 1px solid blue;
+// }
