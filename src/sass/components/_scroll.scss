@@ -1,0 +1,41 @@
+.scroll-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+
+    cursor: pointer;
+
+    height: 50px;
+    width: 100px;
+
+    color: var(--bg-main-color);
+    fill: var(--bg-main-color);
+    background-color: var(--hover-color);
+
+    border-radius: 10px;
+
+    font-weight: 700;
+    font-size: 20px;
+
+    transition: all 250ms linear;
+
+    &:hover {
+        background-color: #FF001B;
+        fill: var(--first-text-color);
+        color: var(--first-text-color);
+    }
+}
+
+.scroll-btn {
+    position: fixed;
+    right: 10px;
+    bottom: 100px;
+    width: 50px;
+    border-radius: 50%;
+    margin-left: auto;
+
+    @include tablet {
+        right: 100px;
+    }
+}
