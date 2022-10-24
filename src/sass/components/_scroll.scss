@@ -34,8 +34,19 @@
     width: 50px;
     border-radius: 50%;
     margin-left: auto;
+    opacity: 1;
+
+
 
     @include tablet {
         right: 100px;
     }
+}
+
+.scroll-btn.visually-hidden {
+    bottom: -20px;
+    opacity: 0;
+
+
+
 }

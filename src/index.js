@@ -1,76 +1,51 @@
 import { onScroll, onTopButton } from './js/scroll';
+import { createTopMovie } from './js/markup';
 
 onScroll();
 onTopButton();
-//
 
-const API_KEY = '137ae7e6367e772dd156f1aad841f871';
-const BASE_URL = 'https://api.themoviedb.org/3'
-const URL = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=1`;
+import { getRefs } from './js/refs';
+const refs = getRefs();
+
+refs.getSearchForm.addEventListener('submit', getSearch);
+
 let page = 1;
 
-const getTopMovie = document.querySelector('.movie-popular__list');
-const getSearchForm = document.querySelector('.header__form');
+const API_KEY = '137ae7e6367e772dd156f1aad841f871';
+const BASE_URL = 'https://api.themoviedb.org/3';
+const SEARCH_URL = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=`;
+const TRENDING_URL = `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${page}`;
+const GENRES_URL = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US}`
 
-getSearchForm.addEventListener('submit', getSearch);
 
 async function getSearch(e) {
     e.preventDefault();
     const searchWord = e.currentTarget.search.value;
-    
-    const searchMovie = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${searchWord}`)
-        .then(response => response.json());
-    console.log(searchMovie);
-    console.log(searchMovie.results);
-    
-    const searchMovieMarkup = searchMovie.results.map(({ title, poster_path}) => {
-        
+    try {
+        const searchMovie = await fetch(`${SEARCH_URL}${searchWord}`).then(response => response.json());
+        refs.getTopMovie.innerHTML = createTopMovie(searchMovie.results);
 
-        return `<li class='movie-popular__item'>
-       
-        <img class='movie-popular__img' src="https://image.tmdb.org/t/p/w500${poster_path}"/>
-        <div class = 'movie-popular__wrap-info'>
-        <h3 class='movie-popular__title'>${title}</h3>
-        </div>
-        </li>`
-        
- }).join('');
-
-    getTopMovie.innerHTML = searchMovieMarkup;
-    
-    
+    } catch (error) {
+        console.log(error);
+    }
 }
     
   
+getTrendingMovie();
 
-
-
-
-
-getTrendingMovie()
 async function getTrendingMovie() {
-    const topMovieInfo = await fetch(URL).then(response => response.json());
 
-    const topMovieMarkup = topMovieInfo.results.map(({ title, poster_path, release_date, vote_average }) => {
-        
+    try {
+        const topMovieInfo = await fetch(TRENDING_URL).then(response => response.json());
+        const genresMovie = await fetch(GENRES_URL).then(response => response.json());
+        refs.getTopMovie.innerHTML = createTopMovie(topMovieInfo.results, genresMovie);
 
-        return `<li class='movie-popular__item'>
-       
-        <img class='movie-popular__img' src="https://image.tmdb.org/t/p/w500${poster_path}"/>
-        <div class = 'movie-popular__wrap-info'>
-        <h3 class='movie-popular__title'>${title}</h3>
-        <p class='movie-popular__release'>${release_date}</p>
-        <p class='movie-popular__rating'>${vote_average}</p>
-        </div>
-        </li>`
-        
-   
-    }).join('');
-
-    getTopMovie.innerHTML = topMovieMarkup;
-    
+    } catch (error) {
+        console.log(error);
+    }
     
 }
+
 
 
 
