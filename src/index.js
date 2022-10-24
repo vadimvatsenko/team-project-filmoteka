@@ -38,7 +38,7 @@ async function getTrendingMovie() {
     try {
         const topMovieInfo = await fetch(TRENDING_URL).then(response => response.json());
         const genresMovie = await fetch(GENRES_URL).then(response => response.json());
-        refs.getTopMovie.innerHTML = createTopMovie(topMovieInfo.results, genresMovie);
+        refs.getTopMovie.innerHTML = createTopMovie(topMovieInfo.results);
 
     } catch (error) {
         console.log(error);
