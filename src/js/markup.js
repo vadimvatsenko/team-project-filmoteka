@@ -1,5 +1,6 @@
 export function createTopMovie(e) {
-    return e.map(({ title, poster_path, release_date, vote_average, genre_ids}) => {
+    return e.map(({ title, poster_path, release_date, vote_average, genre_ids }) => {
+        
         const newRealiseDate = release_date.slice(0, 4);
 
         return `<li class='movie-popular__item'>
