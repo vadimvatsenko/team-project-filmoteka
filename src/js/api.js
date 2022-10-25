@@ -1,8 +1,5 @@
-import { onScroll, onTopButton } from './scroll';
 import { createTopMovie } from './markup';
 
-onScroll();
-onTopButton();
 
 import { getRefs } from './refs';
 const refs = getRefs();
