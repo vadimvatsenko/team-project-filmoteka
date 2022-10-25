@@ -3,7 +3,9 @@
     position: fixed;
     left: 50%;
     top: 50%;
-    // transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: block;
     width: 100px;
     height: 100px;
     border: 15px solid var(--hover-color);
