@@ -16,8 +16,8 @@ const API_GENRE = `${BASE_URL}genre/movie/list?api_key=${KEY}`              // Ð
 
 // fetchCardFilm(25)
 
-// function fetchCardFilm(id) {
-//   fetch(`${BASE_URL}movie/${id}?api_key=${KEY}`)
+// export async function fetchCardFilm(id) {
+//  await fetch(`${BASE_URL}movie/${id}?api_key=${KEY}`)
 //   .then(response => {
 //   if (!response.ok) {
 //     throw new Error(response.status);
@@ -25,21 +25,99 @@ const API_GENRE = `${BASE_URL}genre/movie/list?api_key=${KEY}`              // Ð
 //   return response.json();
 //   })
 //   .then(data => {
-//     console.log(data);
-    // console.log(data.poster_path);
-    // console.log(data.title);
-    // console.log(data.vote_average);
-    // console.log(data.vote_count);
-    // console.log(data.popularity);
-    // console.log(data.original_title);
-    // console.log(data.genres);
-    // console.log(data.genres[0].name);
-    // console.log(data.genres[0]);
-    // console.log(data.overview);
-
-    // pasteCardMovieContent(id);
+//       return `
+//     <img class="modal-movie__img" src="${data.poster_path ? IMG_URL + data.poster_path : "https://via.placeholder.com/395x574"}" alt="${data.original_title || data.original_name}" width="240" height="357" />
+//     <div>
+//       <h2 class="modal-movie__title">${(data.original_title || data.original_name) ? (data.original_title || data.original_name) : ""}</h2>
+//       <ul class="modal-movie__list">
+//         <li class="modal-movie__item">
+//           <p class="modal-movie__item-categories">Vote / Votes</p>
+//           <p class="modal-movie__item-inf">
+//             <span class="modal-movie__item-vote">${data.vote_average}</span> /
+//             <span class="modal-movie__item-votes">${data.vote_count}</span>
+//           </p>
+//         </li>
+//         <li class="modal-movie__item">
+//           <p class="modal-movie__item-categories">Popularity</p>
+//           <p class="modal-movie__item-inf">${data.popularity}</p>
+//         </li>
+//         <li class="modal-movie__item">
+//           <p class="modal-movie__item-categories">Original Title </p>
+//           <p class="modal-movie__item-inf modal-movie__item-inf--uppercase">
+//             ${data.original_title}
+//           </p>
+//         </li>
+//         <li class="modal-movie__item">
+//           <p class="modal-movie__item-categories">Genre</p>
+//           <p class="modal-movie__item-inf">${data.genres[0].name}</p>
+//         </li>
+//       </ul>
+//       <h3 class="modal-movie__about">About</h3>
+//       <p class="modal-movie__about-text">
+//         ${data.overview}
+//       </p>
+//       <div class="modal-movie__btn-section">
+//         <button class="modal-movie__btn modal-movie__btn--margin" type="button">
+//           add to Watched
+//         </button>
+//         <button class="modal-movie__btn" type="button">add to queue</button>
+//       </div>
+//     </div>
+//       `;
 //   })
+//    .then(response => el.innerHTML = response)
 //   .catch(error => {
 //     console.log('error', error);
 //   });
 // }
+
+export async function fetchCardFilm(id) {
+
+  const fetchCard = await fetch(`${BASE_URL}movie/${id}?api_key=${KEY}`)
+  const fetchCardJson = await fetchCard.json();
+    
+  console.log(fetchCardJson);
+  return CardFilminHtml(fetchCardJson);
+}
+
+function CardFilminHtml(data) {
+  return `
+    <img class="modal-movie__img" src="${data.poster_path ? IMG_URL + data.poster_path : "https://via.placeholder.com/395x574"}" alt="${data.original_title || data.original_name}" width="240" height="357" />
+    <div>
+      <h2 class="modal-movie__title">${(data.original_title || data.original_name) ? (data.original_title || data.original_name) : ""}</h2>
+      <ul class="modal-movie__list">
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Vote / Votes</p>
+          <p class="modal-movie__item-inf">
+            <span class="modal-movie__item-vote">${data.vote_average}</span> /
+            <span class="modal-movie__item-votes">${data.vote_count}</span>
+          </p>
+        </li>
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Popularity</p>
+          <p class="modal-movie__item-inf">${data.popularity}</p>
+        </li>
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Original Title </p>
+          <p class="modal-movie__item-inf modal-movie__item-inf--uppercase">
+            ${data.original_title}
+          </p>
+        </li>
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Genre</p>
+          <p class="modal-movie__item-inf">${data.genres[0].name}</p>
+        </li>
+      </ul>
+      <h3 class="modal-movie__about">About</h3>
+      <p class="modal-movie__about-text">
+        ${data.overview}
+      </p>
+      <div class="modal-movie__btn-section">
+        <button class="modal-movie__btn modal-movie__btn--margin" type="button">
+          add to Watched
+        </button>
+        <button class="modal-movie__btn" type="button">add to queue</button>
+      </div>
+    </div>
+      `;
+}
