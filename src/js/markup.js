@@ -5,7 +5,7 @@ export function createTopMovie(e) {
 
         return `<li class='movie-popular__item'>
        
-        <img class='movie-popular__img' src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
+        <img class='movie-popular__img' src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}" loading=lazy/>
         <div class = 'movie-popular__wrap-info'>
         <h2 class='movie-popular__title'>${title}</h2>
         <p class='movie-popular__release'>${newRealiseDate}</p>
