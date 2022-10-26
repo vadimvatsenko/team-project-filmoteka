@@ -1,20 +1,29 @@
-const modalMoviInfo = document.querySelector('.modal-movie__backdrop')
-const modalMoviInfoBtn = document.querySelector('.modal-movie__btn-close')
+import { fetchCardFilm } from './url';
 
-const movieDiv = document.querySelector('.movie-popular')
+const modalMoviInfo = document.querySelector('.modal-movie__backdrop');
+const modalMovi = document.querySelector('.modal-movie__container');
+const modalMoviInfoBtn = document.querySelector('.modal-movie__btn-close');
+
+const movieDiv = document.querySelector('.movie-popular');
 
 movieDiv.addEventListener('click', openModalInfo);
 modalMoviInfoBtn.addEventListener('click', closeModalInfo);
 
-function openModalInfo(e) {
-    e.preventDefault();
-    if (e.target.nodeName !== "LI") {
+async function openModalInfo(e) {
+  e.preventDefault();
+  if (e.target.nodeName !== 'LI') {
     return;
-    }
-    console.log(e.target);
-    modalMoviInfo.classList.remove('visually-hidden');
+  }
+  console.log(e.target);
+  modalMovi.innerHTML = '';
+  modalMoviInfo.classList.remove('visually-hidden');
+
+  const idMovie = e.target.dataset.id;
+  const PixabaySeach = await fetchCardFilm(idMovie);
+  modalMovi.innerHTML = PixabaySeach;
 }
 
 function closeModalInfo() {
-     modalMoviInfo.classList.add('visually-hidden');
+  modalMovi.innerHTML = '';
+  modalMoviInfo.classList.add('visually-hidden');
 }
