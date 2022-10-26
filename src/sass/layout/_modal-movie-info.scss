@@ -39,6 +39,11 @@
   // transition: opacity 250ms var(--primary-animation),visibility 25000ms var(--primary-animation);
 }
 
+.modal-movie__container{
+  @include tablet {
+    display: flex;
+  }
+}
 .modal-movie__btn-close {
   position: absolute;
   right: 8px;
@@ -49,6 +54,8 @@
   align-items: center;
   width: 30px;
   height: 30px;
+
+  
 }
 
 .modal-movie__img {
@@ -101,6 +108,8 @@
 
 .modal-movie__item-inf {
   display: inline-block;
+  max-width: 120px;
+  
   font-size: 12px;
   line-height: 1.166;
 }
