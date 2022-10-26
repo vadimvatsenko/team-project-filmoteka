@@ -7,7 +7,7 @@ export function createTopMovie(e) {
        
         <img class='movie-popular__img' src="https://image.tmdb.org/t/p/w500${poster_path}" alt="${title}"/>
         <div class = 'movie-popular__wrap-info'>
-        <h3 class='movie-popular__title'>${title}</h3>
+        <h2 class='movie-popular__title'>${title}</h2>
         <p class='movie-popular__release'>${newRealiseDate}</p>
         <p class='movie-popular__rating'>${vote_average}</p>
         <p class ='movie-popular__genres'>${genre_ids}</p>
