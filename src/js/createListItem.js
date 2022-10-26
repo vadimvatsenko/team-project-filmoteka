@@ -8,8 +8,9 @@ export function createListItem({
       release_date,
       first_air_date,
       original_name,
+      id,
     }) {
-      return `<li class="movie-popular__item">
+  return `<li class="movie-popular__item" dataid="${id}">
         <a href="" class="movie-popular__reference" target="_blank">
         <img src="${poster_path? IMG_URL + poster_path: "https://via.placeholder.com/395x574"}" 
         class="movie-popular__img" 
