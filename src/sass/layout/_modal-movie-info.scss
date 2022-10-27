@@ -1,7 +1,7 @@
 .modal-movie {
   position: relative;
   width: 280px;
-  height: 940px;
+  max-height: 940px;
   padding: 48px 20px 40px 20px;
   margin: auto;
   background-color: #fff;
@@ -17,15 +17,16 @@
   @include only_tablet {
     padding: 40px 72px 40px 36px;
     width: 704px;
-    height: 552px;
+    max-height: 552px;
   }
 
   @include desktop {
     padding: 40px 12px 40px 12px;
     width: 806px;
-    height: 558px;
+    max-height: 558px;
   }
 }
+
 .modal-movie__backdrop {
   position: fixed;
   top: 0;
@@ -39,7 +40,7 @@
   // transition: opacity 250ms var(--primary-animation),visibility 25000ms var(--primary-animation);
 }
 
-.modal-movie__container{
+.modal-movie__container {
   @include tablet {
     display: flex;
   }
@@ -54,8 +55,6 @@
   align-items: center;
   width: 30px;
   height: 30px;
-
-  
 }
 
 .modal-movie__img {
@@ -93,6 +92,8 @@
 }
 
 .modal-movie__item {
+  display: flex;
+
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -104,12 +105,13 @@
   font-size: 12px;
   line-height: 1.33;
   color: #8c8c8c;
+
 }
 
 .modal-movie__item-inf {
   display: inline-block;
-  max-width: 120px;
-  
+  max-width: 132px;
+
   font-size: 12px;
   line-height: 1.166;
 }
@@ -143,7 +145,7 @@
 
 .modal-movie__about-text {
   margin-bottom: 20px;
-  height: 236px;
+  max-height: 236px;
   overflow-y: scroll;
 
   font-size: 12px;
@@ -176,4 +178,10 @@
   @include tablet {
     margin-right: 15px;
   }
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
