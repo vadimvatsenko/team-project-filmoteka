@@ -34,7 +34,8 @@ async function onMoviClick(e) {
   }
 
   // console.log(e.target);
-  modalMovi.innerHTML = spinerInMovi();
+  // modalMovi.innerHTML = spinerInMovi();
+   modalMovi.innerHTML = " ";
   
   Modal.openModal();
   Modal.keydownTest();
@@ -228,8 +229,8 @@ function CardFilminHtmlIfError() {
 }
 
 // спинер
-function spinerInMovi() {
-  return `
-    <div class="spinner"></div>
-      `;
-}
+// function spinerInMovi() {
+//   return `
+//     <div class="spinner"></div>
+//       `;
+// }
