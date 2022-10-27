@@ -5,9 +5,9 @@ export function getfilmsGenres(ids) {
     if (ids.includes(id)) {
       acc.push(name);
     }
-    console.log(acc);
+    // console.log(acc);
     return acc;
   }, []);
-    console.log(filmsGenres);
+    // console.log(filmsGenres);
    return filmsGenres;
 }
