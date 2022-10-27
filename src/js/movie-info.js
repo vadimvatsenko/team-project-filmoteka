@@ -1,11 +1,16 @@
-import { Api } from './url';
+import { Api} from './url';
+import  ModalClassic  from './modalClassic';
 
 const ApiP = new Api();
 
 const modalMoviInfo = document.querySelector('.modal-movie__backdrop');
-const modalMovi = document.querySelector('.modal-movie');
+const modalMovi = document.querySelector('.modal-movie__container');
 
-const movieDiv = document.querySelector('.movie-popular');
+const movieDiv = document.querySelector('.movie-list');
+
+const Modal = new ModalClassic(modalMoviInfo,
+  '.modal-movie__btn-close');
+    
 
 // робота з локальним сховищем
 let localStorageMovi = {
@@ -29,7 +34,12 @@ async function onMoviClick(e) {
   }
 
   // console.log(e.target);
-  openModalInfo();
+  modalMovi.innerHTML = spinerInMovi();
+  
+  Modal.openModal();
+  Modal.keydownTest();
+
+
 
   const idMovie = e.target.dataset.id;
 
@@ -41,16 +51,11 @@ async function onMoviClick(e) {
     console.log(error);
     modalMovi.innerHTML = CardFilminHtmlIfError();
   }
-
-  const modalMoviInfoBtnClose = document.querySelector(
-    '.modal-movie__btn-close'
-  );
-  modalMoviInfoBtnClose.addEventListener('click', closeModalInfo);
 }
 
 // Опрацьовує роботу кнопок
 function onBtnInModalMovi(e) {
-  const idMovie = e.target.dataset.id;
+  const idMovie = e.target.outerHTML;
   const modalMoviInfoBtnWatched = document.querySelector(
     '.modal-movie__btn-watched'
   );
@@ -150,23 +155,13 @@ function textCurentBtnWatched(btn) {
     btn.innerHTML = 'remove Watched';
   }
 }
+
 function textCurentBtnQueue(btn) {
   if (btn.dataset.ls === 'false') {
     btn.innerHTML = 'add to Queue';
   } else {
     btn.innerHTML = 'remove Queue';
   }
-}
-
-// Закриває/відкриває модалку
-function closeModalInfo() {
-  modalMovi.innerHTML = '';
-  modalMoviInfo.classList.add('is-hidden');
-}
-
-function openModalInfo() {
-  modalMovi.innerHTML = '';
-  modalMoviInfo.classList.remove('is-hidden');
 }
 
 // створює розмітку для модалки
@@ -222,21 +217,19 @@ function CardFilminHtml(data) {
           <button class="modal-movie__btn modal-movie__btn-queue" type="button" data-ls='false'>add to queue</button>
       </div>
     </div>
-    <button type="button" class="modal-movie__btn-close">
-      <svg class="icon" width="14" height="14">
-        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-close"></use>
-      </svg>
-    </button>
       `;
 }
 
 // створює розмітку для модалки у випадку помилки
 function CardFilminHtmlIfError() {
-  return `<button type="button" class="modal-movie__btn-close">
-      <svg class="icon" width="14" height="14">
-        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-close"></use>
-      </svg>
-    </button>
+  return `
     <p>try later</p>
+      `;
+}
+
+// спинер
+function spinerInMovi() {
+  return `
+    <div class="spinner"></div>
       `;
 }
