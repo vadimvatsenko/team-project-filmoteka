@@ -1,4 +1,3 @@
-// import { constant } from 'lodash';
 import { fetchCardFilm, Api } from './url';
 
 const ApiP = new Api();
@@ -36,22 +35,27 @@ async function openModalInfo(e) {
   try {
     const PixabaySeach = await ApiP.fetchCardFilm(idMovie);
     modalMovi.innerHTML = CardFilminHtml(PixabaySeach);
+    onBtnInModalMovi(e);
   } catch (error) {
     console.log(error);
-    modalMovi.innerHTML = ifErrorHtml();
+    modalMovi.innerHTML = CardFilminHtmlIfError();
   }
 
   const modalMoviInfoBtnClose = document.querySelector(
     '.modal-movie__btn-close'
   );
+  modalMoviInfoBtnClose.addEventListener('click', closeModalInfo);
+}
+
+// Опрацьовує роботу кнопок
+function onBtnInModalMovi(e) {
+  const idMovie = e.target.dataset.id;
   const modalMoviInfoBtnWatched = document.querySelector(
     '.modal-movie__btn-watched'
   );
   const modalMoviInfoBtnQueue = document.querySelector(
     '.modal-movie__btn-queue'
   );
-
-  modalMoviInfoBtnClose.addEventListener('click', closeModalInfo);
 
   modalMoviInfoBtnWatched.addEventListener(
     'click',
@@ -66,42 +70,24 @@ async function openModalInfo(e) {
   const localStorageWatched = JSON.parse(
     localStorage.getItem('watched')
   ).watched;
-
   const localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
+
   addCurentInBtn(localStorageWatched, idMovie, modalMoviInfoBtnWatched);
   addCurentInBtn(localStorageQueue, idMovie, modalMoviInfoBtnQueue);
-  // if (localStorageWatched.includes(idMovie)) {
-  //   addCurentBtn(modalMoviInfoBtnWatched);
-  // } else {
-  //   removeCurentBtn(modalMoviInfoBtnWatched);
-  // }
-
-  // if (localStorageQueue.includes(idMovie)) {
-  //   addCurentBtn(modalMoviInfoBtnQueue);
-  // } else {
-  //   removeCurentBtn(modalMoviInfoBtnQueue);
-  // }
 
   textCurentBtnWatched(modalMoviInfoBtnWatched);
   textCurentBtnQueue(modalMoviInfoBtnQueue);
 }
 
-function addCurentInBtn(arr, element, btn) {
-  if (arr.includes(element)) {
-    addCurentBtn(btn);
-  } else {
-    removeCurentBtn(btn);
-  }
-}
-
+// Додає та видаляє з локального сховища id картки
 function changeWatched(e, targetEl) {
   return function () {
-    console.log(targetEl.dataset.ls);
+    // console.log(targetEl.dataset.ls);
 
     if (targetEl.dataset.ls === 'false') {
       localStorageMovi.watched.push(e.target.dataset.id);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      console.log(JSON.stringify(localStorageMovi));
+      // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
     } else {
       const ingexEl = localStorageMovi.watched.indexOf(e.target.dataset.id);
@@ -117,13 +103,12 @@ function changeWatched(e, targetEl) {
 
 function changeQueue(e, targetEl) {
   return function () {
-    console.log('asdsasa');
-    console.log(targetEl.dataset.ls);
+    // console.log(targetEl.dataset.ls);
 
     if (targetEl.dataset.ls === 'false') {
       localStorageMovi.queue.push(e.target.dataset.id);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      console.log(JSON.stringify(localStorageMovi));
+      // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
     } else {
       const ingexEl = localStorageMovi.queue.indexOf(e.target.dataset.id);
@@ -136,6 +121,16 @@ function changeQueue(e, targetEl) {
   };
 }
 
+// Додає/видаляє класс з кнопки
+
+function addCurentInBtn(arr, element, btn) {
+  if (arr.includes(element)) {
+    addCurentBtn(btn);
+  } else {
+    removeCurentBtn(btn);
+  }
+}
+
 function addCurentBtn(btn) {
   btn.classList.add('modal-movie__btn--curent');
   btn.dataset.ls = 'true';
@@ -146,6 +141,7 @@ function removeCurentBtn(btn) {
   btn.dataset.ls = 'false';
 }
 
+// Змінює текст кнопки
 function textCurentBtnWatched(btn) {
   if (btn.dataset.ls === 'false') {
     btn.innerHTML = 'add to Watched';
@@ -161,11 +157,13 @@ function textCurentBtnQueue(btn) {
   }
 }
 
+// Закриває модалку
 function closeModalInfo() {
   modalMovi.innerHTML = '';
   modalMoviInfo.classList.add('is-hidden');
 }
 
+// створює розмітку для модалки
 function CardFilminHtml(data) {
   return `
     <img class="modal-movie__img" src="${
@@ -225,8 +223,8 @@ function CardFilminHtml(data) {
     </button>
       `;
 }
-
-function ifErrorHtml() {
+// створює розмітку для модалки у випадку помилки
+function CardFilminHtmlIfError() {
   return `<button type="button" class="modal-movie__btn-close">
       <svg class="icon" width="14" height="14">
         <use xlink:href="/symbol-defs.a8b2e413.svg#icon-close"></use>
