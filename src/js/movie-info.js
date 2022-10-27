@@ -1,29 +1,139 @@
-import { fetchCardFilm } from './url';
+import { fetchCardFilm, Api } from './url';
+
+const ApiP = new Api();
 
 const modalMoviInfo = document.querySelector('.modal-movie__backdrop');
-const modalMovi = document.querySelector('.modal-movie__container');
-const modalMoviInfoBtn = document.querySelector('.modal-movie__btn-close');
+const modalMovi = document.querySelector('.modal-movie');
 
 const movieDiv = document.querySelector('.movie-popular');
 
+const localStorageWatched = [];
+
 movieDiv.addEventListener('click', openModalInfo);
-modalMoviInfoBtn.addEventListener('click', closeModalInfo);
 
 async function openModalInfo(e) {
   e.preventDefault();
   if (e.target.nodeName !== 'LI') {
     return;
   }
-  console.log(e.target);
+
+  // console.log(e.target);
   modalMovi.innerHTML = '';
-  modalMoviInfo.classList.remove('visually-hidden');
+  modalMoviInfo.classList.remove('is-hidden');
 
   const idMovie = e.target.dataset.id;
-  const PixabaySeach = await fetchCardFilm(idMovie);
-  modalMovi.innerHTML = PixabaySeach;
+
+  try {
+    const PixabaySeach = await ApiP.fetchCardFilm(idMovie);
+    modalMovi.innerHTML = CardFilminHtml(PixabaySeach);
+  } catch (error) {
+    console.log(error);
+    modalMovi.innerHTML = ifErrorHtml();
+  }
+
+  const modalMoviInfoBtnClose = document.querySelector(
+    '.modal-movie__btn-close'
+  );
+  const modalMoviInfoBtnWatched = document.querySelector(
+    '.modal-movie__btn-watched'
+  );
+  const modalMoviInfoBtnQueue = document.querySelector(
+    '.modal-movie__btn-queue'
+  );
+  modalMoviInfoBtnClose.addEventListener('click', closeModalInfo);
+  modalMoviInfoBtnWatched.addEventListener('click', changeWatched(e, modalMoviInfoBtnWatched));
+  modalMoviInfoBtnQueue.addEventListener('click', changeQueue);
+}
+
+function changeWatched(e, targetEl) {
+  return function () {
+    console.log(targetEl.dataset.ls)
+    if (targetEl.dataset.ls) {
+      localStorageWatched.push(e.target)
+      localStorage.setItem('watched', localStorageWatched);
+      targetEl.dataset.ls = true;
+    }
+
+    
+
+    
+  };
+}
+function changeQueue(e) {
+  console.log('Queue');
 }
 
 function closeModalInfo() {
   modalMovi.innerHTML = '';
-  modalMoviInfo.classList.add('visually-hidden');
+  modalMoviInfo.classList.add('is-hidden');
+}
+
+function CardFilminHtml(data) {
+  return `
+    <img class="modal-movie__img" src="${
+      data.poster_path
+        ? 'https://image.tmdb.org/t/p/w500' + data.poster_path
+        : 'https://via.placeholder.com/395x574'
+    }" alt="${
+    data.original_title || data.original_name
+  }" width="240" height="357" />
+    <div>
+      <h2 class="modal-movie__title">${
+        data.original_title || data.original_name
+          ? data.original_title || data.original_name
+          : ''
+      }</h2>
+      <ul class="modal-movie__list">
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Vote / Votes</p>
+          <p class="modal-movie__item-inf">
+            <span class="modal-movie__item-vote">${data.vote_average}</span> /
+            <span class="modal-movie__item-votes">${data.vote_count}</span>
+          </p>
+        </li>
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Popularity</p>
+          <p class="modal-movie__item-inf">${data.popularity}</p>
+        </li>
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Original Title </p>
+          <p class="modal-movie__item-inf modal-movie__item-inf--uppercase">
+            ${data.original_title}
+          </p>
+        </li>
+        <li class="modal-movie__item">
+          <p class="modal-movie__item-categories">Genre</p>
+          <p class="modal-movie__item-inf">${data.genres[0].name}</p>
+        </li>
+      </ul>
+      <h3 class="modal-movie__about">About</h3>
+      <p class="modal-movie__about-text">
+        ${data.overview}
+      </p>
+      <div class="modal-movie__btn-section">
+        <button
+            class="modal-movie__btn modal-movie__btn--margin modal-movie__btn-watched"
+            type="button" data-ls='false'
+          >
+            add to Watched
+          </button>
+          <button class="modal-movie__btn modal-movie__btn-queue" type="button" data-ls='false'>add to queue</button>
+      </div>
+    </div>
+    <button type="button" class="modal-movie__btn-close">
+      <svg class="icon" width="14" height="14">
+        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-close"></use>
+      </svg>
+    </button>
+      `;
+}
+
+function ifErrorHtml() {
+  return `<button type="button" class="modal-movie__btn-close">
+      <svg class="icon" width="14" height="14">
+        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-close"></use>
+      </svg>
+    </button>
+    <p>try later</p>
+      `;
 }
