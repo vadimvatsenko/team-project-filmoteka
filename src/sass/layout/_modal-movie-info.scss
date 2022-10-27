@@ -105,7 +105,6 @@
   font-size: 12px;
   line-height: 1.33;
   color: #8c8c8c;
-
 }
 
 .modal-movie__item-inf {
@@ -141,6 +140,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  text-transform: uppercase;
 }
 
 .modal-movie__about-text {
@@ -168,6 +168,8 @@
   display: inline-block;
   width: 110px;
   height: 44px;
+  border: 1px solid #000000;
+  border-radius: 5px;
 
   font-size: 12px;
   line-height: 1.33;
@@ -179,8 +181,11 @@
     margin-right: 15px;
   }
 }
+
 .modal-movie__btn--curent {
-  background-color: #ff6b01;
+  background-color: #FF6B01;
+   border: 1px solid #FF6B01;
+   color: #fff;
 }
 
 .is-hidden {
