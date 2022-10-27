@@ -1,3 +1,4 @@
+// import { constant } from 'lodash';
 import { fetchCardFilm, Api } from './url';
 
 const ApiP = new Api();
@@ -7,7 +8,16 @@ const modalMovi = document.querySelector('.modal-movie');
 
 const movieDiv = document.querySelector('.movie-popular');
 
-const localStorageWatched = [];
+let localStorageMovi = {
+  watched: [],
+  queue: [],
+};
+
+if (localStorage.getItem('watched')) {
+  localStorageMovi = JSON.parse(localStorage.getItem('watched'));
+} else {
+  localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+}
 
 movieDiv.addEventListener('click', openModalInfo);
 
@@ -40,27 +50,115 @@ async function openModalInfo(e) {
   const modalMoviInfoBtnQueue = document.querySelector(
     '.modal-movie__btn-queue'
   );
+
   modalMoviInfoBtnClose.addEventListener('click', closeModalInfo);
-  modalMoviInfoBtnWatched.addEventListener('click', changeWatched(e, modalMoviInfoBtnWatched));
-  modalMoviInfoBtnQueue.addEventListener('click', changeQueue);
+
+  modalMoviInfoBtnWatched.addEventListener(
+    'click',
+    changeWatched(e, modalMoviInfoBtnWatched)
+  );
+
+  modalMoviInfoBtnQueue.addEventListener(
+    'click',
+    changeQueue(e, modalMoviInfoBtnQueue)
+  );
+
+  const localStorageWatched = JSON.parse(
+    localStorage.getItem('watched')
+  ).watched;
+
+  const localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
+  addCurentInBtn(localStorageWatched, idMovie, modalMoviInfoBtnWatched);
+  addCurentInBtn(localStorageQueue, idMovie, modalMoviInfoBtnQueue);
+  // if (localStorageWatched.includes(idMovie)) {
+  //   addCurentBtn(modalMoviInfoBtnWatched);
+  // } else {
+  //   removeCurentBtn(modalMoviInfoBtnWatched);
+  // }
+
+  // if (localStorageQueue.includes(idMovie)) {
+  //   addCurentBtn(modalMoviInfoBtnQueue);
+  // } else {
+  //   removeCurentBtn(modalMoviInfoBtnQueue);
+  // }
+
+  textCurentBtnWatched(modalMoviInfoBtnWatched);
+  textCurentBtnQueue(modalMoviInfoBtnQueue);
+}
+
+function addCurentInBtn(arr, element, btn) {
+  if (arr.includes(element)) {
+    addCurentBtn(btn);
+  } else {
+    removeCurentBtn(btn);
+  }
 }
 
 function changeWatched(e, targetEl) {
   return function () {
-    console.log(targetEl.dataset.ls)
-    if (targetEl.dataset.ls) {
-      localStorageWatched.push(e.target)
-      localStorage.setItem('watched', localStorageWatched);
-      targetEl.dataset.ls = true;
+    console.log(targetEl.dataset.ls);
+
+    if (targetEl.dataset.ls === 'false') {
+      localStorageMovi.watched.push(e.target.dataset.id);
+      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+      console.log(JSON.stringify(localStorageMovi));
+      addCurentBtn(targetEl);
+    } else {
+      const ingexEl = localStorageMovi.watched.indexOf(e.target.dataset.id);
+
+      localStorageMovi.watched.splice(ingexEl, 1);
+      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+
+      removeCurentBtn(targetEl);
     }
-
-    
-
-    
+    textCurentBtnWatched(targetEl);
   };
 }
-function changeQueue(e) {
-  console.log('Queue');
+
+function changeQueue(e, targetEl) {
+  return function () {
+    console.log('asdsasa');
+    console.log(targetEl.dataset.ls);
+
+    if (targetEl.dataset.ls === 'false') {
+      localStorageMovi.queue.push(e.target.dataset.id);
+      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+      console.log(JSON.stringify(localStorageMovi));
+      addCurentBtn(targetEl);
+    } else {
+      const ingexEl = localStorageMovi.queue.indexOf(e.target.dataset.id);
+
+      localStorageMovi.queue.splice(ingexEl, 1);
+      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+      removeCurentBtn(targetEl);
+    }
+    textCurentBtnQueue(targetEl);
+  };
+}
+
+function addCurentBtn(btn) {
+  btn.classList.add('modal-movie__btn--curent');
+  btn.dataset.ls = 'true';
+}
+
+function removeCurentBtn(btn) {
+  btn.classList.remove('modal-movie__btn--curent');
+  btn.dataset.ls = 'false';
+}
+
+function textCurentBtnWatched(btn) {
+  if (btn.dataset.ls === 'false') {
+    btn.innerHTML = 'add to Watched';
+  } else {
+    btn.innerHTML = 'remove Watched';
+  }
+}
+function textCurentBtnQueue(btn) {
+  if (btn.dataset.ls === 'false') {
+    btn.innerHTML = 'add to Queue';
+  } else {
+    btn.innerHTML = 'remove Queue';
+  }
 }
 
 function closeModalInfo() {
