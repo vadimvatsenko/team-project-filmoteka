@@ -1,4 +1,4 @@
-import { fetchCardFilm, Api } from './url';
+import { Api } from './url';
 
 const ApiP = new Api();
 
@@ -7,6 +7,7 @@ const modalMovi = document.querySelector('.modal-movie');
 
 const movieDiv = document.querySelector('.movie-popular');
 
+// робота з локальним сховищем
 let localStorageMovi = {
   watched: [],
   queue: [],
@@ -18,17 +19,17 @@ if (localStorage.getItem('watched')) {
   localStorage.setItem('watched', JSON.stringify(localStorageMovi));
 }
 
-movieDiv.addEventListener('click', openModalInfo);
+// обробка натискання на фільм
+movieDiv.addEventListener('click', onMoviClick);
 
-async function openModalInfo(e) {
+async function onMoviClick(e) {
   e.preventDefault();
   if (e.target.nodeName !== 'LI') {
     return;
   }
 
   // console.log(e.target);
-  modalMovi.innerHTML = '';
-  modalMoviInfo.classList.remove('is-hidden');
+  openModalInfo();
 
   const idMovie = e.target.dataset.id;
 
@@ -79,18 +80,18 @@ function onBtnInModalMovi(e) {
   textCurentBtnQueue(modalMoviInfoBtnQueue);
 }
 
-// Додає та видаляє з локального сховища id картки
+// Додає та видаляє з локального сховища HTML картки
 function changeWatched(e, targetEl) {
   return function () {
     // console.log(targetEl.dataset.ls);
 
     if (targetEl.dataset.ls === 'false') {
-      localStorageMovi.watched.push(e.target.dataset.id);
+      localStorageMovi.watched.push(e.target.outerHTML);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
     } else {
-      const ingexEl = localStorageMovi.watched.indexOf(e.target.dataset.id);
+      const ingexEl = localStorageMovi.watched.indexOf(e.target.outerHTML);
 
       localStorageMovi.watched.splice(ingexEl, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -106,12 +107,12 @@ function changeQueue(e, targetEl) {
     // console.log(targetEl.dataset.ls);
 
     if (targetEl.dataset.ls === 'false') {
-      localStorageMovi.queue.push(e.target.dataset.id);
+      localStorageMovi.queue.push(e.target.outerHTML);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
     } else {
-      const ingexEl = localStorageMovi.queue.indexOf(e.target.dataset.id);
+      const ingexEl = localStorageMovi.queue.indexOf(e.target.outerHTML);
 
       localStorageMovi.queue.splice(ingexEl, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -157,10 +158,15 @@ function textCurentBtnQueue(btn) {
   }
 }
 
-// Закриває модалку
+// Закриває/відкриває модалку
 function closeModalInfo() {
   modalMovi.innerHTML = '';
   modalMoviInfo.classList.add('is-hidden');
+}
+
+function openModalInfo() {
+  modalMovi.innerHTML = '';
+  modalMoviInfo.classList.remove('is-hidden');
 }
 
 // створює розмітку для модалки
@@ -223,6 +229,7 @@ function CardFilminHtml(data) {
     </button>
       `;
 }
+
 // створює розмітку для модалки у випадку помилки
 function CardFilminHtmlIfError() {
   return `<button type="button" class="modal-movie__btn-close">
