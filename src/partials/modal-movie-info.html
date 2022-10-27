@@ -1,6 +1,5 @@
-<div class="modal-movie__backdrop visually-hidden">
+<div class="modal-movie__backdrop is-hidden">
   <div class="modal-movie">
-    <div class="modal-movie__container">
       <img class="modal-movie__img" src="#" alt="" width="240" height="357" />
       <div>
         <h2 class="modal-movie__title">A FISTFUL OF LEAD</h2>
@@ -40,21 +39,18 @@
         </p>
         <div class="modal-movie__btn-section">
           <button
-            class="modal-movie__btn modal-movie__btn--margin"
+            class="modal-movie__btn modal-movie__btn--margin modal-movie__btn-watched"
             type="button"
           >
             add to Watched
           </button>
-          <button class="modal-movie__btn" type="button">add to queue</button>
+          <button class="modal-movie__btn modal-movie__btn-queue" type="button">add to queue</button>
         </div>
       </div>
-      
-    </div>
     <button type="button" class="modal-movie__btn-close">
-        <svg class="icon" width="14" height="14">
-          <use xlink:href="./images/symbol-defs.svg#icon-close"></use>
-        </svg>
-      </button>
+      <svg class="icon" width="14" height="14">
+        <use xlink:href="./images/symbol-defs.svg#icon-close"></use>
+      </svg>
+    </button>
   </div>
 </div>
-<!--  -->
