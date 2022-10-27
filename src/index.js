@@ -1,5 +1,6 @@
 import { onScroll, onTopButton } from './js/scroll';
 
+
 onScroll();
 onTopButton();
 //
@@ -17,14 +18,14 @@ getSearchForm.addEventListener('submit', getSearch);
 async function getSearch(e) {
     e.preventDefault();
     const searchWord = e.currentTarget.search.value;
-    
+
     const searchMovie = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&include_adult=false&query=${searchWord}`)
         .then(response => response.json());
     console.log(searchMovie);
     console.log(searchMovie.results);
-    
-    const searchMovieMarkup = searchMovie.results.map(({ title, poster_path}) => {
-        
+
+    const searchMovieMarkup = searchMovie.results.map(({ title, poster_path }) => {
+
 
         return `<li class='movie-popular__item'>
        
@@ -33,15 +34,15 @@ async function getSearch(e) {
         <h3 class='movie-popular__title'>${title}</h3>
         </div>
         </li>`
-        
- }).join('');
+
+    }).join('');
 
     getTopMovie.innerHTML = searchMovieMarkup;
-    
-    
+
+
 }
-    
-  
+
+
 
 
 
@@ -52,7 +53,7 @@ async function getTrendingMovie() {
     const topMovieInfo = await fetch(URL).then(response => response.json());
 
     const topMovieMarkup = topMovieInfo.results.map(({ title, poster_path, release_date, vote_average }) => {
-        
+
 
         return `<li class='movie-popular__item'>
        
@@ -63,19 +64,19 @@ async function getTrendingMovie() {
         <p class='movie-popular__rating'>${vote_average}</p>
         </div>
         </li>`
-        
-   
+
+
     }).join('');
 
     getTopMovie.innerHTML = topMovieMarkup;
-    
-    
+
+
 }
 
 
 
 
- 
+
 
 
 

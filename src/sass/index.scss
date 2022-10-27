@@ -1,17 +1,18 @@
-@import './base/reset';
-@import './base/body-style';
+@import "./base/reset";
+@import "./base/body-style";
 
-@import './utils/colors';
-@import './utils/mixins';
-@import './components/buttons';
+@import "./utils/colors";
+@import "./utils/mixins";
+@import "./components/buttons";
+@import "./components/theme";
 
-@import './utils/visually-hidden';
+@import "./utils/visually-hidden";
 
-@import './base/container';
-@import './base/section';
+@import "./base/container";
+@import "./base/section";
 
-@import './layout/header';
-@import './layout/movie_popular';
-@import './components/scroll';
-@import './components/spinner';
-@import './layout/footer';
+@import "./layout/header";
+@import "./layout/movie_popular";
+@import "./components/scroll";
+@import "./components/spinner";
+@import "./layout/footer";
