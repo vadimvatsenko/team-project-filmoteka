@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 import { refs } from './refs';
 import { getAPI, generateContent, pasteContent } from './popularRender';
 import { BASE_URL, KEY, IMG_URL, API_URL, POPULAR_URL } from './url';
@@ -38,12 +38,6 @@ const options = {
 };
 
 export const pagination = new Pagination('pagination', options);
-if (refs.list.children) {
-  refs.paginationDiv.classList.remove('visually-hidden');
-} else {
-  refs.paginationDiv.classList.add('visually-hidden');
-}
-console.log();
 
 pagination.on('afterMove', function (eventData) {
   resetGallery();

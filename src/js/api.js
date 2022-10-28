@@ -20,7 +20,7 @@ import {
 // ==============================================================
 
 import Pagination from 'tui-pagination';
-import 'tui-pagination/dist/tui-pagination.css';
+// import 'tui-pagination/dist/tui-pagination.css';
 
 // ================================================================
 
@@ -32,7 +32,6 @@ function handleSubmit(event) {
   event.preventDefault();
 
   const movie = event.currentTarget.elements.search.value.trim().toLowerCase();
-  
 
   // =====================================================================
   const options = {
@@ -77,7 +76,6 @@ function handleSubmit(event) {
   //console.log(movie);
   // refs.list.innerHTML = "";
 
-
   if (!movie) {
     Notify.failure(
       'Sorry, there are no movies matching your search query. Please try again.'
@@ -89,6 +87,3 @@ function handleSubmit(event) {
 }
 
 refs.form.addEventListener('submit', handleSubmit);
-
-
-

@@ -5,29 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="find a movie" />
     <title>Filmoteka</title>
-   
 
-  <link rel="stylesheet" href="./sass/index.scss" />
-  <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <script type="module" src="./index.js"></script>
 
-  <link rel="icon" type="image/svg" sizes="32x32" href="./images/icons/favicon.svg" />
-</head>
+    <link
+      rel="icon"
+      type="image/svg"
+      sizes="32x32"
+      href="./images/icons/favicon.svg"
+    />
+  </head>
 
-<body>
-  <!-- 11 -->
-  <!-- ❗️❗️❗️ Add partials like so for every page -->
-  <include src="./partials/header.html"></include>
-  <main>
-    <include src="./partials/movie_popular.html"></include>
-    <include src="./partials/modal-movie-info.html"></include>
+  <body>
+    <!-- 11 -->
+    <!-- ❗️❗️❗️ Add partials like so for every page -->
+    <include src="./partials/header.html"></include>
+    <main>
+      <include src="./partials/movie_popular.html"></include>
+      <include src="./partials/modal-movie-info.html"></include>
+    </main>
+    <div id="pagination" class="tui-pagination"></div>
 
-  </main>
-   <div id="pagination" class="tui-pagination visually-hidden"></div>
-    
-    
-  <include src="./partials/footer.html"></include>
-
-</body>
-
+    <include src="./partials/footer.html"></include>
+  </body>
 </html>
-
