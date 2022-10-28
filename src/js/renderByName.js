@@ -26,7 +26,7 @@ export function getMovieNameAPI(movie, page) {
       }
       return response.json();
     })
-  
+
     .then(data => {
       Loading.custom('Loading...', {
         customSvgCode:
@@ -53,13 +53,9 @@ export function getMovieNameAPI(movie, page) {
     .finally(() => {
       Loading.remove(2000);
     });
+}
 
-  }
-
-
-
-
-  // import {
+// import {
 //   BASE_URL,
 //   KEY,
 //   IMG_URL,
@@ -69,7 +65,6 @@ export function getMovieNameAPI(movie, page) {
 // } from './url';
 // import { refs } from './refs';
 // import { pasteContent } from './createListItem';
-
 
 // //
 // // добавил page в параметр и в строку запроса!!!

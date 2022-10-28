@@ -3,22 +3,14 @@
     <nav>
       <a href="./index.html" class="header__logo">
         <svg class="header__logo-svg">
-          <use
-            href="./images/symbol-defs.svg#icon-film"
-            width="24px"
-            height="24px"
-          ></use>
+          <use href="./images/symbol-defs.svg#icon-film" width="24px" height="24px"></use>
         </svg>
         <span class="header__logo-name">Filmoteka</span>
       </a>
 
       <ul class="header__nav">
         <li class="header__nav-item">
-          <a
-            class="header__nav-link header__nav-link--current"
-            href="./index.html"
-            >HOME</a
-          >
+          <a class="header__nav-link header__nav-link--current" href="./index.html">HOME</a>
         </li>
 
         <li class="header__nav-item">
@@ -27,17 +19,8 @@
       </ul>
     </nav>
     <form class="header__form">
-      <input
-        type="text"
-        name="search"
-        placeholder="Movie search"
-        class="header__input"
-      />
-      <button
-        class="header__search-btn"
-        type="submit"
-        aria-label="search button"
-      >
+      <input type="text" name="search" placeholder="Movie search" class="header__input" />
+      <button class="header__search-btn" type="submit" aria-label="search button">
         <svg class="search-svg" width="12" height="12px">
           <use href="./images/symbol-defs.svg#icon-search"></use>
         </svg>
@@ -50,26 +33,13 @@
   <!-- Разметка переключателя темы -->
   <div class="toolbar">
     <div class="theme-switch">
-      <svg
-        class="theme-switch__icon stormtroopers"
-        role="img"
-        aria-label="Иконка stormtroopers"
-      >
+      <svg class="theme-switch__icon stormtroopers" role="img" aria-label="Иконка stormtroopers">
         <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
       </svg>
       <div class="theme-switch__control">
-        <input
-          class="theme-switch__toggle"
-          type="checkbox"
-          name="theme"
-          id="theme-switch-toggle"
-          aria-label="Переключить между тёмной и светлой темой"
-        />
-        <label
-          aria-hidden="true"
-          class="theme-switch__track"
-          for="theme-switch-toggle"
-        >
+        <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+          aria-label="Переключить между тёмной и светлой темой" />
+        <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
         </label>
         <div aria-hidden="true" class="theme-switch__marker"></div>
       </div>
