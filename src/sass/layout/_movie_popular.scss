@@ -118,6 +118,7 @@ color: #000000;
 //* на ссилки забрати маркер
 .movie-popular__reference{
     text-decoration: none;
+    pointer-events: none;
 }
 
 // * {
