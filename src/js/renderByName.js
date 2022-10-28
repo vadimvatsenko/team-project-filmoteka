@@ -11,8 +11,8 @@ import { pasteContent } from './createListItem';
 //import { spinerStart, spinerStop } from './spiner';
 import { Loading } from 'notiflix';
 
-export function getMovieNameAPI(movie) {
-  fetch(`${BASE_FIND_WORD_URL}&query=${movie}`)
+export function getMovieNameAPI(movie, page) {
+  fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
     .then(response => {
       if (!response.ok) {
         throw (
