@@ -6,6 +6,8 @@
   position: relative;
   width: 280px;
   max-height: 940px;
+  min-height: 500px;
+
   padding: 48px 20px 40px 20px;
   margin: auto;
   background-color: #fff;
@@ -43,7 +45,8 @@
   background-color: rgba(0, 0, 0, 0.2);
   overflow-y: scroll;
   z-index: 3;
-  // transition: opacity 250ms var(--primary-animation),visibility 25000ms var(--primary-animation);
+  display: flex;
+  justify-content: center;
 }
 
 .modal-movie__container {
@@ -89,6 +92,21 @@
     margin: 0;
     margin-right: 16px;
   }
+}
+.modal-movie__img-container{
+  position: relative;
+}
+
+.modal-movie__img-company{
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height:auto;
 }
 
 .modal-movie__title {
@@ -244,7 +262,7 @@
 .modal-movie__movie {
   position: absolute;
   left: 8px;
-  top: 8px;
+  bottom: 8px;
 
   display: flex;
   justify-content: center;
@@ -258,8 +276,16 @@
   & > .basicLightbox__placeholder {
     background-color: transparent;
     position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) !important;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+  }
+}
+
+.modal-movie__icon {
+  fill: #ff6b01;
+  &:hover,
+  &:focus {
+    fill: rgb(255, 0, 0);
   }
 }

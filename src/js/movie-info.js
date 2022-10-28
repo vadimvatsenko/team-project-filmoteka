@@ -51,18 +51,14 @@ async function onMoviClick(e) {
   try {
     const Seach = await ApiP.fetchCardFilm(idMovie);
     modalMovi.innerHTML = CardFilminHtml(Seach);
+    console.log(Seach);
     onBtnInModalMovi(e);
     Loading.remove(0);
-  } catch (error) {
-    Loading.remove(0);
-    console.log(error);
-    modalMovi.innerHTML = CardFilminHtmlIfError(error);
-  }
-
-  try {
+    try {
     const Movies = await ApiP.fetchMovies(idMovie);
-    if (Movies.results[0]) {
-      modalMovi.insertAdjacentHTML('beforeend', movieBtnHtml());
+      if (Movies.results[0]) {
+      const imageContainer = document.querySelector('.modal-movie__img-container');
+      imageContainer.insertAdjacentHTML('beforeend', movieBtnHtml());
       const moviesBtn = document.querySelector('.modal-movie__movie');
       moviesBtn.addEventListener('click', openModalMovi(e, Movies.results[0]));
     }
@@ -70,12 +66,19 @@ async function onMoviClick(e) {
     console.log(error);
     console.log('no movie');
   }
+  } catch (error) {
+    Loading.remove(0);
+    console.log(error);
+    modalMovi.innerHTML = CardFilminHtmlIfError(error);
+  }
+
+  
 }
 
 function openModalMovi(e, Movie) {
   return async function () {
-    console.log(e);
-    console.log(Movie);
+    // console.log(e);
+    // console.log(Movie);
     //  modalMovi.innerHTML = returnMovie(Movie);
     const options = {
       className: 'basicLightbox__placeholder--transparent',
@@ -217,18 +220,38 @@ function textCurentBtnQueue(btn) {
 // створює розмітку для модалки
 function CardFilminHtml(data) {
   return `
-    <img class="modal-movie__img" src="${
+  <div class="modal-movie__img-container">
+  <img class="modal-movie__img" src="${
       data.poster_path
         ? 'https://image.tmdb.org/t/p/w500' + data.poster_path
         : 'https://via.placeholder.com/395x574'
     }" alt="${
     data.original_title || data.original_name
   }" width="240" height="357" />
+  ${data.production_companies[0].logo_path ? ` <img class="modal-movie__img-company" src="${
+      data.production_companies[0].logo_path
+        ? 'https://image.tmdb.org/t/p/w500' + data.production_companies[0].logo_path
+        : '-'
+    }" alt="${
+    data.production_companies[0].name || 'logo company'
+  }" width="240" height="357" />`: ''}
+  
+<!--
+  <img class="modal-movie__img-company" src="${
+      data.production_companies[0].logo_path
+        ? 'https://image.tmdb.org/t/p/w500' + data.production_companies[0].logo_path
+        : '-'
+    }" alt="${
+    data.production_companies[0].name || 'logo company'
+  }" width="240" height="357" />
+  -->
+  </div>
+    
     <div>
       <h1 class="modal-movie__title">${
         data.original_title || data.original_name
           ? data.original_title || data.original_name
-          : ''
+          : '-'
       }</h1>
       <ul class="modal-movie__list">
         <li class="modal-movie__item">
@@ -282,13 +305,14 @@ function CardFilminHtmlIfError(Error) {
     
       `;
 }
+
 function movieBtnHtml() {
   return `
-        <button type="button" class="modal-movie__movie">
-      <svg class="icon" width="14" height="14">
-        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-close"></use>
+      <button type="button" class="modal-movie__movie">
+      <svg class="icon modal-movie__icon" width="30" height="30">
+        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-youtube"></use>
       </svg>
-    </button>
+    </button> 
     
       `;
 }
@@ -300,34 +324,3 @@ function returnMovie(Movie) {
   </div>
   `;
 }
-
-// id
-// :
-// "632e8350988afd007bf34a01"
-// iso_639_1
-// :
-// "en"
-// iso_3166_1
-// :
-// "US"
-// key
-// :
-// "zUqIv5PvbGk"
-// name
-// :
-// "Justin Long's New Movie | Official Trailer"
-// official
-// :
-// true
-// published_at
-// :
-// "2022-09-23T16:00:41.000Z"
-// site
-// :
-// "YouTube"
-// size
-// :
-// 1080
-// type
-// :
-// "Teaser"
