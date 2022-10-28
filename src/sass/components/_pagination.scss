@@ -13,6 +13,10 @@
   line-height: 26px;
   overflow: hidden;
   background-color: #f7f7f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 .tui-pagination .tui-is-selected,
 .tui-pagination strong {
@@ -24,6 +28,10 @@
   height: 40px;
   font-size: 24px;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
 .tui-pagination .tui-is-selected:hover {
