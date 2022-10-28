@@ -23,4 +23,8 @@ export class Api {
     const fetchCard = await axios.get(`${BASE_URL}movie/${id}?api_key=${KEY}`);
     return fetchCard.data;
   }
+  async fetchMovies(id) {
+    const fetchCard = await axios.get(`${BASE_URL}movie/${id}/videos?api_key=${KEY}`);
+    return fetchCard.data;
+  }
 }
