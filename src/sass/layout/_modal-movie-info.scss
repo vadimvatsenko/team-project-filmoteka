@@ -11,8 +11,8 @@
   background-color: #fff;
 
   @include tablet {
-    display: flex;
     position: absolute;
+    display: flex;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -21,12 +21,14 @@
   @include only_tablet {
     padding: 40px 72px 40px 36px;
     width: 704px;
+    min-height: 413.55px;
     max-height: 552px;
   }
 
   @include desktop {
     padding: 40px 12px 40px 12px;
     width: 806px;
+    min-height: 518px;
     max-height: 558px;
   }
 }
@@ -45,6 +47,7 @@
 }
 
 .modal-movie__container {
+  width: 100%;
   @include tablet {
     display: flex;
   }
@@ -68,6 +71,11 @@
   margin-bottom: 20px;
   border-radius: 5px;
 
+  background-image: url('../images/icons/favicon.svg');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: contain;
+
   @include only_tablet {
     min-width: 264px;
     min-height: 373.55px;
@@ -89,6 +97,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1.15;
+  text-transform: uppercase;
 }
 
 .modal-movie__list {
@@ -156,7 +165,7 @@
   line-height: 1.66;
 
   @include desktop {
-    height: 160px;
+    max-height: 160px;
   }
 }
 
@@ -172,12 +181,27 @@
   display: inline-block;
   width: 110px;
   height: 44px;
+  padding: 0px 8px;
   border: 1px solid #000000;
   border-radius: 5px;
 
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
+  &:hover,
+  &:focus {
+    background-color: #ff6b01;
+    border: 1px solid #ff6b01;
+    color: #fff;
+  }
+
+  @include only_tablet {
+    width: 125px;
+  }
+
+  @include desktop {
+    width: 136px;
+  }
 }
 
 .modal-movie__btn--margin {
@@ -187,13 +211,55 @@
 }
 
 .modal-movie__btn--curent {
-  background-color: #FF6B01;
-   border: 1px solid #FF6B01;
-   color: #fff;
+  background-color: #ff6b01;
+  border: 1px solid #ff6b01;
+  color: #fff;
+  &:hover,
+  &:focus {
+    background-color: #ffffff;
+    // border: 1px solid #000000;
+    color: #000000;
+  }
 }
 
 .is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+}
+
+.error-message {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.modal-movie__movie {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+
+.basicLightbox__placeholder--transparent {
+  position: relative;
+  & > .basicLightbox__placeholder {
+    background-color: transparent;
+    position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) !important;
+  }
 }
