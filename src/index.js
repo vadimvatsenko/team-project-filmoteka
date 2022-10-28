@@ -12,3 +12,5 @@ import './js/spiner';
 import './js/movie-info';
 import './js/team_modal';
 import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
+
+
