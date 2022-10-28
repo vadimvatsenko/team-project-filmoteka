@@ -11,7 +11,7 @@ import {
 console.log(getAPI);
 
 const options = {
-  totalItems: 2500,
+  totalItems: 20000,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,
@@ -41,7 +41,7 @@ export const pagination = new Pagination('pagination', options);
 
 pagination.on('afterMove', function (eventData) {
   resetGallery();
-  getAPI(`${POPULAR_URL}&page=${eventData.page}`);
+  getAPI(`${API_URL}&page=${eventData.page}`);
   localStorage.setItem('pagination', eventData.page);
   //   console.log(refs.list.childNodes.length);
 });

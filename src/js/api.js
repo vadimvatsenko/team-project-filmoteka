@@ -35,7 +35,7 @@ function handleSubmit(event) {
 
   // =====================================================================
   const options = {
-    totalItems: 2500,
+    totalItems:2500,
     itemsPerPage: 40,
     visiblePages: 5,
     page: 1,
