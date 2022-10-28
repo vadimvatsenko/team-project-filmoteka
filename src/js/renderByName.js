@@ -14,6 +14,7 @@ import { pasteContent } from './createListItem';
 // добавил page в параметр и в строку запроса!!!
 export function getMovieNameAPI(movie, page) {
   fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
+  .then(response => {
      if (!response.ok) {
         throw (
           (new Error(response.status),
