@@ -9,12 +9,12 @@ export const POPULAR_URL = `${BASE_URL}discover/movie/?sort_by=popularity.desc&a
 
 const API_GENRE = `${BASE_URL}genre/movie/list?api_key=${KEY}`; // посилання на жанри фільмів
 
-// export async function fetchCardFilm(id) {
-//   const fetchCard = await fetch(`${BASE_URL}movie/${id}?api_key=${KEY}`);
-//   const fetchCardJson = await fetchCard.json();
+export async function fetchCardFilm(id) {
+  const fetchCard = await fetch(`${BASE_URL}movie/${id}?api_key=${KEY}`);
+  const fetchCardJson = await fetchCard.json();
 
-//   return fetchCardJson;
-// }
+  return fetchCardJson;
+}
 
 export class Api {
   constructor() {}
