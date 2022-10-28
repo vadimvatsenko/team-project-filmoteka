@@ -45,3 +45,16 @@ export default class ModalClassic {
     this.closingTracking();
   }
 }
+
+
+// класи які необхідні
+
+// .body--hidden {
+//   overflow: hidden;
+// }
+
+// .is-hidden {
+//   opacity: 0;
+//   pointer-events: none;
+//   visibility: hidden;
+// }
