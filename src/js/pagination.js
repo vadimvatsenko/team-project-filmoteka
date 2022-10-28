@@ -11,7 +11,7 @@ import {
 console.log(getAPI);
 
 const options = {
-  totalItems: 2500,
+  totalItems: 20000,
   itemsPerPage: 20,
   visiblePages: 5,
   page: 1,

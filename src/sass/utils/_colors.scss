@@ -1,12 +1,17 @@
 :root {
     --bg-main-color: #ffffff;
     --bg-footer-color: #f7f7f7;
-    --hover-color: #FF6B08;
+    --hover-color: #ff6b08;
     --first-text-color: #545454;
 
     --btn-text-color: #000000;
     --btn-disable-text-color: #00000050;
     --btn-disable-bg-color: #f7f7f7;
+
+    --dark-theme-background-color: #333333;
+    --light-theme-background-color: #ffffff;
+
+    --footer-text-color: #545454;
 
     // .bgr_night {
     //     --bgBasic: #1f1f1f;
@@ -16,5 +21,4 @@
     //     --footer-bg: #400000;
     //     --first-text-color: #ffffff;
     // }
-
 }
