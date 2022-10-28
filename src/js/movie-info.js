@@ -219,7 +219,6 @@ function changeQueue(e, targetEl) {
   };
 }
 
-function trip(e, targetEl) {}
 // Додає/видаляє класс з кнопки
 
 function addCurentInBtn(arr, element, btn) {
