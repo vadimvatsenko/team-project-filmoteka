@@ -1,16 +1,14 @@
-import { Api} from './url';
-import  ModalClassic  from './modalClassic';
-
+//імпорт Запиту на сервер
+import { Api } from './url';
 const ApiP = new Api();
 
-const modalMoviInfo = document.querySelector('.modal-movie__backdrop');
-const modalMovi = document.querySelector('.modal-movie__container');
-
-const movieDiv = document.querySelector('.movie-list');
-
-const Modal = new ModalClassic(modalMoviInfo,
+//імпорт ModalClassic для відкриття/закриття модального вікна
+import ModalClassic from './modalClassic';
+const Modal = new ModalClassic('.modal-movie__backdrop',
   '.modal-movie__btn-close');
-    
+
+const modalMovi = document.querySelector('.modal-movie__container');
+const movieDiv = document.querySelector('.movie-list');  
 
 // робота з локальним сховищем
 let localStorageMovi = {
@@ -35,12 +33,9 @@ async function onMoviClick(e) {
 
   // console.log(e.target);
   // modalMovi.innerHTML = spinerInMovi();
-   modalMovi.innerHTML = " ";
+  modalMovi.innerHTML = " ";
   
   Modal.openModal();
-  Modal.keydownTest();
-
-
 
   const idMovie = e.target.dataset.id;
 
