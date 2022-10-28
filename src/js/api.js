@@ -73,7 +73,7 @@ function handleSubmit(event) {
     refs.list.innerHTML = '';
   }
   // =============================================================
-=======
+
   //console.log(movie);
   // refs.list.innerHTML = "";
 
