@@ -1,8 +1,3 @@
-
-
-//! моє
-
-
 // import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -35,7 +30,7 @@ function handleSubmit(event) {
 
   if (!movie) {
     Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
+      'Sorry, there are no movies matching your search query. Please try again.'
     );
     return;
   }
