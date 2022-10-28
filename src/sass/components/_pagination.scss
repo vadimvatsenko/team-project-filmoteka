@@ -1,0 +1,54 @@
+.tui-pagination .tui-first,
+.tui-pagination .tui-prev,
+.tui-pagination .tui-next,
+.tui-pagination .tui-last,
+.tui-pagination .tui-prev-is-ellip,
+.tui-pagination .tui-next-is-ellip {
+  height: 26px;
+  white-space: nowrap;
+  border: 1px solid #ddd;
+  padding: 0;
+  font-size: 0;
+  font-weight: normal;
+  line-height: 26px;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+  color: #fff;
+  cursor: default;
+  background: #ff6b08;
+  border-color: #ff6b08;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+.tui-pagination .tui-is-selected:hover {
+  background-color: #ff6b08;
+}
+
+.tui-pagination .tui-first-child.tui-is-selected,
+.tui-pagination strong.tui-first-child {
+  margin-left: 0;
+}
+
+.tui-pagination .tui-first-child,
+.tui-pagination .tui-prev-is-ellip {
+  border-left: 1px solid #ddd;
+}
+
+.tui-pagination .tui-last-child,
+.tui-pagination .tui-next-is-ellip {
+  border-right: 1px solid #ddd;
+}
+
+.tui-pagination .tui-first-child.tui-is-selected {
+  border-left: 1px solid #ff6b08;
+}
+
+.tui-pagination .tui-last-child.tui-is-selected {
+  border-right: 1px solid #ff6b08;
+}

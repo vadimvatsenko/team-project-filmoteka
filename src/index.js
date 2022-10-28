@@ -5,5 +5,9 @@ import './js/refs';
 import './js/renderByName';
 import './js/url';
 import './js/scroll';
+
+import './js/pagination';
+
 import './js/spiner';
 import './js/movie-info';
+
