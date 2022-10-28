@@ -1,4 +1,5 @@
 import Pagination from 'tui-pagination';
+import axios from 'axios';
 // import 'tui-pagination/dist/tui-pagination.css';
 import { refs } from './refs';
 import { getAPI, generateContent, pasteContent } from './popularRender';
@@ -39,13 +40,16 @@ const options = {
 
 export const pagination = new Pagination('pagination', options);
 
-pagination.on('afterMove', function (eventData) {
+pagination.on('afterMove', async function (eventData) {
   resetGallery();
+
+  // const fetchFilmsText = await axios.get(`${API_URL}&page=${eventData.page}`);
+  // console.log(fetchFilmsText);
   getAPI(`${API_URL}&page=${eventData.page}`);
+  // movieStrorage = eventData.page;
   localStorage.setItem('pagination', eventData.page);
-  //   console.log(refs.list.childNodes.length);
 });
-// pagination.movePageTo(localStorage.getItem('pagination'));
+pagination.movePageTo(localStorage.getItem('pagination'));
 
 function resetGallery() {
   refs.list.innerHTML = '';
