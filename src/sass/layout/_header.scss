@@ -1,5 +1,6 @@
 .header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56));
+  position: relative;
 
   @include mobile {
     background-image: url(../images/bg/header_main_320px.jpg);

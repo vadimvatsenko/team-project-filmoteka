@@ -46,6 +46,7 @@
   </div>
 
   <h1 class="visually-hidden">Movie Servise</h1>
+  
   <form class="filter__form" id="filter-form">
     <select class="filter__form-select" name="genreForm" id="genreForm">
       <option class="filter__form-genres" value="start">Genre</option>
@@ -77,4 +78,41 @@
       Reset
     </button>
   </form>
+
+   <!-- Разметка переключателя темы -->
+ <div class="toolbar">
+  <div class="theme-switch">
+    <svg
+      class="theme-switch__icon stormtroopers"
+      role="img"
+      aria-label="Иконка stormtroopers"
+    >
+      <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
+    </svg>
+    <div class="theme-switch__control">
+      <input
+        class="theme-switch__toggle"
+        type="checkbox"
+        name="theme"
+        id="theme-switch-toggle"
+        aria-label="Переключить между тёмной и светлой темой"
+      />
+      <label
+        aria-hidden="true"
+        class="theme-switch__track"
+        for="theme-switch-toggle"
+      >
+      </label>
+      <div aria-hidden="true" class="theme-switch__marker"></div>
+    </div>
+
+    <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
+      <use href="/src/images/symbol-defs.svg#vader"></use>
+    </svg>
+  </div>
+</div>
+
+
+ 
 </header>
+
