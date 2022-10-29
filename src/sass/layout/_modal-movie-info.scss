@@ -47,6 +47,7 @@
   z-index: 3;
   display: flex;
   justify-content: center;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)
 }
 
 .modal-movie__container {
@@ -210,6 +211,10 @@
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
+   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
     background-color: #ff6b01;
@@ -236,6 +241,7 @@
   background-color: #ff6b01;
   border: 1px solid #ff6b01;
   color: #fff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     background-color: #ffffff;
@@ -288,8 +294,11 @@
 
 .modal-movie__icon {
   fill: #ff6b01;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     fill: rgb(255, 0, 0);
   }
 }
+
+// transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
