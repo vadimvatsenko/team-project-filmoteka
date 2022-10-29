@@ -1,4 +1,4 @@
-import {genres} from './genres.json'
+import { genres } from './genres.json';
 
 export function getfilmsGenres(ids) {
   let filmsGenres = genres.reduce((acc, { id, name }) => {
@@ -8,6 +8,6 @@ export function getfilmsGenres(ids) {
     // console.log(acc);
     return acc;
   }, []);
-    // console.log(filmsGenres);
-   return filmsGenres;
+  // console.log(filmsGenres);
+  return filmsGenres;
 }
