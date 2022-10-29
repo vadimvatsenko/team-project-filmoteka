@@ -7,3 +7,4 @@ import './js/url';
 import './js/scroll';
 import './js/spiner';
 import './js/movie-info';
+import './js/filter';
