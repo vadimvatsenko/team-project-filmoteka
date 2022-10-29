@@ -5,7 +5,7 @@
 .modal-movie {
   position: relative;
   width: 280px;
-  max-height: 940px;
+  // max-height: 940px;
   min-height: 500px;
 
   padding: 48px 20px 40px 20px;
@@ -47,6 +47,7 @@
   z-index: 3;
   display: flex;
   justify-content: center;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1)
 }
 
 .modal-movie__container {
@@ -68,7 +69,14 @@
 }
 
 .modal-movie__img {
-  display: block;
+  width: 100%;
+  background-color: #ffffff;
+
+}
+.modal-movie__img-container{
+  position: relative;
+    display: block;
+    overflow: hidden;
   width: 240px;
   height: 357px;
   margin-bottom: 20px;
@@ -92,9 +100,6 @@
     margin: 0;
     margin-right: 16px;
   }
-}
-.modal-movie__img-container{
-  position: relative;
 }
 
 .modal-movie__img-company{
@@ -177,7 +182,7 @@
 .modal-movie__about-text {
   margin-bottom: 20px;
   max-height: 236px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   font-size: 12px;
   line-height: 1.66;
@@ -206,6 +211,10 @@
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
+   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+   border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
     background-color: #ff6b01;
@@ -232,6 +241,7 @@
   background-color: #ff6b01;
   border: 1px solid #ff6b01;
   color: #fff;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     background-color: #ffffff;
@@ -284,8 +294,11 @@
 
 .modal-movie__icon {
   fill: #ff6b01;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
     fill: rgb(255, 0, 0);
   }
 }
+
+// transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);

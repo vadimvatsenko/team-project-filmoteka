@@ -50,8 +50,8 @@ async function onMoviClick(e) {
 
   try {
     const Seach = await ApiP.fetchCardFilm(idMovie);
-    modalMovi.innerHTML = CardFilminHtml(Seach);
     console.log(Seach);
+    modalMovi.innerHTML = CardFilminHtml(Seach);
     onBtnInModalMovi(e);
     Loading.remove(0);
     try {
@@ -263,11 +263,12 @@ function CardFilminHtml(data) {
   <img class="modal-movie__img" src="${
     data.poster_path
       ? 'https://image.tmdb.org/t/p/w500' + data.poster_path
-      : 'https://via.placeholder.com/395x574'
+      : 'https://i.postimg.cc/6pzyh7Wc/pngwing-com.png'
   }" alt="${
     data.original_title || data.original_name
   }" width="240" height="357" />
   ${
+    data.production_companies.length?
     data.production_companies[0].logo_path
       ? ` <img class="modal-movie__img-company" src="${
           data.production_companies[0].logo_path
@@ -278,18 +279,10 @@ function CardFilminHtml(data) {
           data.production_companies[0].name || 'logo company'
         }" width="240" height="357" />`
       : ''
+    : ' '
+    
   }
   
-<!--
-  <img class="modal-movie__img-company" src="${
-    data.production_companies[0].logo_path
-      ? 'https://image.tmdb.org/t/p/w500' +
-        data.production_companies[0].logo_path
-      : '-'
-  }" alt="${
-    data.production_companies[0].name || 'logo company'
-  }" width="240" height="357" />
-  -->
   </div>
     
     <div>
@@ -318,7 +311,11 @@ function CardFilminHtml(data) {
         </li>
         <li class="modal-movie__item">
           <p class="modal-movie__item-categories">Genre</p>
-          <p class="modal-movie__item-inf">${data.genres[0].name}</p>
+          <p class="modal-movie__item-inf">${
+    data.genres.length ? 
+    data.genres[0].name
+    : 'Another'
+  }</p>
         </li>
       </ul>
       <h2 class="modal-movie__about">About</h2>
@@ -356,6 +353,7 @@ function movieBtnHtml() {
       <button type="button" class="modal-movie__movie">
       <svg class="icon modal-movie__icon" width="30" height="30">
         <use xlink:href="/symbol-defs.a8b2e413.svg#icon-youtube"></use>
+        <use xlink:href="/team-project-filmoteka/symbol-defs.cf522ee5.svg#icon-youtube"></use>
       </svg>
     </button> 
     
