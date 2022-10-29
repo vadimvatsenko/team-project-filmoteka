@@ -13,6 +13,7 @@ export const refs = {
   form: document.querySelector('.header__form'), // форма
 
   paginationDiv: document.querySelector('.tui-pagination'),
+  logo: document.querySelector('.header__logo'),
 
   getSpinner: document.querySelector('.spinner'),
 };
