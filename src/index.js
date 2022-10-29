@@ -5,6 +5,7 @@ import './js/refs';
 import './js/renderByName';
 import './js/url';
 import './js/scroll';
+import './js/components/change-theme';
 
 import './js/pagination';
 
