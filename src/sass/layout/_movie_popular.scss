@@ -85,7 +85,7 @@
     font-style: normal;
     font-size: 20px;
 
-    color: #ff6b08;
+    color: var(--hover-color);
 }
 
 //* Підппис що картинки не знайдені
@@ -101,7 +101,7 @@
 .movie-popular__rating {
     width: 40px;
     height: 20px;
-    background: #FF6B01;
+    background: var(--hover-color);
     border-radius: 5px;
 
     font-family: 'Roboto';
@@ -117,21 +117,23 @@
     margin-right: auto;
     text-transform: uppercase;
 
-    color: #FFFFFF;
+    color:  var(--bg-main-color);
 }
 
 //* на ссилки забрати маркер
-
-// .movie-popular__reference {
-//   text-decoration: none;
-
-// }
-
 .movie-popular__reference {
     text-decoration: none;
     pointer-events: none;
 }
 
-// * {
-//     outline: 1px solid blue;
-// }
+//* Картина що фільми не знайдені
+.no__found {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    opacity: 0.8;
+
+    box-shadow: 2px 2px 36px 24px  var(--hover-color);
+}
+
