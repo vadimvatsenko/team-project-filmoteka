@@ -26,17 +26,19 @@ export function createListItem({
         <h2 class="movie-popular__title">${
           original_title || original_name ? original_title || original_name : ''
         }</h2>
-        <p class="movie-popular__genre">${
-          allGanres.length <= 2
-            ? allGanres
-            : allGanres.slice(0, 2).join(', ') + ', ' + 'Other'
+        <p class="movie-popular__genre">${          
+          allGanres.length === 0
+          ? 'Nothing'
+          : allGanres.length <= 2
+          ? allGanres
+          : allGanres.slice(0, 2).join(', ') + ', ' + 'Other'
         } | ${
     Number.parseInt(release_date) || Number.parseInt(first_air_date)
       ? Number.parseInt(release_date) || Number.parseInt(first_air_date)
-      : ''
+      : 'Other'
   }</p>
       <p class="movie-popular__rating">${
-        vote_average ? vote_average.toFixed(1) : '-'
+        vote_average ? vote_average.toFixed(1) : '0'
       }</p>
       </a>
         </li>`;
