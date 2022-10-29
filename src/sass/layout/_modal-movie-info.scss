@@ -68,7 +68,14 @@
 }
 
 .modal-movie__img {
-  display: block;
+  width: 100%;
+  background-color: #ffffff;
+
+}
+.modal-movie__img-container{
+  position: relative;
+    display: block;
+    overflow: hidden;
   width: 240px;
   height: 357px;
   margin-bottom: 20px;
@@ -92,9 +99,6 @@
     margin: 0;
     margin-right: 16px;
   }
-}
-.modal-movie__img-container{
-  position: relative;
 }
 
 .modal-movie__img-company{
@@ -177,7 +181,7 @@
 .modal-movie__about-text {
   margin-bottom: 20px;
   max-height: 236px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   font-size: 12px;
   line-height: 1.66;
