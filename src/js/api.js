@@ -23,19 +23,48 @@ import Pagination from 'tui-pagination';
 // import 'tui-pagination/dist/tui-pagination.css';
 
 // ================================================================
+// сохраняем слово в инпуте
+let searchInput = '';
 
+if (JSON.parse(localStorage.getItem('searchWord'))) {
+  searchInput = JSON.parse(localStorage.getItem('searchWord'));
+  refs.input.value = searchInput;
+} else {
+  localStorage.setItem('searchWord', JSON.stringify(searchInput));
+}
+console.dir(refs.input);
+refs.input.addEventListener('input', listenInput);
+function listenInput(event) {
+  console.log(event.currentTarget.value);
+  localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
+}
+// сохранение поиска
+let searchData = '';
+
+if (JSON.parse(localStorage.getItem('search'))) {
+  searchData = JSON.parse(localStorage.getItem('search'));
+  refs.input.value = searchData;
+} else {
+  localStorage.setItem('search', JSON.stringify(searchData));
+}
 //* рейтинг популярний фільмів при загрузці і перезавантаженні сайта
-getAPI(API_URL);
+if (searchData) {
+  getMovieNameAPI(searchData, localStorage.getItem('pagination'));
+} else {
+  getAPI(API_URL);
+}
 
 //* запит і рендер фільмів за назвою
 function handleSubmit(event) {
   event.preventDefault();
 
   const movie = event.currentTarget.elements.search.value.trim().toLowerCase();
-
+  localStorage.setItem('search', JSON.stringify(movie));
+  localStorage.setItem('pagination', 1);
+  localStorage.setItem('searchWord', 0);
   // =====================================================================
   const options = {
-    totalItems:2500,
+    totalItems: 2500,
     itemsPerPage: 40,
     visiblePages: 5,
     page: 1,
@@ -66,6 +95,7 @@ function handleSubmit(event) {
     resetGallery();
 
     getMovieNameAPI(movie, eventData.page);
+    localStorage.setItem('pagination', eventData.page);
   });
 
   function resetGallery() {
