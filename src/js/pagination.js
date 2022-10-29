@@ -54,3 +54,9 @@ pagination.movePageTo(localStorage.getItem('pagination'));
 function resetGallery() {
   refs.list.innerHTML = '';
 }
+refs.logo.addEventListener('click', clearLOacalStorageOnLogo);
+function clearLOacalStorageOnLogo() {
+  localStorage.removeItem('search');
+  localStorage.removeItem('searchWord');
+  localStorage.removeItem('pagination');
+}
