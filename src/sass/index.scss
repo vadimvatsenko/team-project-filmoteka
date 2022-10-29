@@ -1,19 +1,27 @@
-@import './base/reset';
-@import './base/body-style';
-@import './base/common';
+@import "./base/reset";
+@import "./base/body-style";
+@import "./base/common";
 
-@import './utils/colors';
-@import './utils/mixins';
-@import './components/buttons';
+@import "./utils/colors";
+@import "./utils/mixins";
+@import "./components/buttons";
 
-@import './utils/visually-hidden';
+@import "./utils/visually-hidden";
 
-@import './base/container';
-@import './base/section';
+@import "./base/container";
+@import "./base/section";
 
-@import './layout/header';
-@import './layout/movie_popular';
-@import './components/scroll';
-@import './components/spinner';
-@import './layout/footer';
-@import './layout/modal-movie-info';
+@import "./layout/header";
+@import "./layout/movie_popular";
+@import "./components/scroll";
+@import "./components/spinner";
+@import "./layout/footer";
+@import "./components/team";
+
+
+@import "./components/pagination";
+
+@import "./layout/modal-movie-info";
+
+@import "./components/theme";
+

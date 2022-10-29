@@ -9,10 +9,13 @@ export function getAPI(url) {
       if (!response.ok) {
         throw (new Error(response.status), spinerStart);
       }
+
       return response.json();
     })
     .then(data => {
       spinerStart;
+      
+      console.log(data.total_results);
 
       if (data.results.length !== 0) {
         pasteContent(data.results);

@@ -6,12 +6,14 @@
 //     };
 // };
 
-
 export const refs = {
-    list: document.querySelector('.movie-popular__list'),                  // це юл з куди вставляти розмітку              
-    input: document.querySelector('.header__input'),                       // це поле куди треба уводити
-    headerBtn: document.querySelector('.header__search-btn'),              // це кнопка відправки
-    form: document.querySelector('.header__form'),                         // форма    
-    
-    getSpinner: document.querySelector('.spinner')
-  };
+  list: document.querySelector('.movie-popular__list'), // це юл з куди вставляти розмітку
+  input: document.querySelector('.header__input'), // це поле куди треба уводити
+  headerBtn: document.querySelector('.header__search-btn'), // це кнопка відправки
+  form: document.querySelector('.header__form'), // форма
+
+  paginationDiv: document.querySelector('.tui-pagination'),
+  logo: document.querySelector('.header__logo'),
+
+  getSpinner: document.querySelector('.spinner'),
+};
