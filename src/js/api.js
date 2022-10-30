@@ -34,6 +34,7 @@ if (JSON.parse(localStorage.getItem('searchWord'))) {
 }
 console.dir(refs.input);
 refs.input.addEventListener('input', listenInput);
+
 function listenInput(event) {
   console.log(event.currentTarget.value);
   localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
@@ -52,19 +53,6 @@ if (JSON.parse(localStorage.getItem('search'))) {
 
 let statusSearch = false;
 let statusSearchForm = false;
-
-async function setStatusSearch() {
-  if (searchData) {
-    getMovieNameAPI(searchData, 1);
-    let statusSearch = true;
-    // pagination.movePageTo(1);
-    localStorage.setItem('pagination', 1);
-  } else {
-    getAPI(API_URL);
-  }
-}
-
-setStatusSearch();
 
 refs.logo.addEventListener('click', clearLOacalStorageOnLogo);
 function clearLOacalStorageOnLogo() {
@@ -99,18 +87,8 @@ async function handleSubmit(event) {
     localStorage.getItem('totalItems')
   ))
   statusSearch = true;
-  // statusSearchForm = true;
 
-  // pagination.movePageTo(1);
-  // pagination._options.totalItems = JSON.parse(
-  //   localStorage.getItem('totalItems')
-  // );
-  // pagination._options.itemsPerPage = JSON.parse(
-  //   localStorage.getItem('itemsPerPage')
-  // );
-
-
-  // пагінація тест
+  // пагінація по пошуку
   const options = {
   totalItems: JSON.parse(
     localStorage.getItem('totalItems')
@@ -154,21 +132,8 @@ async function handleSubmit(event) {
 pagination.on('afterMove', async function (eventData) {
   resetGallery();
 
-  // if (searchData) {
-    // if (statusSearch) {
-    //   statusSearch = false;
-    // } else {
-      getMovieNameAPI(searchData, eventData.page);
-    // }
-  // } else {
-  //   if (statusSearchForm) {
-  //     console.log('statusSearchForm');
-  //     // statusSearchForm = false;
-  //   } else {
-  //     getAPI(`${API_URL}&page=${eventData.page}`);
-  //   }
-  // }
-  // movieStrorage = eventData.page;
+  getMovieNameAPI(movie, eventData.page);
+  
   localStorage.setItem('pagination', eventData.page);
 });
 }
@@ -176,56 +141,56 @@ pagination.on('afterMove', async function (eventData) {
 refs.form.addEventListener('submit', handleSubmit);
 
 // пагінація
-// const options = {
-//   totalItems: 20000,
-//   itemsPerPage: 20,
-//   visiblePages: 5,
-//   page: 1,
-//   centerAlign: true,
-//   firstItemClassName: 'tui-first-child',
-//   lastItemClassName: 'tui-last-child',
-//   template: {
-//     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-//     currentPage:
-//       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-//     moveButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</a>',
-//     disabledMoveButton:
-//       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</span>',
-//     moreButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-//       '<span class="tui-ico-ellip">...</span>' +
-//       '</a>',
-//   },
-// };
+const optionsPop = {
+ totalItems: 20000,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
 
-// const pagination = new Pagination('pagination', options);
+const paginationPop = new Pagination('pagination', optionsPop);
 
-// pagination.on('afterMove', async function (eventData) {
-//   resetGallery();
+paginationPop.on('afterMove', async function (eventData) {
+  resetGallery();
 
-//   if (searchData) {
-//     if (statusSearch) {
-//       statusSearch = false;
-//     } else {
-//       getMovieNameAPI(searchData, eventData.page);
-//     }
-//   } else {
-//     if (statusSearchForm) {
-//       console.log('statusSearchForm');
-//       // statusSearchForm = false;
-//     } else {
-//       getAPI(`${API_URL}&page=${eventData.page}`);
-//     }
-//   }
-//   // movieStrorage = eventData.page;
-//   localStorage.setItem('pagination', eventData.page);
-// });
-// pagination.movePageTo(localStorage.getItem('pagination'));
+  // if (searchData) {
+  //   if (statusSearch) {
+  //     statusSearch = false;
+  //   } else {
+  //     getMovieNameAPI(searchData, eventData.page);
+  //   }
+  // } else {
+  //   if (statusSearchForm) {
+  //     console.log('statusSearchForm');
+  //     // statusSearchForm = false;
+  //   } else {
+      getAPI(`${API_URL}&page=${eventData.page}`);
+  //   }
+  // }
+  // movieStrorage = eventData.page;
+  localStorage.setItem('pagination', eventData.page);
+});
+paginationPop.movePageTo(localStorage.getItem('pagination'));
 
 function resetGallery() {
   refs.list.innerHTML = '';
