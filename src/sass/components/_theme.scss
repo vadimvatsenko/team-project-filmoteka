@@ -9,18 +9,40 @@ body.dark-theme {
 }
 
 .toolbar {
-   display: flex;
-   justify-content: flex-end;
+   // display: flex;
+   // justify-content: flex-end;
+   position: absolute; //временно
+
    padding: 16px 0px;
    margin-right: 30px;
-   right: 16px;
-   bottom: 10px;
+   right: 16px; //временно
+   bottom: 50%; //временно
+   transform: translateY(50%);
 }
 
 body.dark-theme {
    .footer {
       background-color: #413e3e;
       color: var(--light-theme-background-color);
+   }
+   .movie-popular__title {
+      color: #ffffff;
+   }
+   .modal-movie {
+      background-color: #413e3e;
+      color: #ffffff;
+   }
+   .modal-movie__item-votes {
+      color: #413e3e;
+   }
+   .icon {
+      fill: #fff;
+   }
+   .tui-page-btn {
+      color: #d3d3d4;
+   }
+   .basicLightbox__placeholder {
+      background-color: #413e3e;
    }
 }
 
