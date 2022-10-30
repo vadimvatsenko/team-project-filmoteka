@@ -382,7 +382,6 @@ function movieBtnHtml() {
   return `
       <button type="button" class="modal-movie__movie">
       <svg class="icon modal-movie__icon" width="30" height="30">
-        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-youtube"></use>
         <use xlink:href="/team-project-filmoteka/symbol-defs.cf522ee5.svg#icon-youtube"></use>
       </svg>
     </button> 
