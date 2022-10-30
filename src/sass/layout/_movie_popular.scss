@@ -25,7 +25,12 @@
 
 //* карточка лішки
 .movie-popular__item {
-    width: 100%;
+
+
+    @include only_mobile {
+        max-width: 320px;
+        margin: 0 auto;
+    }
 
     @include tablet {
         width: calc(50% - 16px);
@@ -117,7 +122,7 @@
     margin-right: auto;
     text-transform: uppercase;
 
-    color:  var(--bg-main-color);
+    color: var(--bg-main-color);
 }
 
 //* на ссилки забрати маркер
@@ -134,6 +139,5 @@
     border-radius: 30px;
     opacity: 0.8;
 
-    box-shadow: 2px 2px 36px 24px  var(--hover-color);
+    box-shadow: 2px 2px 36px 24px var(--hover-color);
 }
-
