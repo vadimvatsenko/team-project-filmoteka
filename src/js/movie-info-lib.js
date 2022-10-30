@@ -1,7 +1,7 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import * as basicLightbox from 'basiclightbox';
 import { paginationWatchid, paginationQueue } from "./pagination-lib";
-import {  rWatched, rQueue, btnWatched, btnQueue  } from "./lib";
+import {  rWatched, rQueue,} from "./lib";
 
 //імпорт Запиту на сервер
 import { Api } from './url';
@@ -148,7 +148,7 @@ function changeWatched(e, targetEl) {
   return function () {
     const modalMoviInfoBtnQueue = document.querySelector(
         '.modal-movie__btn-queue'
-      );
+    );
     // console.log(targetEl.dataset.ls);
     // !JSON.parse(localStorage.getItem('watched')).watched.includes(e.target.outerHTML)
     if (targetEl.dataset.ls === 'false') {
@@ -182,7 +182,19 @@ function changeWatched(e, targetEl) {
       removeCurentBtn(modalMoviInfoBtnQueue);
     }
     textCurentBtnWatched(targetEl);
-    modalMoviInfoBtnQueue.innerHTML = "add to Queue"
+    modalMoviInfoBtnQueue.innerHTML = "add to Queue";
+    // const btnWatched = document.querySelector('.button-watched');
+    // const btnQueue = document.querySelector('.button-queue');
+    // if (btnWatched.dataset.active === "true") {
+    //   rWatched();
+    //   paginationWatchid();
+    // }
+    // if (btnQueue.dataset.active === "true") {
+    //   console.log('false')
+    //   rQueue();
+    //   paginationQueue();
+    // }
+    rebootLib();
   };
 }
 
@@ -223,7 +235,20 @@ function changeQueue(e, targetEl) {
       removeCurentBtn(modalMoviInfoBtnWatched);
     }
     textCurentBtnQueue(targetEl);
-    modalMoviInfoBtnWatched.innerHTML = "add to Watched"
+    modalMoviInfoBtnWatched.innerHTML = "add to Watched";
+
+    // const btnWatched = document.querySelector('.button-watched');
+    // const btnQueue = document.querySelector('.button-queue');
+    
+    // if (btnWatched.dataset.active === "true") {
+    //   rWatched();
+    //   paginationWatchid();
+    // }
+    // if (btnQueue.dataset.active === "true") {
+    //   rQueue();
+    //   paginationQueue();
+    // }
+    rebootLib();
   };
 }
 
@@ -371,4 +396,18 @@ function returnMovie(Movie) {
 <iframe frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="${Movie.name}" width="100%" height="100%" src="https://www.youtube.com/embed/${Movie.key}"></iframe>
   </div>
   `;
+}
+
+function rebootLib() {
+  const btnWatched = document.querySelector('.button-watched');
+    const btnQueue = document.querySelector('.button-queue');
+    
+    if (btnWatched.dataset.active === "true") {
+      rWatched();
+      paginationWatchid();
+    }
+    if (btnQueue.dataset.active === "true") {
+      rQueue();
+      paginationQueue();
+    }
 }
