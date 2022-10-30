@@ -175,7 +175,6 @@ function changeWatched(e, targetEl) {
       localStorageMovi.queue.splice(ingexElrem, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       removeCurentBtn(modalMoviInfoBtnQueue);
-      
     }
     textCurentBtnWatched(targetEl);
   };
@@ -213,7 +212,6 @@ function changeQueue(e, targetEl) {
       localStorageMovi.watched.splice(ingexElrem, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       removeCurentBtn(modalMoviInfoBtnWatched);
-      
     }
     textCurentBtnQueue(targetEl);
   };
@@ -244,7 +242,7 @@ function textCurentBtnWatched(btn) {
   if (btn.dataset.ls === 'false') {
     btn.innerHTML = 'add to Watched';
   } else {
-    btn.innerHTML = 'remove to Watched';
+    btn.innerHTML = 'remove from Watched';
   }
 }
 
@@ -252,7 +250,7 @@ function textCurentBtnQueue(btn) {
   if (btn.dataset.ls === 'false') {
     btn.innerHTML = 'add to Queue';
   } else {
-    btn.innerHTML = 'remove to Queue';
+    btn.innerHTML = 'remove from Queue';
   }
 }
 
@@ -268,19 +266,18 @@ function CardFilminHtml(data) {
     data.original_title || data.original_name
   }" width="240" height="357" />
   ${
-    data.production_companies.length?
-    data.production_companies[0].logo_path
-      ? ` <img class="modal-movie__img-company" src="${
-          data.production_companies[0].logo_path
-            ? 'https://image.tmdb.org/t/p/w500' +
-              data.production_companies[0].logo_path
-            : '-'
-        }" alt="${
-          data.production_companies[0].name || 'logo company'
-        }" width="240" height="357" />`
-      : ''
-    : ' '
-    
+    data.production_companies.length
+      ? data.production_companies[0].logo_path
+        ? ` <img class="modal-movie__img-company" src="${
+            data.production_companies[0].logo_path
+              ? 'https://image.tmdb.org/t/p/w500' +
+                data.production_companies[0].logo_path
+              : '-'
+          }" alt="${
+            data.production_companies[0].name || 'logo company'
+          }" width="240" height="357" />`
+        : ''
+      : ' '
   }
   
   </div>
@@ -312,10 +309,8 @@ function CardFilminHtml(data) {
         <li class="modal-movie__item">
           <p class="modal-movie__item-categories">Genre</p>
           <p class="modal-movie__item-inf">${
-    data.genres.length ? 
-    data.genres[0].name
-    : 'Another'
-  }</p>
+            data.genres.length ? data.genres[0].name : 'Another'
+          }</p>
         </li>
       </ul>
       <h2 class="modal-movie__about">About</h2>

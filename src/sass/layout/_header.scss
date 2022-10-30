@@ -103,7 +103,7 @@ nav {
   align-items: center;
 }
 
-.header__nav-item + .header__nav-item {
+.header__nav-item+.header__nav-item {
   margin-left: 40px;
 }
 
@@ -128,12 +128,17 @@ nav {
 }
 
 .header__form {
+
   width: 100%;
   display: flex;
   margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   border-bottom: 0.5px solid var(--bg-main-color);
+
+  @include only_mobile {
+    width: 280px;
+  }
 
   @include tablet {
     width: 336px;
@@ -157,6 +162,7 @@ nav {
 .search-svg {
   fill: var(--bg-main-color);
 }
+
 .filter__form {
   display: flex;
   flex-wrap: wrap;
@@ -164,6 +170,7 @@ nav {
   margin-top: 30px;
   padding: 0 5px;
 }
+
 .filter__form-select {
   display: flex;
   justify-content: center;
@@ -176,10 +183,12 @@ nav {
   font-size: 14px;
   text-align: center;
 }
+
 #yearForm {
   width: 65px;
 }
-.filter__form-select > option {
+
+.filter__form-select>option {
   align-items: center;
   background-color: var(--btn-text-color);
   padding: 5px;

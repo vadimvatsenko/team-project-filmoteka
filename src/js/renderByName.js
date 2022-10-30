@@ -9,10 +9,10 @@ import {
 import { refs } from './refs';
 import { pasteContent } from './createListItem';
 //import { spinerStart, spinerStop } from './spiner';
-import { Loading } from 'notiflix';
+import { Loading, Notify } from 'notiflix';
 
-export function getMovieNameAPI(movie, page) {
-  fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
+export async function getMovieNameAPI(movie, page) {
+ await fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
     .then(response => {
       if (!response.ok) {
         throw (
@@ -35,8 +35,11 @@ export function getMovieNameAPI(movie, page) {
       });
 
       console.log(data);
+      localStorage.setItem('totalItems' ,  data.total_results)
+      localStorage.setItem('itemsPerPage', data.results.length)
       if (data.results.length !== 0) {
         pasteContent(data.results);
+        Notify.success(`We found ${data.total_results} movies.`);
         refs.paginationDiv.classList.remove('visually-hidden');
       } else {
         Loading.custom('Loading...', {
@@ -45,7 +48,9 @@ export function getMovieNameAPI(movie, page) {
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
         });
         refs.paginationDiv.classList.add('visually-hidden');
-        refs.list.innerHTML = `<h1 class="list__nofind">No movies found on request :(</h1>`;
+        Notify.failure(`Nothing was found for your request`);
+        refs.list.innerHTML = ` <img src="${'https://cdn.dribbble.com/users/4266416/screenshots/8269080/media/69de53b0834d3b0c493f21d4ce773dfd.png'}"
+          alt="no movies found" class="no__found">`;
       }
     })
     .catch(error => {
