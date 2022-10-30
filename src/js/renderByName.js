@@ -10,6 +10,7 @@ import { refs } from './refs';
 import { pasteContent } from './createListItem';
 //import { spinerStart, spinerStop } from './spiner';
 import { Loading, Notify } from 'notiflix';
+import { filterItem } from './filter';
 
 export function getMovieNameAPI(movie, page) {
   fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
@@ -36,6 +37,7 @@ export function getMovieNameAPI(movie, page) {
 
       console.log(data);
       if (data.results.length !== 0) {
+        filterItem.genreForm.classList.add('is-hidden');
         pasteContent(data.results);
         Notify.success(`We found ${data.total_results} movies.`);
         refs.paginationDiv.classList.remove('visually-hidden');

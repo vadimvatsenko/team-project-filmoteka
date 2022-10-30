@@ -179,6 +179,9 @@ nav {
 #yearForm {
   width: 65px;
 }
+.filter__form-genres.is-hidden {
+  visibility: hidden;
+}
 .filter__form-select > option {
   align-items: center;
   background-color: var(--btn-text-color);
