@@ -203,13 +203,6 @@ function resetGallery() {
 import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
 filterItem.filterForm.addEventListener('input', (e) => {
-
-  //   console.dir(filterItem.genreForm.value)
-  // console.dir(filterItem.yearForm.value)
-  //   localStorage.setItem("genre", formSearch.genre? formSearch.genre:" ");
-  // localStorage.setItem("year", formSearch.year ? formSearch.year : " ");
-  // const year = filterItem.yearForm.value
-  // const genre = filterItem.genreForm.value
   setTimeout(pogination, 1000);
 })
 
