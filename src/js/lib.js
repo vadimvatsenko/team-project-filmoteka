@@ -26,6 +26,9 @@ export function rWatched() {
 
   btnWatched.classList.add('button--lib-active');
   btnQueue.classList.remove('button--lib-active');
+
+  btnWatched.dataset.active = true;
+  btnQueue.dataset.active = false;
 }
 
 export function rQueue() {
@@ -42,6 +45,9 @@ const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
 
   btnQueue.classList.add('button--lib-active');
   btnWatched.classList.remove('button--lib-active');
+
+  btnQueue.dataset.active = true;
+  btnWatched.dataset.active = false;
 }
 
 
