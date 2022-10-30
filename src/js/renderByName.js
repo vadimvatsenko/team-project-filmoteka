@@ -35,6 +35,8 @@ export function getMovieNameAPI(movie, page) {
       });
 
       console.log(data);
+      localStorage.setItem('totalItems' ,  data.total_results)
+      localStorage.setItem('itemsPerPage', data.results.length)
       if (data.results.length !== 0) {
         pasteContent(data.results);
         Notify.success(`We found ${data.total_results} movies.`);
