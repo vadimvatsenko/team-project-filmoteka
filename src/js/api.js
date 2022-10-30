@@ -195,3 +195,85 @@ paginationPop.movePageTo(localStorage.getItem('pagination'));
 function resetGallery() {
   refs.list.innerHTML = '';
 }
+
+
+// для філбтрів
+
+
+import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
+
+filterItem.filterForm.addEventListener('input', (e) => {
+
+  //   console.dir(filterItem.genreForm.value)
+  // console.dir(filterItem.yearForm.value)
+  //   localStorage.setItem("genre", formSearch.genre? formSearch.genre:" ");
+  // localStorage.setItem("year", formSearch.year ? formSearch.year : " ");
+  // const year = filterItem.yearForm.value
+  // const genre = filterItem.genreForm.value
+  setTimeout(pogination, 1000);
+})
+
+function pogination() {
+  console.log('cnfhn')
+  const year = filterItem.yearForm.value
+  const genre = filterItem.genreForm.value
+  console.log(year);
+  console.log(genre);
+
+  const options = {
+  totalItems: JSON.parse(
+    localStorage.getItem('totalItems')
+  ),
+  itemsPerPage: JSON.parse(
+    localStorage.getItem('itemsPerPage')
+  ),
+  visiblePages: 5,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
+
+  const pagination = new Pagination('pagination', options);
+    pagination.movePageTo(1);
+  pagination._options.totalItems = JSON.parse(
+    localStorage.getItem('totalItems')
+  );
+  pagination._options.itemsPerPage = JSON.parse(
+    localStorage.getItem('itemsPerPage')
+  );
+  console.log(pagination);
+
+pagination.on('afterMove', async function (eventData) {
+  resetGallery();
+
+  getSearchForm(genre, year, eventData.page)
+      .then(data => {
+        console.log(data);
+        renderFiltrMarkup(data.results);
+      })
+      .catch(error => console.log(error))
+      // .finally(() => spinerStop);
+  
+  localStorage.setItem('pagination', eventData.page);
+});
+}
+
+
