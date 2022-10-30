@@ -60,6 +60,6 @@ export function getWatched(name, page) {
     begin = 0;
   }
   
-  const slice = localWatched.slice(begin, end).join();
+  const slice = localWatched.slice(begin, end).join('');
   listWatched.innerHTML = slice;
 }
