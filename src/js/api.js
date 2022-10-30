@@ -107,7 +107,7 @@ function handleSubmit(event) {
   // refs.list.innerHTML = "";
 
   if (!movie) {
-    Notify.failure(
+    Notify.info(
       'Sorry, there are no movies matching your search query. Please try again.'
     );
     return;

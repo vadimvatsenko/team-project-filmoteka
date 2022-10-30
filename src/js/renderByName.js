@@ -46,6 +46,7 @@ export function getMovieNameAPI(movie, page) {
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
         });
         refs.paginationDiv.classList.add('visually-hidden');
+        Notify.failure(`Nothing was found for your request`);
         refs.list.innerHTML = ` <img src="${'https://cdn.dribbble.com/users/4266416/screenshots/8269080/media/69de53b0834d3b0c493f21d4ce773dfd.png'}"
           alt="no movies found" class="no__found">`;
       }
