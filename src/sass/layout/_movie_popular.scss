@@ -25,10 +25,10 @@
 
 //* карточка лішки
 .movie-popular__item {
-
+    width: 100%;
 
     @include only_mobile {
-        max-width: 320px;
+        max-width: 280px;
         margin: 0 auto;
     }
 

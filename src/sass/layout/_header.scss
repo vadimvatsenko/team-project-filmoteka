@@ -129,7 +129,7 @@ nav {
 
 .header__form {
 
-  width: 320px;
+  width: 100%;
   display: flex;
   margin-top: auto;
   margin-left: auto;
@@ -137,7 +137,7 @@ nav {
   border-bottom: 0.5px solid var(--bg-main-color);
 
   @include only_mobile {
-    width: 100%;
+    width: 280px;
   }
 
   @include tablet {
