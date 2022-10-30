@@ -2,8 +2,8 @@
 import Pagination from 'tui-pagination';
 import { getWatched } from "./lib";
 // пагінація
-const btnWatched = document.querySelector('.button-watched');
-const btnQueue = document.querySelector('.button-queue');
+export const btnWatched = document.querySelector('.button-watched');
+export const btnQueue = document.querySelector('.button-queue');
 
 btnWatched.addEventListener('click', rWatched);
 
@@ -19,7 +19,7 @@ function rQueue() {
   paginationQueue();
 }
 
-function paginationWatchid() {
+export function paginationWatchid() {
     const optionsPop = {
  totalItems: JSON.parse(localStorage.getItem('watched')).watched.length,
   itemsPerPage: 20,
@@ -58,7 +58,7 @@ paginationPop.on('afterMove', async function (eventData) {
 });
 }
 
-function paginationQueue() {
+export function paginationQueue() {
     const optionsPop = {
  totalItems: JSON.parse(localStorage.getItem('watched')).queue.length,
   itemsPerPage: 20,
