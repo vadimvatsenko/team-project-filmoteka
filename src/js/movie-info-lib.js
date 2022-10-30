@@ -156,16 +156,13 @@ function changeWatched(e, targetEl) {
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
-      
     } else {
       const ingexEl = localStorageMovi.watched.indexOf(e.target.outerHTML);
 
       localStorageMovi.watched.splice(ingexEl, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      removeCurentBtn(targetEl);
 
-      // paginationWatchid()
-      // rWatched();
+      removeCurentBtn(targetEl);
     }
     if (
       JSON.parse(localStorage.getItem('watched')).queue.includes(
@@ -200,9 +197,7 @@ function changeQueue(e, targetEl) {
       localStorageMovi.queue.push(e.target.outerHTML);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       // console.log(JSON.stringify(localStorageMovi));
-      // addCurentBtn(targetEl);
-      // rQueue();
-    paginationQueue();
+      addCurentBtn(targetEl);
     } else {
       const ingexEl = localStorageMovi.queue.indexOf(e.target.outerHTML);
 
@@ -245,7 +240,6 @@ function addCurentInBtn(arr, element, btn) {
 function addCurentBtn(btn) {
   btn.classList.add('modal-movie__btn--curent');
   btn.dataset.ls = 'true';
-
 }
 
 function removeCurentBtn(btn) {
