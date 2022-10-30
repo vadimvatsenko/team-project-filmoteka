@@ -9,7 +9,8 @@
     background-size: cover;
     height: 230px;
     padding-top: 40px;
-    padding-bottom: 90px;
+    // padding-bottom: 90px;
+    padding-bottom: 10px;
 
     @include retinaBgImg {
       background-image: url(../images/bg/header_main_320px@2x.jpg);
@@ -20,7 +21,7 @@
     background-image: url(../images/bg/header_main_768px.jpg);
     height: 216px;
 
-    padding-bottom: 80px;
+    // padding-bottom: 80px;
 
     @include retinaBgImg {
       background-image: url(../images/bg/header_main_768px@2x.jpg);
@@ -131,7 +132,7 @@ nav {
 
   width: 100%;
   display: flex;
-  margin-top: auto;
+  // margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   border-bottom: 0.5px solid var(--bg-main-color);
@@ -165,9 +166,9 @@ nav {
 
 .filter__form {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   justify-content: center;
-  margin-top: 30px;
+  // margin-top: 30px;
   padding: 0 5px;
 }
 

@@ -11,13 +11,14 @@ body.dark-theme {
 .toolbar {
    // display: flex;
    // justify-content: flex-end;
-   position: absolute; //временно
+   // position: absolute; //временно
 
-   padding: 16px 0px;
-   margin-right: 30px;
-   right: 16px; //временно
-   bottom: 50%; //временно
-   transform: translateY(50%);
+   // padding: 16px 0px;
+   margin: 0 auto;
+   // margin-right: 30px;
+   // right: 16px; //временно
+   // bottom: 50%; //временно
+   // transform: translateY(50%);
 }
 
 body.dark-theme {
@@ -25,22 +26,28 @@ body.dark-theme {
       background-color: #413e3e;
       color: var(--light-theme-background-color);
    }
+
    .movie-popular__title {
       color: #ffffff;
    }
+
    .modal-movie {
       background-color: #413e3e;
       color: #ffffff;
    }
+
    .modal-movie__item-votes {
       color: #413e3e;
    }
+
    .icon {
       fill: #fff;
    }
+
    .tui-page-btn {
       color: #d3d3d4;
    }
+
    .basicLightbox__placeholder {
       background-color: #413e3e;
    }
@@ -108,17 +115,17 @@ body.dark-theme {
    transition: transform 250ms;
 }
 
-.theme-switch__toggle:checked + .theme-switch__track {
+.theme-switch__toggle:checked+.theme-switch__track {
    background-color: #d3d3d4;
 }
 
-.theme-switch__toggle:checked ~ .theme-switch__marker {
+.theme-switch__toggle:checked~.theme-switch__marker {
    transform: translateX(35px);
 }
 
-.theme-switch__toggle:focus + .theme-switch__track,
-.theme-switch__toggle:active + .theme-switch__track,
-.theme-switch__toggle:hover + .theme-switch__track {
+.theme-switch__toggle:focus+.theme-switch__track,
+.theme-switch__toggle:active+.theme-switch__track,
+.theme-switch__toggle:hover+.theme-switch__track {
    box-shadow: 0 0 0 3px #ff6b01;
 }
 

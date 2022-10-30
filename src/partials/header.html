@@ -3,22 +3,14 @@
     <nav>
       <a href="./index.html" class="header__logo">
         <svg class="header__logo-svg">
-          <use
-            href="./images/symbol-defs.svg#icon-film"
-            width="24px"
-            height="24px"
-          ></use>
+          <use href="./images/symbol-defs.svg#icon-film" width="24px" height="24px"></use>
         </svg>
         <span class="header__logo-name">Filmoteka</span>
       </a>
 
       <ul class="header__nav">
         <li class="header__nav-item">
-          <a
-            class="header__nav-link header__nav-link--current"
-            href="./index.html"
-            >HOME</a
-          >
+          <a class="header__nav-link header__nav-link--current" href="./index.html">HOME</a>
         </li>
 
         <li class="header__nav-item">
@@ -26,93 +18,73 @@
         </li>
       </ul>
     </nav>
+
+    <div class="toolbar">
+      <div class="theme-switch">
+        <svg class="theme-switch__icon stormtroopers" role="img" aria-label="Иконка stormtroopers">
+          <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
+        </svg>
+        <div class="theme-switch__control">
+          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой" />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
+
+        <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
+          <use href="/src/images/symbol-defs.svg#vader"></use>
+        </svg>
+      </div>
+    </div>
+
+
     <form class="header__form">
-      <input
-        type="text"
-        name="search"
-        placeholder="Movie search"
-        class="header__input"
-      />
-      <button
-        class="header__search-btn"
-        type="submit"
-        aria-label="search button"
-      >
+      <input type="text" name="search" placeholder="Movie search" class="header__input" />
+      <button class="header__search-btn" type="submit" aria-label="search button">
         <svg class="search-svg" width="12" height="12px">
           <use href="./images/symbol-defs.svg#icon-search"></use>
         </svg>
       </button>
     </form>
+
+
+    <h1 class="visually-hidden">Movie Service</h1>
+
+    <form class="filter__form" id="filter-form">
+      <select class="filter__form-select" name="genreForm" id="genreForm">
+        <option class="filter__form-genres" value="start">Genre</option>
+        <option class="filter__form-genres" value="28">Action</option>
+        <option class="filter__form-genres" value="12">Adventure</option>
+        <option class="filter__form-genres" value="16">Animation</option>
+        <option class="filter__form-genres" value="35">Comedy</option>
+        <option class="filter__form-genres" value="80">Crime</option>
+        <option class="filter__form-genres" value="99">Documentary</option>
+        <option class="filter__form-genres" value="18">Drama</option>
+        <option class="filter__form-genres" value="10751">Family</option>
+        <option class="filter__form-genres" value="14">Fantasy</option>
+        <option class="filter__form-genres" value="36">History</option>
+        <option class="filter__form-genres" value="27">Horror</option>
+        <option class="filter__form-genres" value="10402">Music</option>
+        <option class="filter__form-genres" value="9648">Mystery</option>
+        <option class="filter__form-genres" value="10749">Romance</option>
+        <option class="filter__form-genres" value="878">Science Fiction</option>
+        <option class="filter__form-genres" value="10770">TV Movie</option>
+        <option class="filter__form-genres" value="53">Thriller</option>
+        <option class="filter__form-genres" value="10752">War</option>
+        <option class="filter__form-genres" value="37">Western</option>
+      </select>
+
+      <select class="filter__form-select" name="yearForm" id="yearForm">
+        <option value="start">Year</option>
+      </select>
+      <button type="button" class="button__reset" id="button__reset">
+        Reset
+      </button>
+    </form>
+
+
+
+
   </div>
-
-  <h1 class="visually-hidden">Movie Servise</h1>
-  
-  <form class="filter__form" id="filter-form">
-    <select class="filter__form-select" name="genreForm" id="genreForm">
-      <option class="filter__form-genres" value="start">Genre</option>
-      <option class="filter__form-genres" value="28">Action</option>
-      <option class="filter__form-genres" value="12">Adventure</option>
-      <option class="filter__form-genres" value="16">Animation</option>
-      <option class="filter__form-genres" value="35">Comedy</option>
-      <option class="filter__form-genres" value="80">Crime</option>
-      <option class="filter__form-genres" value="99">Documentary</option>
-      <option class="filter__form-genres" value="18">Drama</option>
-      <option class="filter__form-genres" value="10751">Family</option>
-      <option class="filter__form-genres" value="14">Fantasy</option>
-      <option class="filter__form-genres" value="36">History</option>
-      <option class="filter__form-genres" value="27">Horror</option>
-      <option class="filter__form-genres" value="10402">Music</option>
-      <option class="filter__form-genres" value="9648">Mystery</option>
-      <option class="filter__form-genres" value="10749">Romance</option>
-      <option class="filter__form-genres" value="878">Science Fiction</option>
-      <option class="filter__form-genres" value="10770">TV Movie</option>
-      <option class="filter__form-genres" value="53">Thriller</option>
-      <option class="filter__form-genres" value="10752">War</option>
-      <option class="filter__form-genres" value="37">Western</option>
-    </select>
-
-    <select class="filter__form-select" name="yearForm" id="yearForm">
-      <option value="start">Year</option>
-    </select>
-    <button type="button" class="button__reset" id="button__reset">
-      Reset
-    </button>
-  </form>
-
-   <!-- Разметка переключателя темы -->
- <div class="toolbar">
-  <div class="theme-switch">
-    <svg
-      class="theme-switch__icon stormtroopers"
-      role="img"
-      aria-label="Иконка stormtroopers"
-    >
-      <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
-    </svg>
-    <div class="theme-switch__control">
-      <input
-        class="theme-switch__toggle"
-        type="checkbox"
-        name="theme"
-        id="theme-switch-toggle"
-        aria-label="Переключить между тёмной и светлой темой"
-      />
-      <label
-        aria-hidden="true"
-        class="theme-switch__track"
-        for="theme-switch-toggle"
-      >
-      </label>
-      <div aria-hidden="true" class="theme-switch__marker"></div>
-    </div>
-
-    <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
-      <use href="/src/images/symbol-defs.svg#vader"></use>
-    </svg>
-  </div>
-</div>
-
-
- 
 </header>
-
