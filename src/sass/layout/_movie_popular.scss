@@ -58,6 +58,7 @@
     height: 398px;
     width: 100%;
     border-radius: 5px;
+    margin-bottom: 8px;
     cursor: pointer;
     filter: drop-shadow(1px 1px 1px rgba(55%, 55%, 55%, 0.4));
     filter: none;
@@ -68,6 +69,7 @@
 
     @include desktop {
         height: 574px;
+        margin-bottom: 12px;
     }
 }
 
