@@ -3,11 +3,7 @@
     <nav>
       <a href="./index.html" class="header__logo">
         <svg class="header__logo-svg">
-          <use
-            href="./images/symbol-defs.svg#icon-film"
-            width="24px"
-            height="24px"
-          ></use>
+          <use href="./images/symbol-defs.svg#icon-film" width="24px" height="24px"></use>
         </svg>
         <span class="header__logo-name">Filmoteka</span>
       </a>
@@ -18,48 +14,36 @@
         </li>
 
         <li class="header__nav-item">
-          <a class="header__nav-link header__nav-link--current" href=""
-            >MY LIBRARY</a
-          >
+          <a class="header__nav-link header__nav-link--current" href="">MY LIBRARY</a>
         </li>
       </ul>
     </nav>
-    <div class="botton-wrap">
-      <button class="button button-watched button--lib-active">Watched</button>
-      <button class="button button-queue">Queue</button>
-    </div>
-  </div>
 
-  <!-- Разметка переключателя темы -->
-  <div class="toolbar">
-    <div class="theme-switch">
-      <svg
-        class="theme-switch__icon stormtroopers"
-        role="img"
-        aria-label="Иконка stormtroopers"
-      >
-        <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
-      </svg>
-      <div class="theme-switch__control">
-        <input
-          class="theme-switch__toggle"
-          type="checkbox"
-          name="theme"
-          id="theme-switch-toggle"
-          aria-label="Переключить между тёмной и светлой темой"
-        />
-        <label
-          aria-hidden="true"
-          class="theme-switch__track"
-          for="theme-switch-toggle"
-        >
-        </label>
-        <div aria-hidden="true" class="theme-switch__marker"></div>
+    <!-- Разметка переключателя темы -->
+    <div class="toolbar">
+      <div class="theme-switch">
+        <svg class="theme-switch__icon stormtroopers" role="img" aria-label="Иконка stormtroopers">
+          <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
+        </svg>
+        <div class="theme-switch__control">
+          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой" />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
+
+        <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
+          <use href="/src/images/symbol-defs.svg#vader"></use>
+        </svg>
       </div>
+    </div>
 
-      <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
-        <use href="/src/images/symbol-defs.svg#vader"></use>
-      </svg>
+    <div class="botton-wrap">
+      <button class="button button-watched button--lib-active" data-active=false>Watched</button>
+      <button class="button button-queue" data-active=false>Queue</button>
     </div>
   </div>
+
+
 </header>

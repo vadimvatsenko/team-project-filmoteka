@@ -11,8 +11,8 @@ import { pasteContent } from './createListItem';
 //import { spinerStart, spinerStop } from './spiner';
 import { Loading, Notify } from 'notiflix';
 
-export function getMovieNameAPI(movie, page) {
-  fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
+export async function getMovieNameAPI(movie, page) {
+ await fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
     .then(response => {
       if (!response.ok) {
         throw (
@@ -35,6 +35,8 @@ export function getMovieNameAPI(movie, page) {
       });
 
       console.log(data);
+      localStorage.setItem('totalItems' ,  data.total_results)
+      localStorage.setItem('itemsPerPage', data.results.length)
       if (data.results.length !== 0) {
         pasteContent(data.results);
         Notify.success(`We found ${data.total_results} movies.`);
