@@ -3,7 +3,7 @@
   position: relative;
 
   @include mobile {
-    background-image: url(../images/bg/header_main_320px.jpg);
+    background-image: url(../images/bg/header_main_320px.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -13,26 +13,26 @@
     padding-bottom: 10px;
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_main_320px@2x.jpg);
+      background-image: url(../images/bg/header_main_320px@2x.webp);
     }
   }
 
   @include tablet {
-    background-image: url(../images/bg/header_main_768px.jpg);
+    background-image: url(../images/bg/header_main_768px.webp);
     height: 216px;
 
     // padding-bottom: 80px;
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_main_768px@2x.jpg);
+      background-image: url(../images/bg/header_main_768px@2x.webp);
     }
   }
 
   @include desktop {
-    background-image: url(../images/bg/header_main_1280px.jpg);
+    background-image: url(../images/bg/header_main_1280px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_main_1280px@2x.jpg);
+      background-image: url(../images/bg/header_main_1280px@2x.webp);
     }
   }
 }
@@ -40,26 +40,26 @@
 .header--lib {
   @include mobile {
     padding-bottom: 60px;
-    background-image: url(../images/bg/header_lib_320px.jpg);
+    background-image: url(../images/bg/header_lib_320px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_lib_320px@2x.jpg);
+      background-image: url(../images/bg/header_lib_320px@2x.webp);
     }
   }
 
   @include tablet {
-    background-image: url(../images/bg/header_lib_768px.jpg);
+    background-image: url(../images/bg/header_lib_768px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_lib_768px@2x.jpg);
+      background-image: url(../images/bg/header_lib_768px@2x.webp);
     }
   }
 
   @include desktop {
-    background-image: url(../images/bg/header_lib_1280px.jpg);
+    background-image: url(../images/bg/header_lib_1280px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_lib_1280px@2x.jpg);
+      background-image: url(../images/bg/header_lib_1280px@2x.webp);
     }
   }
 }
