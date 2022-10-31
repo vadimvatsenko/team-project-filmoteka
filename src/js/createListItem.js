@@ -16,7 +16,7 @@ export function createListItem({
 
   return `<li class="movie-popular__item" data-id="${id}">
         <a href="" class="movie-popular__reference" target="_blank">
-        <img src="${
+        <img loading="lazy" src="${
           poster_path
             ? IMG_URL + poster_path
             : 'https://i.postimg.cc/6pzyh7Wc/pngwing-com.png'

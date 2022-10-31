@@ -34,7 +34,7 @@ function filmCardSlider(films) {
     .map(({ poster_path, original_title, original_name, id, vote_average }) => {
       return `
       <div class="slider__item">
-        <img class="slider-image" src="${IMG_URL}${poster_path}" alt="${original_title} ${original_name}"
+        <img loading="lazy" class="slider-image" src="${IMG_URL}${poster_path}" alt="${original_title} ${original_name}"
         data-id="${id}" onerror="this.onerror=null;this.src='https://i.postimg.cc/6pzyh7Wc/pngwing-com.png';" />
         <span class="trending-raiting">${vote_average}</span>
       </div>`;

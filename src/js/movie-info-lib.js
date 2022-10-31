@@ -293,7 +293,7 @@ function textCurentBtnQueue(btn) {
 function CardFilminHtml(data) {
   return `
   <div class="modal-movie__img-container">
-  <img class="modal-movie__img" src="${
+  <img class="modal-movie__img" loading="lazy" src="${
     data.poster_path
       ? 'https://image.tmdb.org/t/p/w500' + data.poster_path
       : 'https://i.postimg.cc/6pzyh7Wc/pngwing-com.png'
@@ -303,7 +303,7 @@ function CardFilminHtml(data) {
   ${
     data.production_companies.length
       ? data.production_companies[0].logo_path
-        ? ` <img class="modal-movie__img-company" src="${
+        ? ` <img class="modal-movie__img-company" loading="lazy" src="${
             data.production_companies[0].logo_path
               ? 'https://image.tmdb.org/t/p/w500' +
                 data.production_companies[0].logo_path

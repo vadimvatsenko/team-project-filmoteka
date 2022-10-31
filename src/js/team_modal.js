@@ -2,18 +2,18 @@
 import * as basicLightbox from 'basiclightbox';
 import confetti from 'canvas-confetti';
 
-import vadimUrl from '../images/team_photo/vadim.jpg';
-import elenaUrl from '../images/team_photo/elena.jpg';
-import arturUrl from '../images/team_photo/artur.jpg';
-import artemUrl from '../images/team_photo/artem.jpg';
-import ivanUrl from '../images/team_photo/ivan.jpg';
-import denisUrl from '../images/team_photo/denis.jpg';
-import olexanderUrl from '../images/team_photo/olexander.jpg';
-import kristinaUrl from '../images/team_photo/kristina.jpg';
-import vitaliyUrl from '../images/team_photo/vitaliy.jpg';
-import olenaUrl from '../images/team_photo/olena.jpg';
-import goitUrl from '../images/team_photo/goit.jpg';
-import dmytroUrl from '../images/team_photo/dmytro.jpg';
+import vadimUrl from '../images/team_photo/vadim.webp';
+import elenaUrl from '../images/team_photo/elena.webp';
+import arturUrl from '../images/team_photo/artur.webp';
+import artemUrl from '../images/team_photo/artem.webp';
+import ivanUrl from '../images/team_photo/ivan.webp';
+import denisUrl from '../images/team_photo/denis.webp';
+import olexanderUrl from '../images/team_photo/olexander.webp';
+import kristinaUrl from '../images/team_photo/kristina.webp';
+import vitaliyUrl from '../images/team_photo/vitaliy.webp';
+import olenaUrl from '../images/team_photo/olena.webp';
+import goitUrl from '../images/team_photo/goit.webp';
+import dmytroUrl from '../images/team_photo/dmytro.webp';
 
 
 
