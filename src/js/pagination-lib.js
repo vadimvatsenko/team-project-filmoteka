@@ -1,6 +1,7 @@
 
 import Pagination from 'tui-pagination';
 import { getWatched } from "./lib";
+import { refs } from './refs';
 
 
 export function paginationWatchid() {
@@ -82,5 +83,5 @@ paginationPop.on('afterMove', async function (eventData) {
 }
 
 function resetGallery() {
-  listWatched.innerHTML = '';
+  refs.list.innerHTML = '';
 }
