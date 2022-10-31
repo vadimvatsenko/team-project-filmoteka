@@ -636,7 +636,7 @@ nav {
 }
 .slick-slide img {
   display: block;
-  width: 150px;
+  width: 130px;
   height: 100%;
 }
 .slick-slide.slick-loading img {
@@ -661,18 +661,12 @@ nav {
   display: none;
 }
 
-.movie-popular__item .slick-slide .movie-popular__title {
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
-  margin: -1px;
+.slick-slide .movie-popular__title {
+  display: none;
+}
+
+.slick-slide .movie-popular__genre {
+  display: none;
 }
 
 .spinner {
