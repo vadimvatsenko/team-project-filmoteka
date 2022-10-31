@@ -6,13 +6,13 @@ import errorImg from '../images/catch-error.jpg';
 export function initializeSlider() {
   $('.slider').slick({
     arrows: false,
-    adaptiveHeigt: true,
     lazyLoad: 'progressive',
     autoplay: true,
     autoplaySpeed: 1000,
     slidesToShow: 8,
     infinite: true,
     speed: 1000,
+    // adaptiveHeigt: true,
   });
 }
 
