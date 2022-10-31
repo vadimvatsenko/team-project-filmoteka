@@ -9,12 +9,9 @@ import { API_URL } from './url';
 import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
 export function poginationFilter(genre, year) {
-  console.log(year);
-  console.log(genre);
-
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
-    itemsPerPage: JSON.parse(localStorage.getItem('itemsPerPage')),
+    itemsPerPage: 20,
     visiblePages: 5,
     page: 1,
     centerAlign: true,
@@ -40,7 +37,6 @@ export function poginationFilter(genre, year) {
   };
 
   const pagination = new Pagination('pagination', options);
-
   pagination.on('afterMove', async function (eventData) {
     resetGallery();
 
@@ -50,8 +46,6 @@ export function poginationFilter(genre, year) {
         renderFiltrMarkup(data.results);
       })
       .catch(error => console.log(error));
-
-    localStorage.setItem('pagination', eventData.page);
   });
 }
 
@@ -60,7 +54,7 @@ export function poginationSearch(movie) {
   // пагінація по пошуку
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
-    itemsPerPage: JSON.parse(localStorage.getItem('itemsPerPage')),
+    itemsPerPage: 20,
     visiblePages: 5,
     page: 1,
     centerAlign: true,
