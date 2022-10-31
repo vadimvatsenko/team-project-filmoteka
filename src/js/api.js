@@ -53,12 +53,7 @@ if (JSON.parse(localStorage.getItem('search'))) {
 let statusSearch = false;
 let statusSearchForm = false;
 
-refs.logo.addEventListener('click', clearLOacalStorageOnLogo);
-function clearLOacalStorageOnLogo() {
-  localStorage.removeItem('search');
-  localStorage.removeItem('searchWord');
-  localStorage.removeItem('pagination');
-}
+
 
 //* запит і рендер фільмів за назвою
 async function handleSubmit(event) {

@@ -140,3 +140,19 @@ paginationPop.movePageTo(localStorage.getItem('pagination'));
 function resetGallery() {
   refs.list.innerHTML = '';
 }
+
+// reset on logo ==================
+refs.logo.addEventListener('click', clearLOacalStorageOnLogo);
+function clearLOacalStorageOnLogo() {
+  localStorage.removeItem('search');
+  localStorage.removeItem('searchWord');
+  localStorage.removeItem('pagination');
+}
+
+// reset on btn home==================
+refs.home.addEventListener('click', clearLOacalStorageOnHome);
+function clearLOacalStorageOnHome() {
+  localStorage.removeItem('search');
+  localStorage.removeItem('searchWord');
+  localStorage.removeItem('pagination');
+}

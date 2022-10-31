@@ -132,10 +132,16 @@
   cursor: default;
   background: #ff6b08;
   border-color: #ff6b08;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+
   font-size: 24px;
   border-radius: 5px;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  padding: 5px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .tui-pagination .tui-is-selected:hover {
