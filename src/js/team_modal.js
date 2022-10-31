@@ -77,7 +77,7 @@ const markupTeamCard = team
   .map(({ photo, name, role}) => {
     return `<li class="team-card">
             <a class="team__link" href="${photo}">
-            <img src="${photo}" alt="${name}" class="team-photo">
+            <img loading="lazy" src="${photo}" alt="${name}" class="team-photo">
             </a>
             <p class="team-name">${name}</p>
             <p class="team-role">${role}</p>
