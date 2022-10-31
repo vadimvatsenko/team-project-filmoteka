@@ -10,7 +10,7 @@ export function initializeSlider() {
     lazyLoad: 'progressive',
     autoplay: true,
     autoplaySpeed: 1000,
-    slidesToShow: 7,
+    slidesToShow: 8,
     infinite: true,
     speed: 1000,
   });
