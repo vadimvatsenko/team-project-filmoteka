@@ -1,10 +1,10 @@
-.bacground-lib {
-  margin-top: 5px;
-  background-image: url(/src/images/bg/lib_bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 70vh;
-}
+// .bacground-lib {
+//   margin-top: 5px;
+//   background-image: url(/src/images/bg/lib_bg.jpg);
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   min-height: 70vh;
+// }
 
 .lib-message {
   margin: auto;
@@ -12,4 +12,15 @@
 
 .non-display {
   display: none;
+}
+
+.popkorn {
+  margin: 0 auto;
+  fill: #fff;
+}
+
+.popkorn-container {
+  margin: 0 auto;
+  width: 300px;
+  height: 150px;
 }
