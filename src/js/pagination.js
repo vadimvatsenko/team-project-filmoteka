@@ -4,10 +4,10 @@ import { getAPI } from './popularRender';
 import { getMovieNameAPI } from './renderByName';
 import { API_URL } from './url';
 
-// для filter
-
 import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
+
+// для filter
 export function poginationFilter(genre, year) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
@@ -47,6 +47,11 @@ export function poginationFilter(genre, year) {
       })
       .catch(error => console.log(error));
   });
+
+  removeHiddenPagination();
+  if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
+    addHiddenPagination();
+  }
 }
 
 // для пошуку
@@ -95,6 +100,10 @@ export function poginationSearch(movie) {
 
     localStorage.setItem('searchPagination', eventData.page);
   });
+  removeHiddenPagination();
+  if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
+    addHiddenPagination();
+  }
 }
 
 // для полулярних
@@ -136,6 +145,17 @@ paginationPop.on('afterMove', async function (eventData) {
 });
 
 paginationPop.movePageTo(localStorage.getItem('pagination'));
+
+// ховає пагінацію
+export function addHiddenPagination() {
+  const paginationHtml = document.querySelector('#pagination')
+  paginationHtml.classList.add('visually-hidden')
+}
+
+export function removeHiddenPagination() {
+  const paginationHtml = document.querySelector('#pagination')
+  paginationHtml.classList.remove('visually-hidden')
+}
 
 function resetGallery() {
   refs.list.innerHTML = '';

@@ -29,7 +29,7 @@ export function paginationWatchid() {
       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
       '<span class="tui-ico-ellip">...</span>' +
       '</a>',
-  },
+      }, 
 };
 
 const paginationPop = new Pagination('pagination', optionsPop);
@@ -41,6 +41,10 @@ paginationPop.on('afterMove', async function (eventData) {
     getWatched("watched", eventData.page);
 
 });
+   removeHiddenPagination();
+  if (JSON.parse(localStorage.getItem('watched')).watched.length<=20) {
+    addHiddenPagination();
+  }
 }
 
 export function paginationQueue() {
@@ -80,6 +84,22 @@ paginationPop.on('afterMove', async function (eventData) {
     getWatched("queue", eventData.page);
 
 });
+  
+  removeHiddenPagination();
+  if (JSON.parse(localStorage.getItem('watched')).queue.length<=20) {
+    addHiddenPagination();
+  }
+}
+
+// ховає пагінацію
+export function addHiddenPagination() {
+  const paginationHtml = document.querySelector('#pagination')
+  paginationHtml.classList.add('visually-hidden')
+}
+
+export function removeHiddenPagination() {
+  const paginationHtml = document.querySelector('#pagination')
+  paginationHtml.classList.remove('visually-hidden')
 }
 
 function resetGallery() {
