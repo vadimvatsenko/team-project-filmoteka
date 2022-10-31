@@ -9,8 +9,8 @@ export function initializeSlider() {
     adaptiveHeigt: true,
     lazyLoad: 'progressive',
     autoplay: true,
-    autoplaySpeed: 500,
-    slidesToShow: 12,
+    autoplaySpeed: 1000,
+    slidesToShow: 7,
     infinite: true,
     speed: 1000,
   });
