@@ -16,4 +16,5 @@ export const refs = {
   logo: document.querySelector('.header__logo'),
 
   getSpinner: document.querySelector('.spinner'),
+  slickSlider: document.querySelector('.slider'),
 };
