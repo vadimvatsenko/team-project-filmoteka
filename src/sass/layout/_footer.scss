@@ -8,7 +8,6 @@
 
     @include only_mobile {
         font-size: 14px;
-
     }
 }
 
@@ -28,18 +27,11 @@
     padding-left: 6px;
     padding-right: 6px;
     border-right: 1px solid var(--first-text-color);
-
+    margin-top: 10px;
 
     &:last-child {
         border-right: none;
-
-        @include only_mobile {
-            margin-top: 10px;
-
-
-        }
     }
-
 }
 
 .footer__item span {
@@ -48,14 +40,12 @@
 
 .footer__heart {
     color: var(--hover-color);
-    animation: beat .400s infinite alternate;
+    animation: beat 0.4s infinite alternate;
     transform-origin: center;
     margin-left: 5px;
     margin-right: 5px;
     width: 14px;
     height: 13px;
-
-
 }
 
 @keyframes beat {
@@ -69,7 +59,6 @@
     border-bottom: 1px solid;
 
     @include transition(color);
-
 
     &:hover,
     &:focus {
