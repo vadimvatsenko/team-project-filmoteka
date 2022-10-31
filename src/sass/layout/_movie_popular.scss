@@ -1,4 +1,11 @@
 //* Юлка контейнер
+
+.movie-popular {
+  @include desktop {
+    padding-top: 0;
+  }
+}
+
 .movie-popular__list {
   display: flex;
   flex-wrap: wrap;
