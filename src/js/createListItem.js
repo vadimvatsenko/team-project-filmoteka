@@ -1,6 +1,7 @@
 import { refs } from './refs';
 import { BASE_URL, KEY, IMG_URL, API_URL, POPULAR_URL } from './url';
 import { getfilmsGenres } from './getGandersFromId';
+import { initializeSlider,resetSlider } from "./slider";
 
 export function createListItem({
   poster_path,
@@ -48,7 +49,15 @@ export function generateContent(array) {
   return array.reduce((acc, item) => acc + createListItem(item), '');
 }
 
+let sliderActiv = false;
 export function pasteContent(array) {
   const result = generateContent(array);
   refs.list.insertAdjacentHTML('beforeend', result);
+  
+  if (sliderActiv) {
+    resetSlider();
+  }
+  refs.slickSlider.innerHTML = result;
+  initializeSlider();
+  sliderActiv = true;
 }

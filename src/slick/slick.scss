@@ -112,6 +112,8 @@
 
   img {
     display: block;
+    width  : 130px;
+    height : 100%
   }
 
   &.slick-loading img {
@@ -143,26 +145,10 @@
   display: none;
 }
 
-.trending-raiting {
-  width        : 38px;
-  height       : 18px;
-  background   : #ff6b01;
-  border-radius: 5px;
+.slick-slide .movie-popular__title {
+  display: none;
+}
 
-  font-family: 'Roboto';
-  font-style : normal;
-  font-weight: 500;
-  font-size  : 12px;
-  line-height: 14px;
-
-  display        : flex;
-  justify-content: center;
-  align-items    : center;
-  margin-right   : auto;
-  text-transform : uppercase;
-
-  position: relative;
-  top     : -141;
-  left    : 0;
-  color   : #ffffff;
+.slick-slide .movie-popular__genre {
+  display: none;
 }
