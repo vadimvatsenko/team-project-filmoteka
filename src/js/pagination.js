@@ -46,6 +46,7 @@ export function poginationFilter(genre, year) {
         renderFiltrMarkup(data.results);
       })
       .catch(error => console.log(error));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   removeHiddenPagination();
@@ -99,6 +100,8 @@ export function poginationSearch(movie) {
     getMovieNameAPI(movie, eventData.page);
 
     localStorage.setItem('searchPagination', eventData.page);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   removeHiddenPagination();
   if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
@@ -140,8 +143,9 @@ paginationPop.on('afterMove', async function (eventData) {
   resetGallery();
 
   getAPI(`${API_URL}&page=${eventData.page}`);
-
   localStorage.setItem('pagination', eventData.page);
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 paginationPop.movePageTo(localStorage.getItem('pagination'));

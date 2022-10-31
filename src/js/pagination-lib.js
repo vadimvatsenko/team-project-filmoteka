@@ -39,7 +39,7 @@ paginationPop.on('afterMove', async function (eventData) {
 
   
     getWatched("watched", eventData.page);
-
+window.scrollTo({ top: 0, behavior: 'smooth' });
 });
    removeHiddenPagination();
   if (JSON.parse(localStorage.getItem('watched')).watched.length<=20) {
@@ -82,7 +82,7 @@ paginationPop.on('afterMove', async function (eventData) {
 
   
     getWatched("queue", eventData.page);
-
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
   
   removeHiddenPagination();
