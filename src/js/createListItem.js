@@ -26,12 +26,12 @@ export function createListItem({
         <h2 class="movie-popular__title">${
           original_title || original_name ? original_title || original_name : ''
         }</h2>
-        <p class="movie-popular__genre">${          
+        <p class="movie-popular__genre">${
           allGanres.length === 0
-          ? 'Nothing'
-          : allGanres.length <= 2
-          ? allGanres
-          : allGanres.slice(0, 2).join(', ') + ', ' + 'Other'
+            ? 'Nothing'
+            : allGanres.length <= 2
+            ? allGanres.join(', ')
+            : allGanres.slice(0, 2).join(', ') + ', ' + 'Other'
         } | ${
     Number.parseInt(release_date) || Number.parseInt(first_air_date)
       ? Number.parseInt(release_date) || Number.parseInt(first_air_date)
