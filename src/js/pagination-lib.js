@@ -1,23 +1,7 @@
 
 import Pagination from 'tui-pagination';
 import { getWatched } from "./lib";
-// пагінація
-export const btnWatched = document.querySelector('.button-watched');
-export const btnQueue = document.querySelector('.button-queue');
 
-btnWatched.addEventListener('click', rWatched);
-
-btnQueue.addEventListener('click', rQueue);
-
-function rWatched() {
-    //
-  paginationWatchid();
-}
-
-function rQueue() {
-  //  
-  paginationQueue();
-}
 
 export function paginationWatchid() {
     const optionsPop = {
@@ -97,16 +81,6 @@ paginationPop.on('afterMove', async function (eventData) {
 });
 }
 
-const listWatched = document.querySelector('.movie-list');
 function resetGallery() {
   listWatched.innerHTML = '';
-}
-
-const localWatched = JSON.parse(localStorage.getItem('watched')).watched;
-const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
-
-if (localWatched.length === 0) {
-    paginationQueue();
-} else {
-    paginationWatchid();
 }

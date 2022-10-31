@@ -19,8 +19,7 @@ import {
 
 // ==============================================================
 
-import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
+import { poginationSearch } from "./pagination";
 
 // ================================================================
 // сохраняем слово в инпуте
@@ -67,7 +66,7 @@ async function handleSubmit(event) {
 
   const movie = event.currentTarget.elements.search.value.trim().toLowerCase();
   localStorage.setItem('search', JSON.stringify(movie));
-  localStorage.setItem('pagination', 1);
+  localStorage.setItem('searchPagination', 1);
   localStorage.setItem('searchWord', 0);
   searchData = JSON.parse(localStorage.getItem('search'));
 
@@ -88,185 +87,7 @@ async function handleSubmit(event) {
   ))
   statusSearch = true;
 
-  // пагінація по пошуку
-  const options = {
-  totalItems: JSON.parse(
-    localStorage.getItem('totalItems')
-  ),
-  itemsPerPage: JSON.parse(
-    localStorage.getItem('itemsPerPage')
-  ),
-  visiblePages: 5,
-  page: 1,
-  centerAlign: true,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage:
-      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-      '<span class="tui-ico-ellip">...</span>' +
-      '</a>',
-  },
-};
-
-  const pagination = new Pagination('pagination', options);
-    pagination.movePageTo(1);
-  pagination._options.totalItems = JSON.parse(
-    localStorage.getItem('totalItems')
-  );
-  pagination._options.itemsPerPage = JSON.parse(
-    localStorage.getItem('itemsPerPage')
-  );
-  console.log(pagination);
-pagination.on('afterMove', async function (eventData) {
-  resetGallery();
-
-  getMovieNameAPI(movie, eventData.page);
-  
-  localStorage.setItem('pagination', eventData.page);
-});
+  poginationSearch(movie);
 }
 
 refs.form.addEventListener('submit', handleSubmit);
-
-// пагінація
-const optionsPop = {
- totalItems: 20000,
-  itemsPerPage: 20,
-  visiblePages: 5,
-  page: 1,
-  centerAlign: true,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage:
-      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-      '<span class="tui-ico-ellip">...</span>' +
-      '</a>',
-  },
-};
-
-const paginationPop = new Pagination('pagination', optionsPop);
-
-paginationPop.on('afterMove', async function (eventData) {
-  resetGallery();
-
-  // if (searchData) {
-  //   if (statusSearch) {
-  //     statusSearch = false;
-  //   } else {
-  //     getMovieNameAPI(searchData, eventData.page);
-  //   }
-  // } else {
-  //   if (statusSearchForm) {
-  //     console.log('statusSearchForm');
-  //     // statusSearchForm = false;
-  //   } else {
-      getAPI(`${API_URL}&page=${eventData.page}`);
-  //   }
-  // }
-  // movieStrorage = eventData.page;
-  localStorage.setItem('pagination', eventData.page);
-});
-paginationPop.movePageTo(localStorage.getItem('pagination'));
-
-function resetGallery() {
-  refs.list.innerHTML = '';
-}
-
-
-// для філбтрів
-
-
-import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
-
-filterItem.filterForm.addEventListener('input', (e) => {
-  setTimeout(pogination, 1000);
-})
-
-function pogination() {
-  console.log('cnfhn')
-  const year = filterItem.yearForm.value
-  const genre = filterItem.genreForm.value
-  console.log(year);
-  console.log(genre);
-
-  const options = {
-  totalItems: JSON.parse(
-    localStorage.getItem('totalItems')
-  ),
-  itemsPerPage: JSON.parse(
-    localStorage.getItem('itemsPerPage')
-  ),
-  visiblePages: 5,
-  page: 1,
-  centerAlign: true,
-  firstItemClassName: 'tui-first-child',
-  lastItemClassName: 'tui-last-child',
-  template: {
-    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-    currentPage:
-      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-      '<span class="tui-ico-ellip">...</span>' +
-      '</a>',
-  },
-};
-
-  const pagination = new Pagination('pagination', options);
-    pagination.movePageTo(1);
-  pagination._options.totalItems = JSON.parse(
-    localStorage.getItem('totalItems')
-  );
-  pagination._options.itemsPerPage = JSON.parse(
-    localStorage.getItem('itemsPerPage')
-  );
-  console.log(pagination);
-
-pagination.on('afterMove', async function (eventData) {
-  resetGallery();
-
-  getSearchForm(genre, year, eventData.page)
-      .then(data => {
-        console.log(data);
-        renderFiltrMarkup(data.results);
-      })
-      .catch(error => console.log(error))
-      // .finally(() => spinerStop);
-  
-  localStorage.setItem('pagination', eventData.page);
-});
-}
-
-

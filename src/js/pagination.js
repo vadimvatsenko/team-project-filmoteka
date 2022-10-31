@@ -1,62 +1,148 @@
-// import Pagination from 'tui-pagination';
-// import axios from 'axios';
-// // import 'tui-pagination/dist/tui-pagination.css';
-// import { refs } from './refs';
-// import { getAPI, generateContent, pasteContent } from './popularRender';
-// import { BASE_URL, KEY, IMG_URL, API_URL, POPULAR_URL } from './url';
-// import {
-//   getMovieNameAPI,
-//   generateContentNameAPI,
-//   pasteContentNameAPI,
-// } from './renderByName';
-// console.log(getAPI);
+import Pagination from 'tui-pagination';
+import { refs } from './refs';
+import { getAPI } from './popularRender';
+import { getMovieNameAPI } from './renderByName';
+import { API_URL } from './url';
 
-// const options = {
-//   totalItems: 20000,
-//   itemsPerPage: 20,
-//   visiblePages: 5,
-//   page: 1,
-//   centerAlign: true,
-//   firstItemClassName: 'tui-first-child',
-//   lastItemClassName: 'tui-last-child',
-//   template: {
-//     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-//     currentPage:
-//       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-//     moveButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</a>',
-//     disabledMoveButton:
-//       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-//       '<span class="tui-ico-{{type}}">{{type}}</span>' +
-//       '</span>',
-//     moreButton:
-//       '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-//       '<span class="tui-ico-ellip">...</span>' +
-//       '</a>',
-//   },
-// };
+// для filter
 
-// export const pagination = new Pagination('pagination', options);
+import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
-// pagination.on('afterMove', async function (eventData) {
-//   resetGallery();
+export function poginationFilter(genre, year) {
+  console.log(year);
+  console.log(genre);
 
-//   // const fetchFilmsText = await axios.get(`${API_URL}&page=${eventData.page}`);
-//   // console.log(fetchFilmsText);
-//   getAPI(`${API_URL}&page=${eventData.page}`);
-//   // movieStrorage = eventData.page;
-//   localStorage.setItem('pagination', eventData.page);
-// });
-// pagination.movePageTo(localStorage.getItem('pagination'));
+  const options = {
+    totalItems: JSON.parse(localStorage.getItem('totalItems')),
+    itemsPerPage: JSON.parse(localStorage.getItem('itemsPerPage')),
+    visiblePages: 5,
+    page: 1,
+    centerAlign: true,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage:
+        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</a>',
+      disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>',
+    },
+  };
 
-// function resetGallery() {
-//   refs.list.innerHTML = '';
-// }
-// refs.logo.addEventListener('click', clearLOacalStorageOnLogo);
-// function clearLOacalStorageOnLogo() {
-//   localStorage.removeItem('search');
-//   localStorage.removeItem('searchWord');
-//   localStorage.removeItem('pagination');
-// }
+  const pagination = new Pagination('pagination', options);
+
+  pagination.on('afterMove', async function (eventData) {
+    resetGallery();
+
+    getSearchForm(genre, year, eventData.page)
+      .then(data => {
+        console.log(data);
+        renderFiltrMarkup(data.results);
+      })
+      .catch(error => console.log(error));
+
+    localStorage.setItem('pagination', eventData.page);
+  });
+}
+
+// для пошуку
+export function poginationSearch(movie) {
+  // пагінація по пошуку
+  const options = {
+    totalItems: JSON.parse(localStorage.getItem('totalItems')),
+    itemsPerPage: JSON.parse(localStorage.getItem('itemsPerPage')),
+    visiblePages: 5,
+    page: 1,
+    centerAlign: true,
+    firstItemClassName: 'tui-first-child',
+    lastItemClassName: 'tui-last-child',
+    template: {
+      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      currentPage:
+        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+      moveButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</a>',
+      disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+        '<span class="tui-ico-{{type}}">{{type}}</span>' +
+        '</span>',
+      moreButton:
+        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+        '<span class="tui-ico-ellip">...</span>' +
+        '</a>',
+    },
+  };
+
+  const pagination = new Pagination('pagination', options);
+  // pagination.movePageTo(1);
+  pagination._options.totalItems = JSON.parse(
+    localStorage.getItem('totalItems')
+  );
+  pagination._options.itemsPerPage = JSON.parse(
+    localStorage.getItem('itemsPerPage')
+  );
+  //   console.log(pagination);
+  pagination.on('afterMove', async function (eventData) {
+    resetGallery();
+
+    getMovieNameAPI(movie, eventData.page);
+
+    localStorage.setItem('searchPagination', eventData.page);
+  });
+}
+
+// для полулярних
+const optionsPop = {
+  totalItems: 20000,
+  itemsPerPage: 20,
+  visiblePages: 5,
+  page: 1,
+  centerAlign: true,
+  firstItemClassName: 'tui-first-child',
+  lastItemClassName: 'tui-last-child',
+  template: {
+    page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+    currentPage:
+      '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
+    moveButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</a>',
+    disabledMoveButton:
+      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="tui-ico-{{type}}">{{type}}</span>' +
+      '</span>',
+    moreButton:
+      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
+      '<span class="tui-ico-ellip">...</span>' +
+      '</a>',
+  },
+};
+
+const paginationPop = new Pagination('pagination', optionsPop);
+
+paginationPop.on('afterMove', async function (eventData) {
+  resetGallery();
+
+  getAPI(`${API_URL}&page=${eventData.page}`);
+
+  localStorage.setItem('pagination', eventData.page);
+});
+
+paginationPop.movePageTo(localStorage.getItem('pagination'));
+
+function resetGallery() {
+  refs.list.innerHTML = '';
+}
