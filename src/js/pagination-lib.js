@@ -81,16 +81,6 @@ paginationPop.on('afterMove', async function (eventData) {
 });
 }
 
-const listWatched = document.querySelector('.movie-list');
 function resetGallery() {
   listWatched.innerHTML = '';
-}
-
-const localWatched = JSON.parse(localStorage.getItem('watched')).watched;
-const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
-
-if (localWatched.length === 0) {
-    paginationQueue();
-} else {
-    paginationWatchid();
 }
