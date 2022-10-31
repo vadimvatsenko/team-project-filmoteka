@@ -1,3 +1,5 @@
+import { paginationWatchid, paginationQueue } from "./pagination-lib";
+
 const listWatched = document.querySelector('.movie-list');
 const libSection = document.querySelector('.movie-popular-lib');
 const bacgroundLib = document.querySelector('.bacground-lib');
@@ -14,6 +16,7 @@ const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
 
 export function rWatched() {
   getWatched("watched", 1)
+  paginationWatchid();
   const localWatched = JSON.parse(localStorage.getItem('watched')).watched;
   if (localWatched.length === 0) {
     listWatched.innerHTML = '';
@@ -33,6 +36,7 @@ export function rWatched() {
 
 export function rQueue() {
   getWatched("queue", 1)
+  paginationQueue();
 const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
   if (localQueue.length === 0) {
     listWatched.innerHTML = '';
@@ -59,7 +63,7 @@ if (localWatched.length === 0) {
 
 export function getWatched(name, page) {
   const localWatched = JSON.parse(localStorage.getItem('watched'))[name];
-  console.log(localWatched);
+  // console.log(localWatched);
   let begin = 20 * page -20;
   const end = 20 * page;
   if (page === 1) {

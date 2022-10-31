@@ -403,10 +403,10 @@ function rebootLib() {
     
     if (btnWatched.dataset.active === "true") {
       rWatched();
-      paginationWatchid();
+      // paginationWatchid();
     }
     if (btnQueue.dataset.active === "true") {
       rQueue();
-      paginationQueue();
+      // paginationQueue();
     }
 }

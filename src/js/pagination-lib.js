@@ -1,23 +1,7 @@
 
 import Pagination from 'tui-pagination';
 import { getWatched } from "./lib";
-// пагінація
-export const btnWatched = document.querySelector('.button-watched');
-export const btnQueue = document.querySelector('.button-queue');
 
-btnWatched.addEventListener('click', rWatched);
-
-btnQueue.addEventListener('click', rQueue);
-
-function rWatched() {
-    //
-  paginationWatchid();
-}
-
-function rQueue() {
-  //  
-  paginationQueue();
-}
 
 export function paginationWatchid() {
     const optionsPop = {

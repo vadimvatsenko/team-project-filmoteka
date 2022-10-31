@@ -5,6 +5,7 @@ import { getAPI } from './popularRender';
 import { generateContent } from './createListItem';
 import { Loading, Notify } from 'notiflix';
 import Pagination from 'tui-pagination';
+import { poginationFilter } from "./pagination";
 
 export const filterItem = {
   filterForm: document.querySelector('#filter-form'),
@@ -75,6 +76,7 @@ function eventGenre(evt) {
   if (evt) {
     formSearch.genre = evt.target.value;
     formSearch.page = 1;
+
     getSearchForm(formSearch.genre, formSearch.year, formSearch.page)
       .then(data => {
         Loading.custom('Loading...', {
@@ -85,6 +87,7 @@ function eventGenre(evt) {
 
         if (data.results.length !== 0) {
           renderFiltrMarkup(data.results);
+          poginationFilter(formSearch.genre, formSearch.year);
         } else {
           Loading.custom('Loading...', {
             customSvgCode:
@@ -120,6 +123,7 @@ function eventYear(evt) {
 
         if (data.results.length !== 0) {
           renderFiltrMarkup(data.results);
+          poginationFilter(formSearch.genre, formSearch.year);
         } else {
           Loading.custom('Loading...', {
             customSvgCode:
