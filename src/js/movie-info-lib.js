@@ -169,12 +169,6 @@ function changeWatched(e, targetEl) {
         e.target.outerHTML
       )
     ) {
-      // const modalMoviInfoBtnWatched = document.querySelector(
-      //   '.modal-movie__btn-watched'
-      // );
-      // const modalMoviInfoBtnQueue = document.querySelector(
-      //   '.modal-movie__btn-queue'
-      // );
       const ingexElrem = localStorageMovi.queue.indexOf(e.target.outerHTML);
 
       localStorageMovi.queue.splice(ingexElrem, 1);
@@ -183,17 +177,7 @@ function changeWatched(e, targetEl) {
     }
     textCurentBtnWatched(targetEl);
     modalMoviInfoBtnQueue.innerHTML = "add to Queue";
-    // const btnWatched = document.querySelector('.button-watched');
-    // const btnQueue = document.querySelector('.button-queue');
-    // if (btnWatched.dataset.active === "true") {
-    //   rWatched();
-    //   paginationWatchid();
-    // }
-    // if (btnQueue.dataset.active === "true") {
-    //   console.log('false')
-    //   rQueue();
-    //   paginationQueue();
-    // }
+
     rebootLib();
   };
 }
@@ -203,12 +187,10 @@ function changeQueue(e, targetEl) {
     const modalMoviInfoBtnWatched = document.querySelector(
         '.modal-movie__btn-watched'
       );
-    // console.log(targetEl.dataset.ls);
-    // !JSON.parse(localStorage.getItem('watched')).queue.includes(e.target.outerHTML)
     if (targetEl.dataset.ls === 'false') {
       localStorageMovi.queue.push(e.target.outerHTML);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      // console.log(JSON.stringify(localStorageMovi));
+
       addCurentBtn(targetEl);
     } else {
       const ingexEl = localStorageMovi.queue.indexOf(e.target.outerHTML);
@@ -222,12 +204,7 @@ function changeQueue(e, targetEl) {
         e.target.outerHTML
       )
     ) {
-      // const modalMoviInfoBtnWatched = document.querySelector(
-      //   '.modal-movie__btn-watched'
-      // );
-      // const modalMoviInfoBtnQueue = document.querySelector(
-      //   '.modal-movie__btn-queue'
-      // );
+
       const ingexElrem = localStorageMovi.watched.indexOf(e.target.outerHTML);
 
       localStorageMovi.watched.splice(ingexElrem, 1);
@@ -236,18 +213,6 @@ function changeQueue(e, targetEl) {
     }
     textCurentBtnQueue(targetEl);
     modalMoviInfoBtnWatched.innerHTML = "add to Watched";
-
-    // const btnWatched = document.querySelector('.button-watched');
-    // const btnQueue = document.querySelector('.button-queue');
-    
-    // if (btnWatched.dataset.active === "true") {
-    //   rWatched();
-    //   paginationWatchid();
-    // }
-    // if (btnQueue.dataset.active === "true") {
-    //   rQueue();
-    //   paginationQueue();
-    // }
     rebootLib();
   };
 }
