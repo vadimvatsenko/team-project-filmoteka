@@ -1,6 +1,6 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import * as basicLightbox from 'basiclightbox';
-import { paginationWatchid, paginationQueue } from "./pagination-lib";
+// import { paginationWatchid, paginationQueue } from "./pagination-lib";
 import {  rWatched, rQueue,} from "./lib";
 
 //імпорт Запиту на сервер
