@@ -256,6 +256,10 @@ function textCurentBtnQueue(btn) {
 
 // створює розмітку для модалки
 function CardFilminHtml(data) {
+  const genresArr = [];
+  data.genres.length ? data.genres.map(genre => {
+    genresArr.push(genre.name)
+  }):"";
   return `
   <div class="modal-movie__img-container">
   <img class="modal-movie__img" loading="lazy" src="${
@@ -308,14 +312,13 @@ function CardFilminHtml(data) {
         </li>
         <li class="modal-movie__item">
           <p class="modal-movie__item-categories">Genre</p>
-          <p class="modal-movie__item-inf">${
-            data.genres.length ? data.genres[0].name : 'Another'
-          }</p>
+          <p class="modal-movie__item-inf">${ genresArr.length >0 ?
+     genresArr.join(", ") : '-'}</p>
         </li>
       </ul>
       <h2 class="modal-movie__about">About</h2>
       <p class="modal-movie__about-text">
-        ${data.overview}
+        ${data.overview.length >0?data.overview:"Absent..."}
       </p>
       <div class="modal-movie__btn-section">
         <button
