@@ -78,7 +78,7 @@
     display: block;
     overflow: hidden;
   width: 240px;
-  height: 357px;
+  // max-height: 357px;
   margin-bottom: 20px;
   border-radius: 5px;
 
@@ -279,6 +279,7 @@
   align-items: center;
   width: 30px;
   height: 30px;
+  padding: 5px;
 }
 
 .basicLightbox__placeholder--transparent {

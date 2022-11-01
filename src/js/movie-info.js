@@ -1,5 +1,6 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import * as basicLightbox from 'basiclightbox';
+import svgYoutube from '../images/symbol-defs.svg'
 
 //імпорт Запиту на сервер
 import { Api } from './url';
@@ -145,8 +146,8 @@ function onBtnInModalMovi(e) {
 function changeWatched(e, targetEl) {
   return function () {
     const modalMoviInfoBtnQueue = document.querySelector(
-        '.modal-movie__btn-queue'
-      );
+      '.modal-movie__btn-queue'
+    );
     // console.log(targetEl.dataset.ls);
     // !JSON.parse(localStorage.getItem('watched')).watched.includes(e.target.outerHTML)
     if (targetEl.dataset.ls === 'false') {
@@ -180,15 +181,15 @@ function changeWatched(e, targetEl) {
       removeCurentBtn(modalMoviInfoBtnQueue);
     }
     textCurentBtnWatched(targetEl);
-    modalMoviInfoBtnQueue.innerHTML = "add to Queue"
+    modalMoviInfoBtnQueue.innerHTML = 'add to Queue';
   };
 }
 
 function changeQueue(e, targetEl) {
   return function () {
     const modalMoviInfoBtnWatched = document.querySelector(
-        '.modal-movie__btn-watched'
-      );
+      '.modal-movie__btn-watched'
+    );
     // console.log(targetEl.dataset.ls);
     // !JSON.parse(localStorage.getItem('watched')).queue.includes(e.target.outerHTML)
     if (targetEl.dataset.ls === 'false') {
@@ -221,7 +222,7 @@ function changeQueue(e, targetEl) {
       removeCurentBtn(modalMoviInfoBtnWatched);
     }
     textCurentBtnQueue(targetEl);
-    modalMoviInfoBtnWatched.innerHTML = "add to Watched"
+    modalMoviInfoBtnWatched.innerHTML = 'add to Watched';
   };
 }
 
@@ -354,9 +355,8 @@ function CardFilminHtmlIfError(Error) {
 function movieBtnHtml() {
   return `
       <button type="button" class="modal-movie__movie">
-      <svg class="icon modal-movie__icon" width="30" height="30">
-        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-youtube"></use>
-        <use xlink:href="/team-project-filmoteka/symbol-defs.cf522ee5.svg#icon-youtube"></use>
+      <svg class="icon modal-movie__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+      <use xlink:href="${svgYoutube}#icon-youtube"></use>
       </svg>
     </button> 
     
