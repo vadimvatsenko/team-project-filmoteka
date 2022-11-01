@@ -10,7 +10,9 @@ refs.loginBtn?.addEventListener('click', evt => {
 
 const formRegister = document.querySelector('.modal-register');
 
-formRegister.addEventListener('submit', evt => {
+formRegister?.addEventListener('submit', registrationHandler);
+
+function registrationHandler(evt) {
   evt.preventDefault();
   const user = {
     email: evt.currentTarget['email-reg'].value,
@@ -25,6 +27,4 @@ formRegister.addEventListener('submit', evt => {
     .catch(e => {
       console.log(e);
     });
-
-  //   console.log(evt.currentTarget['email-reg'].value);
-});
+}

@@ -14,8 +14,10 @@ export const refs = {
 
   paginationDiv: document.querySelector('.tui-pagination'),
   logo: document.querySelector('.header__logo'),
+  home: document.querySelector('.header__nav-link'),
 
   getSpinner: document.querySelector('.spinner'),
+  slickSlider: document.querySelector('.slider'),
 
   // library start
   loginBtn: document.querySelector('.login__button'),

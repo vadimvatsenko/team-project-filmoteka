@@ -10,6 +10,7 @@ import './js/components/change-theme';
 import './js/pagination';
 
 import './js/spiner';
+import './js/slider';
 import './js/movie-info';
 import './js/filter';
 import './js/team_modal';

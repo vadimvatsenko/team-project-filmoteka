@@ -24,44 +24,54 @@
         </li>
       </ul>
     </nav>
-    <div class="botton-wrap">
-      <button class="button button--lib-active">Watched</button>
-      <button class="button">queue</button>
-    </div>
-  </div>
 
-  <!-- Разметка переключателя темы -->
-  <div class="toolbar">
-    <div class="theme-switch">
-      <svg
-        class="theme-switch__icon stormtroopers"
-        role="img"
-        aria-label="Иконка stormtroopers"
-      >
-        <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
-      </svg>
-      <div class="theme-switch__control">
-        <input
-          class="theme-switch__toggle"
-          type="checkbox"
-          name="theme"
-          id="theme-switch-toggle"
-          aria-label="Переключить между тёмной и светлой темой"
-        />
-        <label
-          aria-hidden="true"
-          class="theme-switch__track"
-          for="theme-switch-toggle"
+    <!-- Разметка переключателя темы -->
+    <div class="toolbar">
+      <div class="theme-switch">
+        <svg
+          class="theme-switch__icon stormtroopers"
+          role="img"
+          aria-label="Иконка stormtroopers"
         >
-        </label>
-        <div aria-hidden="true" class="theme-switch__marker"></div>
-      </div>
+          <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
+        </svg>
+        <div class="theme-switch__control">
+          <input
+            class="theme-switch__toggle"
+            type="checkbox"
+            name="theme"
+            id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой"
+          />
+          <label
+            aria-hidden="true"
+            class="theme-switch__track"
+            for="theme-switch-toggle"
+          >
+          </label>
+          <div aria-hidden="true" class="theme-switch__marker"></div>
+        </div>
 
-      <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
-        <use href="/src/images/symbol-defs.svg#vader"></use>
-      </svg>
+        <svg class="theme-switch__icon vader" aria-label="Иконка Vader">
+          <use href="/src/images/symbol-defs.svg#vader"></use>
+        </svg>
+      </div>
     </div>
+
+    <div class="botton-wrap">
+      <button
+        class="button button-watched button--lib-active"
+        data-active="false"
+      >
+        Watched
+      </button>
+      <button class="button button-queue" data-active="false">Queue</button>
+    </div>
+
+    <h2 class="visually-hidden">Filmoteka LIBRARY</h2>
+    <!-- - -->
   </div>
+
   <!-- Profile and auth -->
   <div class="profile-block">
     <button class="login__button">login</button>

@@ -19,8 +19,7 @@ import {
 
 // ==============================================================
 
-import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
+import { poginationSearch } from "./pagination";
 
 // ================================================================
 // сохраняем слово в инпуте
@@ -34,6 +33,7 @@ if (JSON.parse(localStorage.getItem('searchWord'))) {
 }
 console.dir(refs.input);
 refs.input.addEventListener('input', listenInput);
+
 function listenInput(event) {
   console.log(event.currentTarget.value);
   localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
@@ -47,73 +47,43 @@ if (JSON.parse(localStorage.getItem('search'))) {
 } else {
   localStorage.setItem('search', JSON.stringify(searchData));
 }
+
 //* рейтинг популярний фільмів при загрузці і перезавантаженні сайта
-if (searchData) {
-  getMovieNameAPI(searchData, localStorage.getItem('pagination'));
-} else {
-  getAPI(API_URL);
-}
+
+let statusSearch = false;
+let statusSearchForm = false;
+
+
 
 //* запит і рендер фільмів за назвою
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
 
   const movie = event.currentTarget.elements.search.value.trim().toLowerCase();
   localStorage.setItem('search', JSON.stringify(movie));
-  localStorage.setItem('pagination', 1);
+  localStorage.setItem('searchPagination', 1);
   localStorage.setItem('searchWord', 0);
-  // =====================================================================
-  const options = {
-    totalItems: 2500,
-    itemsPerPage: 40,
-    visiblePages: 5,
-    page: 1,
-    centerAlign: true,
-    firstItemClassName: 'tui-first-child',
-    lastItemClassName: 'tui-last-child',
-    template: {
-      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
-      currentPage:
-        '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-      moveButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}">{{type}}</span>' +
-        '</a>',
-      disabledMoveButton:
-        '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
-        '<span class="tui-ico-{{type}}">{{type}}</span>' +
-        '</span>',
-      moreButton:
-        '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-        '<span class="tui-ico-ellip">...</span>' +
-        '</a>',
-    },
-  };
-
-  const pagination = new Pagination('pagination', options);
-  pagination.on('afterMove', function (eventData) {
-    resetGallery();
-
-    getMovieNameAPI(movie, eventData.page);
-    localStorage.setItem('pagination', eventData.page);
-  });
-
-  function resetGallery() {
-    refs.list.innerHTML = '';
-  }
-  // =============================================================
-
-  //console.log(movie);
-  // refs.list.innerHTML = "";
+  searchData = JSON.parse(localStorage.getItem('search'));
 
   if (!movie) {
-    Notify.failure(
+    Notify.info(
       'Sorry, there are no movies matching your search query. Please try again.'
     );
     return;
   }
   refs.list.innerHTML = '';
-  getMovieNameAPI(movie);
+  await getMovieNameAPI(movie)
+  
+  console.log(JSON.parse(
+    localStorage.getItem('itemsPerPage')
+  ))
+  console.log(JSON.parse(
+    localStorage.getItem('totalItems')
+  ))
+  statusSearch = true;
+
+  poginationSearch(movie);
+  Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
 }
 
 refs.form.addEventListener('submit', handleSubmit);

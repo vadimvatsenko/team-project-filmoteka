@@ -1,5 +1,6 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import * as basicLightbox from 'basiclightbox';
+import svgYoutube from '../images/symbol-defs.svg'
 
 //імпорт Запиту на сервер
 import { Api } from './url';
@@ -14,6 +15,7 @@ const Modal = new ModalClassic(
 
 const modalMovi = document.querySelector('.modal-movie__container');
 const movieDiv = document.querySelector('.movie-list');
+const movieDivSlider = document.querySelector('.movie-list-slider');
 
 // робота з локальним сховищем
 let localStorageMovi = {
@@ -29,6 +31,7 @@ if (localStorage.getItem('watched')) {
 
 // обробка натискання на фільм
 movieDiv.addEventListener('click', onMoviClick);
+movieDivSlider.addEventListener('click', onMoviClick);
 
 async function onMoviClick(e) {
   e.preventDefault();
@@ -50,7 +53,7 @@ async function onMoviClick(e) {
 
   try {
     const Seach = await ApiP.fetchCardFilm(idMovie);
-    console.log(Seach);
+    // console.log(Seach);
     modalMovi.innerHTML = CardFilminHtml(Seach);
     onBtnInModalMovi(e);
     Loading.remove(0);
@@ -111,7 +114,7 @@ function openModalMovi(e, Movie) {
 
 // Опрацьовує роботу кнопок
 function onBtnInModalMovi(e) {
-  const idMovie = e.target.outerHTML;
+  const idMovie = onCardTransform(e.target);
   const modalMoviInfoBtnWatched = document.querySelector(
     '.modal-movie__btn-watched'
   );
@@ -144,15 +147,18 @@ function onBtnInModalMovi(e) {
 // Додає та видаляє з локального сховища HTML картки
 function changeWatched(e, targetEl) {
   return function () {
+    const modalMoviInfoBtnQueue = document.querySelector(
+      '.modal-movie__btn-queue'
+    );
     // console.log(targetEl.dataset.ls);
-    // !JSON.parse(localStorage.getItem('watched')).watched.includes(e.target.outerHTML)
+    // !JSON.parse(localStorage.getItem('watched')).watched.includes(onCardTransform(e.target))
     if (targetEl.dataset.ls === 'false') {
-      localStorageMovi.watched.push(e.target.outerHTML);
+      localStorageMovi.watched.push(onCardTransform(e.target));
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
     } else {
-      const ingexEl = localStorageMovi.watched.indexOf(e.target.outerHTML);
+      const ingexEl = localStorageMovi.watched.indexOf(onCardTransform(e.target));
 
       localStorageMovi.watched.splice(ingexEl, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -161,37 +167,40 @@ function changeWatched(e, targetEl) {
     }
     if (
       JSON.parse(localStorage.getItem('watched')).queue.includes(
-        e.target.outerHTML
+        onCardTransform(e.target)
       )
     ) {
       // const modalMoviInfoBtnWatched = document.querySelector(
       //   '.modal-movie__btn-watched'
       // );
-      const modalMoviInfoBtnQueue = document.querySelector(
-        '.modal-movie__btn-queue'
-      );
-      const ingexElrem = localStorageMovi.queue.indexOf(e.target.outerHTML);
+      // const modalMoviInfoBtnQueue = document.querySelector(
+      //   '.modal-movie__btn-queue'
+      // );
+      const ingexElrem = localStorageMovi.queue.indexOf(onCardTransform(e.target));
 
       localStorageMovi.queue.splice(ingexElrem, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       removeCurentBtn(modalMoviInfoBtnQueue);
-      
     }
     textCurentBtnWatched(targetEl);
+    modalMoviInfoBtnQueue.innerHTML = 'add to Queue';
   };
 }
 
 function changeQueue(e, targetEl) {
   return function () {
+    const modalMoviInfoBtnWatched = document.querySelector(
+      '.modal-movie__btn-watched'
+    );
     // console.log(targetEl.dataset.ls);
-    // !JSON.parse(localStorage.getItem('watched')).queue.includes(e.target.outerHTML)
+    // !JSON.parse(localStorage.getItem('watched')).queue.includes(onCardTransform(e.target))
     if (targetEl.dataset.ls === 'false') {
-      localStorageMovi.queue.push(e.target.outerHTML);
+      localStorageMovi.queue.push(onCardTransform(e.target));
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       // console.log(JSON.stringify(localStorageMovi));
       addCurentBtn(targetEl);
     } else {
-      const ingexEl = localStorageMovi.queue.indexOf(e.target.outerHTML);
+      const ingexEl = localStorageMovi.queue.indexOf(onCardTransform(e.target));
 
       localStorageMovi.queue.splice(ingexEl, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -199,25 +208,36 @@ function changeQueue(e, targetEl) {
     }
     if (
       JSON.parse(localStorage.getItem('watched')).watched.includes(
-        e.target.outerHTML
+        onCardTransform(e.target)
       )
     ) {
-      const modalMoviInfoBtnWatched = document.querySelector(
-        '.modal-movie__btn-watched'
-      );
+      // const modalMoviInfoBtnWatched = document.querySelector(
+      //   '.modal-movie__btn-watched'
+      // );
       // const modalMoviInfoBtnQueue = document.querySelector(
       //   '.modal-movie__btn-queue'
       // );
-      const ingexElrem = localStorageMovi.watched.indexOf(e.target.outerHTML);
+      const ingexElrem = localStorageMovi.watched.indexOf(onCardTransform(e.target));
 
       localStorageMovi.watched.splice(ingexElrem, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
       removeCurentBtn(modalMoviInfoBtnWatched);
-      
     }
     textCurentBtnQueue(targetEl);
+    modalMoviInfoBtnWatched.innerHTML = 'add to Watched';
   };
 }
+
+//перероблює ліжко
+function onCardTransform(element) {
+  console.dir(element)
+  return `<li class="movie-popular__item" data-id="${element.dataset.id}">
+    <a href="\" class="movie-popular__reference" target="_blank">
+  ${element.firstElementChild.innerHTML}
+    </a>
+  </li>`
+}
+
 
 // Додає/видаляє класс з кнопки
 
@@ -244,7 +264,7 @@ function textCurentBtnWatched(btn) {
   if (btn.dataset.ls === 'false') {
     btn.innerHTML = 'add to Watched';
   } else {
-    btn.innerHTML = 'remove to Watched';
+    btn.innerHTML = 'remove from Watched';
   }
 }
 
@@ -252,15 +272,19 @@ function textCurentBtnQueue(btn) {
   if (btn.dataset.ls === 'false') {
     btn.innerHTML = 'add to Queue';
   } else {
-    btn.innerHTML = 'remove to Queue';
+    btn.innerHTML = 'remove from Queue';
   }
 }
 
 // створює розмітку для модалки
 function CardFilminHtml(data) {
+  const genresArr = [];
+  data.genres.length ? data.genres.map(genre => {
+    genresArr.push(genre.name)
+  }):"";
   return `
   <div class="modal-movie__img-container">
-  <img class="modal-movie__img" src="${
+  <img class="modal-movie__img" loading="lazy" src="${
     data.poster_path
       ? 'https://image.tmdb.org/t/p/w500' + data.poster_path
       : 'https://i.postimg.cc/6pzyh7Wc/pngwing-com.png'
@@ -268,19 +292,18 @@ function CardFilminHtml(data) {
     data.original_title || data.original_name
   }" width="240" height="357" />
   ${
-    data.production_companies.length?
-    data.production_companies[0].logo_path
-      ? ` <img class="modal-movie__img-company" src="${
-          data.production_companies[0].logo_path
-            ? 'https://image.tmdb.org/t/p/w500' +
-              data.production_companies[0].logo_path
-            : '-'
-        }" alt="${
-          data.production_companies[0].name || 'logo company'
-        }" width="240" height="357" />`
-      : ''
-    : ' '
-    
+    data.production_companies.length
+      ? data.production_companies[0].logo_path
+        ? ` <img class="modal-movie__img-company" loading="lazy" src="${
+            data.production_companies[0].logo_path
+              ? 'https://image.tmdb.org/t/p/w500' +
+                data.production_companies[0].logo_path
+              : '-'
+          }" alt="${
+            data.production_companies[0].name || 'logo company'
+          }" width="240" height="357" />`
+        : ''
+      : ' '
   }
   
   </div>
@@ -311,16 +334,13 @@ function CardFilminHtml(data) {
         </li>
         <li class="modal-movie__item">
           <p class="modal-movie__item-categories">Genre</p>
-          <p class="modal-movie__item-inf">${
-    data.genres.length ? 
-    data.genres[0].name
-    : 'Another'
-  }</p>
+          <p class="modal-movie__item-inf">${ genresArr.length >0 ?
+     genresArr.join(", ") : '-'}</p>
         </li>
       </ul>
       <h2 class="modal-movie__about">About</h2>
       <p class="modal-movie__about-text">
-        ${data.overview}
+        ${data.overview.length >0?data.overview:"Absent..."}
       </p>
       <div class="modal-movie__btn-section">
         <button
@@ -351,9 +371,8 @@ function CardFilminHtmlIfError(Error) {
 function movieBtnHtml() {
   return `
       <button type="button" class="modal-movie__movie">
-      <svg class="icon modal-movie__icon" width="30" height="30">
-        <use xlink:href="/symbol-defs.a8b2e413.svg#icon-youtube"></use>
-        <use xlink:href="/team-project-filmoteka/symbol-defs.cf522ee5.svg#icon-youtube"></use>
+      <svg class="icon modal-movie__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+      <use xlink:href="${svgYoutube}#icon-youtube"></use>
       </svg>
     </button> 
     

@@ -3,8 +3,8 @@ import { refs } from './refs';
 import { pasteContent } from './createListItem';
 import { spinerStart, spinerStop } from './spiner';
 
-export function getAPI(url) {
-  fetch(url)
+export async function getAPI(url) {
+  await fetch(url)
     .then(response => {
       if (!response.ok) {
         throw (new Error(response.status), spinerStart);
@@ -14,9 +14,9 @@ export function getAPI(url) {
     })
     .then(data => {
       spinerStart;
-      
-      console.log(data.total_results);
 
+      localStorage.setItem('totalItems', data.total_results);
+      localStorage.setItem('itemsPerPage', data.results.length);
       if (data.results.length !== 0) {
         pasteContent(data.results);
       } else {

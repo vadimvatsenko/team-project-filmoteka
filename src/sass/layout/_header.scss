@@ -3,35 +3,36 @@
   position: relative;
 
   @include mobile {
-    background-image: url(../images/bg/header_main_320px.jpg);
+    background-image: url(../images/bg/header_main_320px.webp);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     height: 230px;
     padding-top: 40px;
-    padding-bottom: 90px;
+    // padding-bottom: 90px;
+    padding-bottom: 10px;
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_main_320px@2x.jpg);
+      background-image: url(../images/bg/header_main_320px@2x.webp);
     }
   }
 
   @include tablet {
-    background-image: url(../images/bg/header_main_768px.jpg);
+    background-image: url(../images/bg/header_main_768px.webp);
     height: 216px;
 
-    padding-bottom: 80px;
+    // padding-bottom: 80px;
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_main_768px@2x.jpg);
+      background-image: url(../images/bg/header_main_768px@2x.webp);
     }
   }
 
   @include desktop {
-    background-image: url(../images/bg/header_main_1280px.jpg);
+    background-image: url(../images/bg/header_main_1280px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_main_1280px@2x.jpg);
+      background-image: url(../images/bg/header_main_1280px@2x.webp);
     }
   }
 }
@@ -39,26 +40,26 @@
 .header--lib {
   @include mobile {
     padding-bottom: 60px;
-    background-image: url(../images/bg/header_lib_320px.jpg);
+    background-image: url(../images/bg/header_lib_320px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_lib_320px@2x.jpg);
+      background-image: url(../images/bg/header_lib_320px@2x.webp);
     }
   }
 
   @include tablet {
-    background-image: url(../images/bg/header_lib_768px.jpg);
+    background-image: url(../images/bg/header_lib_768px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_lib_768px@2x.jpg);
+      background-image: url(../images/bg/header_lib_768px@2x.webp);
     }
   }
 
   @include desktop {
-    background-image: url(../images/bg/header_lib_1280px.jpg);
+    background-image: url(../images/bg/header_lib_1280px.webp);
 
     @include retinaBgImg {
-      background-image: url(../images/bg/header_lib_1280px@2x.jpg);
+      background-image: url(../images/bg/header_lib_1280px@2x.webp);
     }
   }
 }
@@ -103,7 +104,7 @@ nav {
   align-items: center;
 }
 
-.header__nav-item + .header__nav-item {
+.header__nav-item+.header__nav-item {
   margin-left: 40px;
 }
 
@@ -128,12 +129,17 @@ nav {
 }
 
 .header__form {
+
   width: 100%;
   display: flex;
-  margin-top: auto;
+  // margin-top: auto;
   margin-left: auto;
   margin-right: auto;
   border-bottom: 0.5px solid var(--bg-main-color);
+
+  @include only_mobile {
+    width: 280px;
+  }
 
   @include tablet {
     width: 336px;
@@ -157,13 +163,15 @@ nav {
 .search-svg {
   fill: var(--bg-main-color);
 }
+
 .filter__form {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   justify-content: center;
-  margin-top: 30px;
+  // margin-top: 30px;
   padding: 0 5px;
 }
+
 .filter__form-select {
   display: flex;
   justify-content: center;
@@ -175,11 +183,14 @@ nav {
   color: var(--hover-color);
   font-size: 14px;
   text-align: center;
+  //
 }
+
 #yearForm {
   width: 65px;
 }
-.filter__form-select > option {
+
+.filter__form-select>option {
   align-items: center;
   background-color: var(--btn-text-color);
   padding: 5px;

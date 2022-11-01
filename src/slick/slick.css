@@ -1,0 +1,123 @@
+.wrapper {
+  margin: 20px, auto, 0;
+  padding: 0, 20px;
+  background-color: rgba(247, 247, 247, 0.53);
+  font-size: 13px;
+}
+@media screen and (max-width: 1279px) {
+  .wrapper {
+    display: none;
+  }
+}
+
+.slick-initialized .slick-slide {
+  display: flex;
+}
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  left: 0;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slick-track:before, .slick-track:after {
+  content: "";
+  display: table;
+}
+.slick-track:after {
+  clear: both;
+}
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+.slick-slide {
+  padding: 5px;
+  float: left;
+  min-height: 1px;
+  display: none;
+}
+[dir=rtl] .slick-slide {
+  float: right;
+}
+.slick-slide img {
+  display: block;
+  width: 150px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.slick-slide.slick-loading img {
+  display: none;
+}
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+.slick-initialized .slick-slide {
+  display: flex;
+}
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+.slick-vertical .slick-slide {
+  display: block;
+  height: auto;
+  border: 1px solid transparent;
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+.slick-slide .movie-popular__title {
+  display: none;
+}
+
+.slick-slide .movie-popular__genre {
+  display: none;
+}
+
+.slick-slide .movie-popular__rating {
+  width: 40px;
+  height: 20px;
+  background: #ff6b01;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  text-transform: uppercase;
+  position: absolute;
+  top: 5;
+  left: 5;
+  color: #ffffff;
+}
+
+/* Slider *//*# sourceMappingURL=slick.css.map */
