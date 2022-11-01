@@ -1,46 +1,67 @@
 .botton-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--bg-main-color);
-    margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--bg-main-color);
+  margin-top: auto;
+  margin-bottom: 20px;
 }
 
-.button+.button {
-    @include mobile {
-        margin-left: 20px;
-    }
+.button + .button {
+  @include mobile {
+    margin-left: 20px;
+  }
 
-    @include tablet {
-        margin-left: 32px;
-    }
+  @include tablet {
+    margin-left: 32px;
+  }
 
-
-    @include desktop {
-        margin-left: 16px;
-    }
-
+  @include desktop {
+    margin-left: 16px;
+  }
 }
 
 .button {
-    width: 130px;
-    height: 44px;
-    border-radius: 5px;
-    border: 1px solid var(--bg-main-color);
-    font-size: 12px;
-    text-transform: uppercase;
+  width: 130px;
+  height: 44px;
+  border-radius: 5px;
+  border: 1px solid var(--bg-main-color);
+  font-size: 12px;
+  text-transform: uppercase;
 
-    @include tablet {
-        width: 152px;
-    }
+  @include tablet {
+    width: 152px;
+  }
 
-    @include desktop {
-        width: 148px;
-        height: 42px;
-    }
+  @include desktop {
+    width: 148px;
+    height: 42px;
+  }
 }
 
 .button--lib-active {
-    background: #FF6B01;
-    border: #FF6B01
+  background: #ff6b01;
+  border: #ff6b01;
+}
+
+.login__button {
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 5px 10px;
+  background: #ff6b01;
+  border: #ff6b01;
+  border-radius: 10px;
+}
+
+.modal-user__btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.register__button {
+  color: #ffffff;
+  padding: 5px 10px;
+  background-color: #ff6b01;
+  border-radius: 10px;
 }

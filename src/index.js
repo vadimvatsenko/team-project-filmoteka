@@ -15,12 +15,10 @@ import './js/filter';
 import './js/team_modal';
 import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 
-
-
 import './js/filter';
 
 import './js/team_modal';
 import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 
-
-
+import './js/modal-user';
+import './js/firebase';

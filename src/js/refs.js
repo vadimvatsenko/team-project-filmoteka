@@ -16,4 +16,9 @@ export const refs = {
   logo: document.querySelector('.header__logo'),
 
   getSpinner: document.querySelector('.spinner'),
+
+  // library start
+  loginBtn: document.querySelector('.login__button'),
+
+  // library end
 };
