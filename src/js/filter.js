@@ -99,6 +99,7 @@ async function eventGenre(evt) {
       .catch(error => console.log(error))
       .finally(() => Loading.remove(2000));
     poginationFilter(formSearch.genre, formSearch.year);
+    Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
   }
 }
 
@@ -136,6 +137,7 @@ async function eventYear(evt) {
       .finally(() => Loading.remove(2000));
     console.log(localStorage.getItem('totalItems'));
     poginationFilter(formSearch.genre, formSearch.year);
+    Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
   }
 }
 

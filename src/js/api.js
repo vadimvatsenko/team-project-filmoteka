@@ -83,6 +83,7 @@ async function handleSubmit(event) {
   statusSearch = true;
 
   poginationSearch(movie);
+  Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
 }
 
 refs.form.addEventListener('submit', handleSubmit);
