@@ -1,59 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="find a movie" />
-    <title>Filmoteka</title>
 
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
-    />
-    <script type="module" src="./index.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="find a movie" />
+  <title>Filmoteka</title>
 
-    <link
-      rel="icon"
-      type="image/svg"
-      sizes="32x32"
-      href="./images/icons/favicon.svg"
-    />
-  </head>
+  <link rel="stylesheet" href="./sass/index.scss" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <script type="module" src="./index.js"></script>
 
-  <body>
-    <!-- 11 -->
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/header.html"></include>
-    <include src="./partials/slider.html"></include>
-    <main>
-      <include src="./partials/movie_popular.html"></include>
-      <include src="./partials/scroll-top-button.html"></include>
-      <include src="./partials/modal-movie-info.html"></include>
-    </main>
-    <div id="pagination" class="tui-pagination"></div>
+  <link rel="icon" type="image/svg" sizes="32x32" href="./images/icons/favicon.svg" />
+</head>
 
-    <include src="./partials/footer.html"></include>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script>
+<body>
+  <!-- 11 -->
+  <!-- ❗️❗️❗️ Add partials like so for every page -->
+  <include src="./partials/header.html"></include>
+  <include src="./partials/slider.html"></include>
+  <main>
+    <include src="./partials/movie_popular.html"></include>
+    <include src="./partials/scroll-top-button.html"></include>
+    <include src="./partials/modal-movie-info.html"></include>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-      integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-  </body>
+    <section class="tui__section">
+      <div id="pagination" class="tui-pagination"></div>
+    </section>
+
+  </main>
+
+
+  <include src="./partials/footer.html"></include>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+    integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
 </html>
