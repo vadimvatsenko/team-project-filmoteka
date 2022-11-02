@@ -14,6 +14,7 @@ import vitaliyUrl from '../images/team_photo/vitaliy.webp';
 import olenaUrl from '../images/team_photo/olena.webp';
 import goitUrl from '../images/team_photo/goit.webp';
 import dmytroUrl from '../images/team_photo/dmytro.webp';
+import github_iconUrl from '../images/icons/github_icon.svg';
 
 
 
@@ -22,51 +23,63 @@ import dmytroUrl from '../images/team_photo/dmytro.webp';
     {   photo: `${vadimUrl}`,
         name: 'Vadim',
         role: 'Team-lead',
+        github_Url: "https://github.com/vadimvatsenko",
     },
      {  photo: `${elenaUrl}`,
         name: 'Elena',
         role: 'Scrum-master',
+        github_Url: "https://github.com/ElenaObukhova1984",
     },
       { photo: `${arturUrl}`,
         name: 'Artur',
         role: 'Developer',
+        github_Url: "https://github.com/arturtretyak",
    },
       { photo: `${artemUrl}`,
         name: 'Artem',
         role: 'Developer',
+        github_Url: "https://github.com/artipavl",
    },
       { photo: `${ivanUrl}`,
         name: `Ivan`,
         role: 'Developer',
+        gihhub_Url: "https://github.com/Ivan-Prystay",
    },
-      {  photo: `${denisUrl}`,
+      { photo: `${denisUrl}`,
         name: 'Denis',
         role: 'Developer',
+        github_Url: "https://github.com/Den1sKruglov",
    },
-      {  photo: `${olexanderUrl}`,
+      { photo: `${olexanderUrl}`,
         name: 'Olexander',
         role: 'Developer',
+        github_Url: "https://github.com/DiakovSasha",
    },
       { photo: `${kristinaUrl}`,
         name: 'Kristina',
         role: 'Developer',
+        github_Url: "https://github.com/Ra4kovi4",
    },
       { photo: `${vitaliyUrl}`,
         name: 'Vitaliy',
         role: 'Developer',
+        github_Url: "https://github.com/VitaliiBlyskun",
    },
       { photo: `${olenaUrl}`,
         name: 'Olena',
         role: 'Developer',
+        github_Url: "https://github.com/elenakolyada",
    },
      {  photo: `${goitUrl}`,
         name: 'GOIT',
         role: 'School',
+        github_Url: "https://github.com/goitacademy",
    },
 
       { photo: `${dmytroUrl}`,
         name: 'Dmytro',
         role: 'Developer',
+        github_Url: "https://github.com/Hanych-IT",
     },
 ]
 
@@ -74,14 +87,19 @@ import dmytroUrl from '../images/team_photo/dmytro.webp';
 
 
 const markupTeamCard = team
-  .map(({ photo, name, role}) => {
+  .map(({ photo, name, role, github_Url}) => {
     return `<li class="team-card">
-            <a class="team__link" href="${photo}">
-            <img loading="lazy" src="${photo}" alt="${name}" class="team-photo">
-            </a>
-            <p class="team-name">${name}</p>
-            <p class="team-role">${role}</p>
-             </li>`;
+             
+               <img loading="lazy" src="${photo}" alt="${name}" class="team-photo">
+               <div class = "team-info">
+              <p class="team-name">${name}</p>
+               <a href="${github_Url}" class="team-git">
+               <img class="github_icon" src="${github_iconUrl}" alt="github icon" width="30" />
+              </a></div>
+              <p class="team-role">${role}</p>
+              
+
+              </li>`;
   })
   .join('');
 
