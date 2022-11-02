@@ -77,15 +77,50 @@ nav {
   align-items: center;
 }
 
+// .header__logo {
+//   display: flex;
+//   justify-content: start;
+//   align-items: center;
+// }
+
+// .header__logo-svg {
+//   height: 24px;
+//   width: 24px;
+// }
+
+//* Анімація логотипу
+
 .header__logo {
   display: flex;
   justify-content: start;
   align-items: center;
 }
 
-.header__logo-svg {
-  height: 24px;
-  width: 24px;
+.header__logo:hover .animation-wrapper,
+.header__logo:focus .animation-wrapper {
+  animation: running-tape 2s linear infinite;
+}
+
+.animation-running-tape {
+  height: 22px;
+  width: 22px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.animation-running-tape img {
+  display: block;
+  width: 22px;
+}
+
+@keyframes running-tape {
+  0% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-65%);
+  }
 }
 
 .header__logo-name {
