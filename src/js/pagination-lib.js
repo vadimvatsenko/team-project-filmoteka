@@ -8,7 +8,7 @@ export function paginationWatchid() {
     const optionsPop = {
  totalItems: JSON.parse(localStorage.getItem('watched')).watched.length,
   itemsPerPage: 20,
-  visiblePages: 5,
+  visiblePages: window.screen.width <= 400 ? 2 : 5,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
@@ -51,7 +51,7 @@ export function paginationQueue() {
     const optionsPop = {
  totalItems: JSON.parse(localStorage.getItem('watched')).queue.length,
   itemsPerPage: 20,
-  visiblePages: 5,
+  visiblePages: window.screen.width <= 400 ? 2 : 5,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',

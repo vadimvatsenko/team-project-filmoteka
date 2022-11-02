@@ -60,7 +60,7 @@ export function poginationSearch(movie) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
     itemsPerPage: 20,
-    visiblePages: window.screen.width <= 500 ? 3 : 5,
+    visiblePages: window.screen.width <= 400 ? 2 : 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -117,7 +117,7 @@ export function poginationSearch(movie) {
 const optionsPop = {
   totalItems: 20000,
   itemsPerPage: 20,
-  visiblePages: window.screen.width <= 400 ? 3 : 5,
+  visiblePages: window.screen.width <= 400 ? 2 : 5,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
