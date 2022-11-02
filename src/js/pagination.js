@@ -6,7 +6,6 @@ import { API_URL } from './url';
 
 import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
-
 // для filter
 export function poginationFilter(genre, year) {
   const options = {
@@ -50,7 +49,7 @@ export function poginationFilter(genre, year) {
   });
 
   removeHiddenPagination();
-  if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
+  if (JSON.parse(localStorage.getItem('totalItems')) <= 20) {
     addHiddenPagination();
   }
 }
@@ -104,7 +103,7 @@ export function poginationSearch(movie) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   removeHiddenPagination();
-  if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
+  if (JSON.parse(localStorage.getItem('totalItems')) <= 20) {
     addHiddenPagination();
   }
 }
@@ -137,7 +136,7 @@ const optionsPop = {
   },
 };
 
-const paginationPop = new Pagination('pagination', optionsPop);
+export const paginationPop = new Pagination('pagination', optionsPop);
 
 paginationPop.on('afterMove', async function (eventData) {
   resetGallery();
@@ -152,13 +151,13 @@ paginationPop.movePageTo(localStorage.getItem('pagination'));
 
 // ховає пагінацію
 export function addHiddenPagination() {
-  const paginationHtml = document.querySelector('#pagination')
-  paginationHtml.classList.add('visually-hidden')
+  const paginationHtml = document.querySelector('#pagination');
+  paginationHtml.classList.add('visually-hidden');
 }
 
 export function removeHiddenPagination() {
-  const paginationHtml = document.querySelector('#pagination')
-  paginationHtml.classList.remove('visually-hidden')
+  const paginationHtml = document.querySelector('#pagination');
+  paginationHtml.classList.remove('visually-hidden');
 }
 
 function resetGallery() {

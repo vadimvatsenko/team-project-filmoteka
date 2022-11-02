@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { BASE_URL, KEY, IMG_URL, API_URL, POPULAR_URL } from './url';
 import { getfilmsGenres } from './getGandersFromId';
-import { initializeSlider,resetSlider } from "./slider";
+import { initializeSlider, resetSlider } from './slider';
 
 export function createListItem({
   poster_path,
@@ -53,7 +53,7 @@ let sliderActiv = false;
 export function pasteContent(array) {
   const result = generateContent(array);
   refs.list.insertAdjacentHTML('beforeend', result);
-  
+
   if (sliderActiv) {
     resetSlider();
   }

@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading, Notify } from 'notiflix';
 
 import { refs } from './refs';
 import { getAPI, generateContent, pasteContent } from './popularRender';
@@ -19,7 +19,7 @@ import {
 
 // ==============================================================
 
-import { poginationSearch } from "./pagination";
+import { poginationSearch, paginationPop } from './pagination';
 
 // ================================================================
 // сохраняем слово в инпуте
@@ -37,6 +37,12 @@ refs.input.addEventListener('input', listenInput);
 function listenInput(event) {
   console.log(event.currentTarget.value);
   localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
+  if (event.currentTarget.value === '') {
+    refs.list.innerHTML = '';
+    localStorage.setItem('pagination', 1);
+    getAPI(API_URL);
+    paginationPop.movePageTo(localStorage.getItem('pagination'));
+  }
 }
 // сохранение поиска
 let searchData = '';
@@ -52,8 +58,6 @@ if (JSON.parse(localStorage.getItem('search'))) {
 
 let statusSearch = false;
 let statusSearchForm = false;
-
-
 
 //* запит і рендер фільмів за назвою
 async function handleSubmit(event) {
@@ -72,18 +76,16 @@ async function handleSubmit(event) {
     return;
   }
   refs.list.innerHTML = '';
-  await getMovieNameAPI(movie)
-  
-  console.log(JSON.parse(
-    localStorage.getItem('itemsPerPage')
-  ))
-  console.log(JSON.parse(
-    localStorage.getItem('totalItems')
-  ))
+  await getMovieNameAPI(movie);
+
+  console.log(JSON.parse(localStorage.getItem('itemsPerPage')));
+  console.log(JSON.parse(localStorage.getItem('totalItems')));
   statusSearch = true;
 
   poginationSearch(movie);
-  Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
+  Notify.success(
+    `We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`
+  );
 }
 
 refs.form.addEventListener('submit', handleSubmit);
