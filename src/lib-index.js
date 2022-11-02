@@ -8,3 +8,6 @@ import './js/team_modal';
 import '../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import './js/lib';
 import './js/pagination-lib';
+
+import './js/modal-user';
+import './js/firebase';

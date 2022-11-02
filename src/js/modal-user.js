@@ -2,13 +2,18 @@ import { refs } from './refs';
 import ModalClassic from './modalClassic';
 import { createUser } from './firebase';
 
-const Modal = new ModalClassic('.wrapper-modal-user', '.modal-user__btn-close');
+const ModalReg = new ModalClassic(
+  '.wrapper-modal-user',
+  '.modal-user__btn-close'
+);
 
 refs.loginBtn?.addEventListener('click', evt => {
-  Modal.openModal();
+  ModalReg.openModal();
 });
 
 const formRegister = document.querySelector('.modal-register');
+
+console.log(formRegister);
 
 formRegister?.addEventListener('submit', registrationHandler);
 
@@ -23,6 +28,9 @@ function registrationHandler(evt) {
     .then(data => {
       console.log(data.uid);
       localStorage.setItem('id-user', data.uid);
+      ModalReg.modal.classList.add('is-hidden');
+      document.body.classList.remove('body--hidden');
+      window.removeEventListener('keydown', keydownInModal);
     })
     .catch(e => {
       console.log(e);
