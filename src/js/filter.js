@@ -5,7 +5,7 @@ import { getAPI } from './popularRender';
 import { generateContent } from './createListItem';
 import { Loading, Notify } from 'notiflix';
 import Pagination from 'tui-pagination';
-import { poginationFilter } from './pagination';
+import { poginationFilter, paginationPop } from './pagination';
 
 export const filterItem = {
   filterForm: document.querySelector('#filter-form'),
@@ -99,7 +99,9 @@ async function eventGenre(evt) {
       .catch(error => console.log(error))
       .finally(() => Loading.remove(2000));
     poginationFilter(formSearch.genre, formSearch.year);
-    Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
+    Notify.success(
+      `We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`
+    );
   }
 }
 
@@ -137,7 +139,9 @@ async function eventYear(evt) {
       .finally(() => Loading.remove(2000));
     console.log(localStorage.getItem('totalItems'));
     poginationFilter(formSearch.genre, formSearch.year);
-    Notify.success(`We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`);
+    Notify.success(
+      `We found ${JSON.parse(localStorage.getItem('totalItems'))} movies.`
+    );
   }
 }
 
@@ -157,7 +161,9 @@ function onResetSearch(evt) {
   formSearch.year = '';
   formSearch.page = 1;
   refs.list.innerHTML = '';
+  localStorage.setItem('pagination', 1);
   getAPI(API_URL);
+  paginationPop.movePageTo(localStorage.getItem('pagination'));
 }
 
 //Coздание и рендер разметки в select YEAR

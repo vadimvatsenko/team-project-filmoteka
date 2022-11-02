@@ -1,5 +1,5 @@
 // import axios from 'axios';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Loading, Notify } from 'notiflix';
 
 import { refs } from './refs';
 import { getAPI, generateContent, pasteContent } from './popularRender';
@@ -19,7 +19,9 @@ import {
 
 // ==============================================================
 
-import { poginationSearch } from './pagination';
+
+import { poginationSearch, paginationPop } from './pagination';
+
 
 // ================================================================
 // сохраняем слово в инпуте
@@ -39,10 +41,11 @@ function listenInput(event) {
   localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
 
   if (event.currentTarget.value === '') {
-    localStorage.setItem('search', localStorage.getItem('searchWord'));
-    setTimeout(() => {
-      document.location.reload();
-    }, 100);
+    refs.list.innerHTML = '';
+    localStorage.setItem('pagination', 1);
+    getAPI(API_URL);
+    paginationPop.movePageTo(localStorage.getItem('pagination'));
+
   }
 }
 // сохранение поиска
