@@ -60,7 +60,7 @@ export function poginationSearch(movie) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
     itemsPerPage: 20,
-    visiblePages: 5,
+    visiblePages: window.screen.width <= 500 ? 3 : 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -83,6 +83,8 @@ export function poginationSearch(movie) {
         '</a>',
     },
   };
+
+  
 
   const pagination = new Pagination('pagination', options);
   // pagination.movePageTo(1);
@@ -107,12 +109,15 @@ export function poginationSearch(movie) {
     addHiddenPagination();
   }
 }
-
+// window.screen.width <= 400 ? 3 : 5,
 // для полулярних
+
+// 
+
 const optionsPop = {
   totalItems: 20000,
   itemsPerPage: 20,
-  visiblePages: 5,
+  visiblePages: window.screen.width <= 400 ? 3 : 5,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
@@ -135,6 +140,8 @@ const optionsPop = {
       '</a>',
   },
 };
+
+console.log(optionsPop.visiblePages);
 
 export const paginationPop = new Pagination('pagination', optionsPop);
 
