@@ -43,6 +43,10 @@ export async function createUser(email, password) {
     if (error.code === 'auth/email-already-in-use') {
       Notify.failure('Email already in use!');
     }
+    if (error.code === 'auth/internal-error') {
+      Notify.failure('Input all please!');
+    }
+
     console.log(error);
     return error;
   }
@@ -66,6 +70,9 @@ export async function singInAccount(email, password) {
     }
     if (error.code === 'auth/invalid-email') {
       Notify.failure('Email invalid!');
+    }
+    if (error.code === 'auth/internal-error') {
+      Notify.failure('Input all please!');
     }
   }
 }
