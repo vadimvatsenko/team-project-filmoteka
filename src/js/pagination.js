@@ -115,7 +115,7 @@ export function poginationSearch(movie) {
 //
 
 
-console.log(rockPage);
+
 
 const optionsPop = {
   totalItems: 20000,
