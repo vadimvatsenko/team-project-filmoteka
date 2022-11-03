@@ -7,7 +7,7 @@
       </svg>
     </button>
     <div class="visually-hidden user-info"></div>
-    <form action="submit" class="modal-register">
+    <form class="modal-register">
       <legend class="modal-user__legend">
         Register and save your films anyway
       </legend>
@@ -20,25 +20,16 @@
         name="password-reg"
         class="modal-user__input"
       />
-      <button class="register__button">register</button>
+      <button class="auth__button" name="btn-auth">authorize</button>
+      <button class="register__button" name="btn-reg">register</button>
     </form>
-    <form action="submit" class="visually-hidden modal-auth">
-      <legend class="modal-user__legend">Authorize</legend>
-      <label name="email-auth" class="modal-user__label">email</label>
-      <input
-        required
-        type="email"
-        name="email-auth"
-        class="modal-user__input"
-      />
-      <label name="password-auth" class="modal-user__label">password</label>
-      <input
-        required
-        type="password"
-        name="password-auth"
-        class="modal-user__input"
-      />
-      <button class="auth__button">authorize</button>
-    </form>
+    <div class="visually-hidden sign-out__wrap">
+      <div class="account-info__block">
+        <p class="account-info__email"></p>
+        <p class="account-info__count-watched"></p>
+        <p class="account-info__count-queue"></p>
+      </div>
+      <button class="sign-out__button">sign out</button>
+    </div>
   </div>
 </div>

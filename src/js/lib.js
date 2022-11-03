@@ -1,4 +1,6 @@
-import { paginationWatchid, paginationQueue } from "./pagination-lib";
+import { async } from '@firebase/util';
+import { getQueueFb, getWatchedFb } from './firebase';
+import { paginationWatchid, paginationQueue } from './pagination-lib';
 
 const listWatched = document.querySelector('.movie-list');
 const libSection = document.querySelector('.movie-popular-lib');
@@ -11,49 +13,115 @@ btnWatched.addEventListener('click', rWatched);
 
 btnQueue.addEventListener('click', rQueue);
 
-const localWatched = JSON.parse(localStorage.getItem('watched')).watched;
-const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
+const localUserId = localStorage.getItem('id-user');
+let localQueue = [];
+let localWatched = [];
 
-export function rWatched() {
-  getWatched("watched", 1)
+getOnlineOrOfflineStorage();
+
+async function getOnlineOrOfflineStorage() {
+  if (localUserId) {
+    try {
+      localWatched = await getWatchedFb(localUserId);
+      localQueue = await getQueueFb(localUserId);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    localWatched = JSON.parse(localStorage.getItem('watched')).watched;
+    localQueue = JSON.parse(localStorage.getItem('watched')).queue;
+  }
+}
+
+export async function rWatched() {
+  getWatched('watched', 1);
   paginationWatchid();
-  const localWatched = JSON.parse(localStorage.getItem('watched')).watched;
-  if (localWatched.length === 0) {
-    listWatched.innerHTML = '';
-    libSection.classList.add('non-display');
-    bacgroundLib.classList.remove('non-display');
+  let localWatched;
+  if (localUserId) {
+    try {
+      localWatched = await getWatchedFb(localUserId);
+
+      if (localWatched.length === 0) {
+        listWatched.innerHTML = '';
+        libSection.classList.add('non-display');
+        bacgroundLib.classList.remove('non-display');
+      } else {
+        libSection.classList.remove('non-display');
+        bacgroundLib.classList.add('non-display');
+      }
+
+      btnWatched.classList.add('button--lib-active');
+      btnQueue.classList.remove('button--lib-active');
+
+      btnWatched.dataset.active = true;
+      btnQueue.dataset.active = false;
+    } catch (error) {
+      console.log(error);
+    }
   } else {
-    libSection.classList.remove('non-display');
-    bacgroundLib.classList.add('non-display');
+    localWatched = JSON.parse(localStorage.getItem('watched')).watched;
+
+    if (localWatched.length === 0) {
+      listWatched.innerHTML = '';
+      libSection.classList.add('non-display');
+      bacgroundLib.classList.remove('non-display');
+    } else {
+      libSection.classList.remove('non-display');
+      bacgroundLib.classList.add('non-display');
+    }
+
+    btnWatched.classList.add('button--lib-active');
+    btnQueue.classList.remove('button--lib-active');
+
+    btnWatched.dataset.active = true;
+    btnQueue.dataset.active = false;
   }
-
-  btnWatched.classList.add('button--lib-active');
-  btnQueue.classList.remove('button--lib-active');
-
-  btnWatched.dataset.active = true;
-  btnQueue.dataset.active = false;
 }
 
-export function rQueue() {
-  getWatched("queue", 1)
+export async function rQueue() {
+  getWatched('queue', 1);
   paginationQueue();
-const localQueue = JSON.parse(localStorage.getItem('watched')).queue;
-  if (localQueue.length === 0) {
-    listWatched.innerHTML = '';
-    libSection.classList.add('non-display');
-    bacgroundLib.classList.remove('non-display');
+
+  let localQueue;
+
+  if (localUserId) {
+    try {
+      localQueue = await getQueueFb(localUserId);
+      if (localQueue.length === 0) {
+        listWatched.innerHTML = '';
+        libSection.classList.add('non-display');
+        bacgroundLib.classList.remove('non-display');
+      } else {
+        libSection.classList.remove('non-display');
+        bacgroundLib.classList.add('non-display');
+      }
+
+      btnQueue.classList.add('button--lib-active');
+      btnWatched.classList.remove('button--lib-active');
+
+      btnQueue.dataset.active = true;
+      btnWatched.dataset.active = false;
+    } catch (error) {
+      console.log(error);
+    }
   } else {
-    libSection.classList.remove('non-display');
-    bacgroundLib.classList.add('non-display');
+    localQueue = JSON.parse(localStorage.getItem('watched')).queue;
+    if (localQueue.length === 0) {
+      listWatched.innerHTML = '';
+      libSection.classList.add('non-display');
+      bacgroundLib.classList.remove('non-display');
+    } else {
+      libSection.classList.remove('non-display');
+      bacgroundLib.classList.add('non-display');
+    }
+
+    btnQueue.classList.add('button--lib-active');
+    btnWatched.classList.remove('button--lib-active');
+
+    btnQueue.dataset.active = true;
+    btnWatched.dataset.active = false;
   }
-
-  btnQueue.classList.add('button--lib-active');
-  btnWatched.classList.remove('button--lib-active');
-
-  btnQueue.dataset.active = true;
-  btnWatched.dataset.active = false;
 }
-
 
 if (localWatched.length === 0) {
   rQueue();
@@ -61,15 +129,34 @@ if (localWatched.length === 0) {
   rWatched();
 }
 
-export function getWatched(name, page) {
-  const localWatched = JSON.parse(localStorage.getItem('watched'))[name];
-  // console.log(localWatched);
-  let begin = 20 * page -20;
-  const end = 20 * page;
-  if (page === 1) {
-    begin = 0;
+export async function getWatched(name, page) {
+  let localWatched;
+  if (localUserId) {
+    try {
+      localWatched = await getWatchedFb(localUserId);
+      let begin = 20 * page - 20;
+      const end = 20 * page;
+      if (page === 1) {
+        begin = 0;
+      }
+
+      const slice = localWatched.slice(begin, end).join('');
+      listWatched.innerHTML = slice;
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    localWatched = JSON.parse(localStorage.getItem('watched'))[name];
+
+    let begin = 20 * page - 20;
+    const end = 20 * page;
+    if (page === 1) {
+      begin = 0;
+    }
+
+    const slice = localWatched.slice(begin, end).join('');
+    listWatched.innerHTML = slice;
   }
-  
-  const slice = localWatched.slice(begin, end).join('');
-  listWatched.innerHTML = slice;
+
+  // console.log(localWatched);
 }

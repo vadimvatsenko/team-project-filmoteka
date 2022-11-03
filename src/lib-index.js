@@ -1,4 +1,5 @@
 import './js/scroll';
+import './js/firebase';
 import './js/components/change-theme';
 // import './js/pagination';
 import './js/spiner';
@@ -10,4 +11,3 @@ import './js/lib';
 import './js/pagination-lib';
 
 import './js/modal-user';
-import './js/firebase';

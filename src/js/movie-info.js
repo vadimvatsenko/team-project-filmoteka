@@ -1,6 +1,14 @@
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import * as basicLightbox from 'basiclightbox';
-import svgYoutube from '../images/symbol-defs.svg'
+import svgYoutube from '../images/symbol-defs.svg';
+import {
+  getWatchedFb,
+  addToWatchedFb,
+  removeFromWatchedFb,
+  getQueueFb,
+  addToQueueFb,
+  removeFromQueueFb,
+} from './firebase';
 
 //імпорт Запиту на сервер
 import { Api } from './url';
@@ -8,6 +16,7 @@ const ApiP = new Api();
 
 //імпорт ModalClassic для відкриття/закриття модального вікна
 import ModalClassic from './modalClassic';
+import { async } from '@firebase/util';
 const Modal = new ModalClassic(
   '.modal-movie__backdrop',
   '.modal-movie__btn-close'
@@ -18,16 +27,31 @@ const movieDiv = document.querySelector('.movie-list');
 const movieDivSlider = document.querySelector('.movie-list-slider');
 
 // робота з локальним сховищем
+const localUserId = localStorage.getItem('id-user');
+
 let localStorageMovi = {
   watched: [],
   queue: [],
 };
 
-if (localStorage.getItem('watched')) {
-  localStorageMovi = JSON.parse(localStorage.getItem('watched'));
-} else {
-  localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+async function getOnlineOrOfflineStorage() {
+  if (localUserId) {
+    try {
+      localStorageMovi.watched = await getWatchedFb(localUserId);
+      localStorageMovi.queue = await getQueueFb(localUserId);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    if (localStorage.getItem('watched')) {
+      localStorageMovi = JSON.parse(localStorage.getItem('watched'));
+    } else {
+      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+    }
+  }
 }
+
+getOnlineOrOfflineStorage();
 
 // обробка натискання на фільм
 movieDiv.addEventListener('click', onMoviClick);
@@ -113,7 +137,7 @@ function openModalMovi(e, Movie) {
 }
 
 // Опрацьовує роботу кнопок
-function onBtnInModalMovi(e) {
+async function onBtnInModalMovi(e) {
   const idMovie = onCardTransform(e.target);
   const modalMoviInfoBtnWatched = document.querySelector(
     '.modal-movie__btn-watched'
@@ -132,16 +156,40 @@ function onBtnInModalMovi(e) {
     changeQueue(e, modalMoviInfoBtnQueue)
   );
 
-  const localStorageWatched = JSON.parse(
-    localStorage.getItem('watched')
-  ).watched;
-  const localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
+  // OLD localStorage save
+  // const localStorageWatched = JSON.parse(
+  //   localStorage.getItem('watched')
+  // ).watched;
+  // const localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
 
-  addCurentInBtn(localStorageWatched, idMovie, modalMoviInfoBtnWatched);
-  addCurentInBtn(localStorageQueue, idMovie, modalMoviInfoBtnQueue);
+  let localStorageWatched = [];
+  let localStorageQueue = [];
 
-  textCurentBtnWatched(modalMoviInfoBtnWatched);
-  textCurentBtnQueue(modalMoviInfoBtnQueue);
+  try {
+    if (localUserId) {
+      localStorageWatched = await getWatchedFb(localUserId);
+      localStorageQueue = await getQueueFb(localUserId);
+    } else {
+      localStorageWatched = JSON.parse(localStorage.getItem('watched')).watched;
+      localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
+    }
+
+    addCurentInBtn(localStorageWatched, idMovie, modalMoviInfoBtnWatched);
+    addCurentInBtn(localStorageQueue, idMovie, modalMoviInfoBtnQueue);
+
+    textCurentBtnWatched(modalMoviInfoBtnWatched);
+    textCurentBtnQueue(modalMoviInfoBtnQueue);
+  } catch (e) {
+    console.log(e);
+    localStorageWatched = JSON.parse(localStorage.getItem('watched')).watched;
+    localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
+
+    addCurentInBtn(localStorageWatched, idMovie, modalMoviInfoBtnWatched);
+    addCurentInBtn(localStorageQueue, idMovie, modalMoviInfoBtnQueue);
+
+    textCurentBtnWatched(modalMoviInfoBtnWatched);
+    textCurentBtnQueue(modalMoviInfoBtnQueue);
+  }
 }
 
 // Додає та видаляє з локального сховища HTML картки
@@ -153,17 +201,29 @@ function changeWatched(e, targetEl) {
     // console.log(targetEl.dataset.ls);
     // !JSON.parse(localStorage.getItem('watched')).watched.includes(onCardTransform(e.target))
     if (targetEl.dataset.ls === 'false') {
-      localStorageMovi.watched.push(onCardTransform(e.target));
-      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      // console.log(JSON.stringify(localStorageMovi));
-      addCurentBtn(targetEl);
+      if (localUserId) {
+        addToWatchedFb(localUserId, onCardTransform(e.target));
+        addCurentBtn(targetEl);
+      } else {
+        localStorageMovi.watched.push(onCardTransform(e.target));
+        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+        // console.log(JSON.stringify(localStorageMovi));
+        addCurentBtn(targetEl);
+      }
     } else {
-      const ingexEl = localStorageMovi.watched.indexOf(onCardTransform(e.target));
+      if (localUserId) {
+        removeFromWatchedFb(localUserId, onCardTransform(e.target));
+        removeCurentBtn(targetEl);
+      } else {
+        const ingexEl = localStorageMovi.watched.indexOf(
+          onCardTransform(e.target)
+        );
 
-      localStorageMovi.watched.splice(ingexEl, 1);
-      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+        localStorageMovi.watched.splice(ingexEl, 1);
+        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
 
-      removeCurentBtn(targetEl);
+        removeCurentBtn(targetEl);
+      }
     }
     if (
       JSON.parse(localStorage.getItem('watched')).queue.includes(
@@ -176,7 +236,9 @@ function changeWatched(e, targetEl) {
       // const modalMoviInfoBtnQueue = document.querySelector(
       //   '.modal-movie__btn-queue'
       // );
-      const ingexElrem = localStorageMovi.queue.indexOf(onCardTransform(e.target));
+      const ingexElrem = localStorageMovi.queue.indexOf(
+        onCardTransform(e.target)
+      );
 
       localStorageMovi.queue.splice(ingexElrem, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -187,24 +249,44 @@ function changeWatched(e, targetEl) {
   };
 }
 
-function changeQueue(e, targetEl) {
-  return function () {
+async function changeQueue(e, targetEl) {
+  return async function () {
     const modalMoviInfoBtnWatched = document.querySelector(
       '.modal-movie__btn-watched'
     );
     // console.log(targetEl.dataset.ls);
     // !JSON.parse(localStorage.getItem('watched')).queue.includes(onCardTransform(e.target))
     if (targetEl.dataset.ls === 'false') {
-      localStorageMovi.queue.push(onCardTransform(e.target));
-      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      // console.log(JSON.stringify(localStorageMovi));
-      addCurentBtn(targetEl);
+      if (localUserId) {
+        try {
+          await addToQueueFb(userLocalId, onCardTransform(e.target));
+          addCurentBtn(targetEl);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        localStorageMovi.queue.push(onCardTransform(e.target));
+        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+        // console.log(JSON.stringify(localStorageMovi));
+        addCurentBtn(targetEl);
+      }
     } else {
-      const ingexEl = localStorageMovi.queue.indexOf(onCardTransform(e.target));
+      if (userLocalId) {
+        try {
+          await removeFromQueueFb(userLocalId, onCardTransform(e.target));
+          removeCurentBtn(targetEl);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        const ingexEl = localStorageMovi.queue.indexOf(
+          onCardTransform(e.target)
+        );
 
-      localStorageMovi.queue.splice(ingexEl, 1);
-      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      removeCurentBtn(targetEl);
+        localStorageMovi.queue.splice(ingexEl, 1);
+        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+        removeCurentBtn(targetEl);
+      }
     }
     if (
       JSON.parse(localStorage.getItem('watched')).watched.includes(
@@ -217,7 +299,9 @@ function changeQueue(e, targetEl) {
       // const modalMoviInfoBtnQueue = document.querySelector(
       //   '.modal-movie__btn-queue'
       // );
-      const ingexElrem = localStorageMovi.watched.indexOf(onCardTransform(e.target));
+      const ingexElrem = localStorageMovi.watched.indexOf(
+        onCardTransform(e.target)
+      );
 
       localStorageMovi.watched.splice(ingexElrem, 1);
       localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -230,14 +314,13 @@ function changeQueue(e, targetEl) {
 
 //перероблює ліжко
 function onCardTransform(element) {
-  console.dir(element)
+  console.dir(element);
   return `<li class="movie-popular__item" data-id="${element.dataset.id}">
     <a href="\" class="movie-popular__reference" target="_blank">
   ${element.firstElementChild.innerHTML}
     </a>
-  </li>`
+  </li>`;
 }
-
 
 // Додає/видаляє класс з кнопки
 
@@ -279,9 +362,11 @@ function textCurentBtnQueue(btn) {
 // створює розмітку для модалки
 function CardFilminHtml(data) {
   const genresArr = [];
-  data.genres.length ? data.genres.map(genre => {
-    genresArr.push(genre.name)
-  }):"";
+  data.genres.length
+    ? data.genres.map(genre => {
+        genresArr.push(genre.name);
+      })
+    : '';
   return `
   <div class="modal-movie__img-container">
   <img class="modal-movie__img" loading="lazy" src="${
@@ -334,13 +419,14 @@ function CardFilminHtml(data) {
         </li>
         <li class="modal-movie__item">
           <p class="modal-movie__item-categories">Genre</p>
-          <p class="modal-movie__item-inf">${ genresArr.length >0 ?
-     genresArr.join(", ") : '-'}</p>
+          <p class="modal-movie__item-inf">${
+            genresArr.length > 0 ? genresArr.join(', ') : '-'
+          }</p>
         </li>
       </ul>
       <h2 class="modal-movie__about">About</h2>
       <p class="modal-movie__about-text">
-        ${data.overview.length >0?data.overview:"Absent..."}
+        ${data.overview.length > 0 ? data.overview : 'Absent...'}
       </p>
       <div class="modal-movie__btn-section">
         <button

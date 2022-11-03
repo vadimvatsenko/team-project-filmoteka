@@ -45,7 +45,6 @@
 }
 
 .login__button {
-  text-transform: uppercase;
   color: #ffffff;
   padding: 5px 10px;
   background: #ff6b01;
@@ -63,5 +62,22 @@
   color: #ffffff;
   padding: 5px 10px;
   background-color: #ff6b01;
+  border-radius: 10px;
+}
+
+.auth__button {
+  color: #ff6b01;
+  border: 2px #ff6b01 solid;
+  padding: 5px 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.sign-out__button {
+  margin: 10px;
+  color: #ff6b01;
+  border: 2px #ff6b01 solid;
+  padding: 8px 10px;
+  background-color: #ffffff;
   border-radius: 10px;
 }

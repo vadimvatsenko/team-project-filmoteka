@@ -13,7 +13,8 @@
 }
 
 .modal-user {
-  width: 500px;
+  border-radius: 10px;
+  max-width: 500px;
   background-color: #ffffff;
   position: absolute;
   top: 50%;
@@ -32,5 +33,18 @@
 .modal-auth {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+}
+
+.sign-out__wrap {
+  display: flex;
+  padding: 20px;
   gap: 20px;
+  flex-direction: column;
+}
+
+.account-info__block {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
