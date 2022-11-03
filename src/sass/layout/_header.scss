@@ -208,6 +208,10 @@ nav {
 }
 
 .filter__form-select {
+  @include only-mobile {
+    margin-right: 3px;
+  }
+
   display: flex;
   justify-content: center;
   padding: 5px;

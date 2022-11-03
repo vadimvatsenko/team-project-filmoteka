@@ -6,6 +6,7 @@
 
     @include mobile {
         min-width: 320px;
+        max-width: 767px;
     }
 
     // max-width: 767px;
