@@ -11,7 +11,7 @@ export function poginationFilter(genre, year) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
     itemsPerPage: 20,
-    visiblePages: 5,
+    visiblePages: window.screen.width <= 400 ? 2 : 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -112,7 +112,10 @@ export function poginationSearch(movie) {
 // window.screen.width <= 400 ? 3 : 5,
 // для полулярних
 
-// 
+//
+
+
+console.log(rockPage);
 
 const optionsPop = {
   totalItems: 20000,
