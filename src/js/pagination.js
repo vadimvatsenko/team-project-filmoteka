@@ -6,13 +6,12 @@ import { API_URL } from './url';
 
 import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
-
 // для filter
 export function poginationFilter(genre, year) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
     itemsPerPage: 20,
-    visiblePages: 5,
+    visiblePages: window.screen.width <= 400 ? 2 : 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -50,7 +49,7 @@ export function poginationFilter(genre, year) {
   });
 
   removeHiddenPagination();
-  if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
+  if (JSON.parse(localStorage.getItem('totalItems')) <= 20) {
     addHiddenPagination();
   }
 }
@@ -61,7 +60,7 @@ export function poginationSearch(movie) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
     itemsPerPage: 20,
-    visiblePages: 5,
+    visiblePages: window.screen.width <= 400 ? 2 : 5,
     page: 1,
     centerAlign: true,
     firstItemClassName: 'tui-first-child',
@@ -85,6 +84,8 @@ export function poginationSearch(movie) {
     },
   };
 
+  
+
   const pagination = new Pagination('pagination', options);
   // pagination.movePageTo(1);
   pagination._options.totalItems = JSON.parse(
@@ -104,16 +105,22 @@ export function poginationSearch(movie) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   removeHiddenPagination();
-  if (JSON.parse(localStorage.getItem('totalItems'))<=20) {
+  if (JSON.parse(localStorage.getItem('totalItems')) <= 20) {
     addHiddenPagination();
   }
 }
-
+// window.screen.width <= 400 ? 3 : 5,
 // для полулярних
+
+//
+
+
+
+
 const optionsPop = {
   totalItems: 20000,
   itemsPerPage: 20,
-  visiblePages: 5,
+  visiblePages: window.screen.width <= 400 ? 2 : 5,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
@@ -137,7 +144,9 @@ const optionsPop = {
   },
 };
 
-const paginationPop = new Pagination('pagination', optionsPop);
+console.log(optionsPop.visiblePages);
+
+export const paginationPop = new Pagination('pagination', optionsPop);
 
 paginationPop.on('afterMove', async function (eventData) {
   resetGallery();
@@ -152,13 +161,13 @@ paginationPop.movePageTo(localStorage.getItem('pagination'));
 
 // ховає пагінацію
 export function addHiddenPagination() {
-  const paginationHtml = document.querySelector('#pagination')
-  paginationHtml.classList.add('visually-hidden')
+  const paginationHtml = document.querySelector('#pagination');
+  paginationHtml.classList.add('visually-hidden');
 }
 
 export function removeHiddenPagination() {
-  const paginationHtml = document.querySelector('#pagination')
-  paginationHtml.classList.remove('visually-hidden')
+  const paginationHtml = document.querySelector('#pagination');
+  paginationHtml.classList.remove('visually-hidden');
 }
 
 function resetGallery() {

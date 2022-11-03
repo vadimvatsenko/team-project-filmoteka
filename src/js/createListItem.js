@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { BASE_URL, KEY, IMG_URL, API_URL, POPULAR_URL } from './url';
 import { getfilmsGenres } from './getGandersFromId';
-import { initializeSlider,resetSlider } from "./slider";
+import { initializeSlider, resetSlider } from './slider';
 
 export function createListItem({
   poster_path,
@@ -29,14 +29,14 @@ export function createListItem({
         }</h2>
         <p class="movie-popular__genre">${
           allGanres.length === 0
-            ? 'Nothing'
+            ? 'Genres did not come'
             : allGanres.length <= 2
             ? allGanres.join(', ')
             : allGanres.slice(0, 2).join(', ') + ', ' + 'Other'
         } | ${
     Number.parseInt(release_date) || Number.parseInt(first_air_date)
       ? Number.parseInt(release_date) || Number.parseInt(first_air_date)
-      : 'Other'
+      : 'Year not found'
   }</p>
       <p class="movie-popular__rating">${
         vote_average ? vote_average.toFixed(1) : '0'
@@ -53,7 +53,7 @@ let sliderActiv = false;
 export function pasteContent(array) {
   const result = generateContent(array);
   refs.list.insertAdjacentHTML('beforeend', result);
-  
+
   if (sliderActiv) {
     resetSlider();
   }

@@ -36,7 +36,9 @@
     margin-left: auto;
     opacity: 1;
 
-
+    @include only_mobile {
+        bottom: 230px;
+    }
 
     @include tablet {
         right: 100px;

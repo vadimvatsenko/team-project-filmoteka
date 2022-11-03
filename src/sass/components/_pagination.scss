@@ -177,7 +177,7 @@
 
 .tui-pagination .tui-last-child,
 .tui-pagination .tui-next-is-ellip {
-  border-right: 1px solid #ddd;
+  // border-right: 1px solid #ddd;
 }
 
 .tui-pagination .tui-first-child.tui-is-selected {
@@ -315,4 +315,8 @@
   display: flex;
   justify-content: center;
   align-items: center
+}
+
+.tui-pagination .tui-last-child {
+  border: none
 }

@@ -457,7 +457,7 @@ function CardFilminHtmlIfError(Error) {
 function movieBtnHtml() {
   return `
       <button type="button" class="modal-movie__movie">
-      <svg class="icon modal-movie__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32">
+      <svg class="icon modal-movie__icon" width="40" height="40">
       <use xlink:href="${svgYoutube}#icon-youtube"></use>
       </svg>
     </button> 
