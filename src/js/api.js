@@ -20,7 +20,7 @@ import {
 // ==============================================================
 
 import { poginationSearch, paginationPop } from './pagination';
-
+import { filterItem } from './filter';
 // ================================================================
 // сохраняем слово в инпуте
 let searchInput = '';
@@ -39,8 +39,7 @@ function listenInput(event) {
   localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
   if (event.currentTarget.value === '') {
     refs.list.innerHTML = '';
-    localStorage.setItem('pagination', 1);
-    getAPI(API_URL);
+    filterItem.filterForm.classList.remove('is-hidden');
     paginationPop.movePageTo(localStorage.getItem('pagination'));
   }
 }

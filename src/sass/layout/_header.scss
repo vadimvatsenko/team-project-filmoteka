@@ -139,7 +139,7 @@ nav {
   align-items: center;
 }
 
-.header__nav-item+.header__nav-item {
+.header__nav-item + .header__nav-item {
   margin-left: 40px;
 }
 
@@ -164,7 +164,6 @@ nav {
 }
 
 .header__form {
-
   width: 100%;
   display: flex;
   // margin-top: auto;
@@ -225,12 +224,14 @@ nav {
   width: 65px;
 }
 
-.filter__form-select>option {
+.filter__form-select > option {
   align-items: center;
   background-color: var(--btn-text-color);
   padding: 5px;
 }
-
+.filter__form.is-hidden {
+  visibility: hidden;
+}
 .button__reset {
   width: 70px;
   background-color: transparent;
