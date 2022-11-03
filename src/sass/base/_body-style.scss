@@ -3,9 +3,13 @@ body {
   font-weight: 500;
 }
 
+.body--hidden {
+  overflow: hidden;
+}
+
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 /* полоса прокрутки (скроллбар) */
