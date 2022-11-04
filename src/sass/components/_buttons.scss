@@ -4,10 +4,10 @@
   align-items: center;
   color: var(--bg-main-color);
   margin-top: auto;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 }
 
-.button + .button {
+.button+.button {
   @include mobile {
     margin-left: 20px;
   }

@@ -39,7 +39,7 @@
 
 .header--lib {
   @include mobile {
-    padding-bottom: 60px;
+    padding-bottom: 15px;
     background-image: url(../images/bg/header_lib_320px.webp);
 
     @include retinaBgImg {
