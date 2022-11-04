@@ -218,6 +218,7 @@ function onResetSearch(evt) {
 
   filterItem.genreForm.options.selectedIndex = 0;
   filterItem.yearForm.options.selectedIndex = 0;
+  filterItem.sortForm.options.selectedIndex = 0;
 
   formSearch.genre = '';
   formSearch.year = '';
