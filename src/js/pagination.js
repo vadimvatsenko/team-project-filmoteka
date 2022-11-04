@@ -7,7 +7,7 @@ import { API_URL } from './url';
 import { filterItem, getSearchForm, renderFiltrMarkup } from './filter';
 
 // для filter
-export function poginationFilter(genre, year) {
+export function poginationFilter(genre, year, sort) {
   const options = {
     totalItems: JSON.parse(localStorage.getItem('totalItems')),
     itemsPerPage: 20,
@@ -39,7 +39,7 @@ export function poginationFilter(genre, year) {
   pagination.on('afterMove', async function (eventData) {
     resetGallery();
 
-    getSearchForm(genre, year, eventData.page)
+    getSearchForm(genre, year, eventData.page, sort)
       .then(data => {
         console.log(data);
         renderFiltrMarkup(data.results);
@@ -84,8 +84,6 @@ export function poginationSearch(movie) {
     },
   };
 
-  
-
   const pagination = new Pagination('pagination', options);
   // pagination.movePageTo(1);
   pagination._options.totalItems = JSON.parse(
@@ -113,9 +111,6 @@ export function poginationSearch(movie) {
 // для полулярних
 
 //
-
-
-
 
 const optionsPop = {
   totalItems: 20000,
@@ -176,7 +171,7 @@ function resetGallery() {
 
 // reset on logo ==================
 refs.logo.addEventListener('click', clearLOacalStorageOnLogo);
-function clearLOacalStorageOnLogo() {
+export function clearLOacalStorageOnLogo() {
   localStorage.removeItem('search');
   localStorage.removeItem('searchWord');
   localStorage.removeItem('pagination');
