@@ -133,7 +133,11 @@ export async function getWatched(name, page) {
   let localWatched;
   if (localUserId) {
     try {
-      localWatched = await getWatchedFb(localUserId);
+      if (name === 'watched') {
+        localWatched = await getWatchedFb(localUserId);
+      } else {
+        localWatched = await getQueueFb(localUserId);
+      }
       let begin = 20 * page - 20;
       const end = 20 * page;
       if (page === 1) {

@@ -156,12 +156,6 @@ async function onBtnInModalMovi(e) {
     changeQueue(e, modalMoviInfoBtnQueue)
   );
 
-  // OLD localStorage save
-  // const localStorageWatched = JSON.parse(
-  //   localStorage.getItem('watched')
-  // ).watched;
-  // const localStorageQueue = JSON.parse(localStorage.getItem('watched')).queue;
-
   let localStorageWatched = [];
   let localStorageQueue = [];
 
@@ -194,7 +188,7 @@ async function onBtnInModalMovi(e) {
 
 // Додає та видаляє з локального сховища HTML картки
 function changeWatched(e, targetEl) {
-  return function () {
+  return async function () {
     const modalMoviInfoBtnQueue = document.querySelector(
       '.modal-movie__btn-queue'
     );
@@ -202,8 +196,12 @@ function changeWatched(e, targetEl) {
     // !JSON.parse(localStorage.getItem('watched')).watched.includes(onCardTransform(e.target))
     if (targetEl.dataset.ls === 'false') {
       if (localUserId) {
-        addToWatchedFb(localUserId, onCardTransform(e.target));
-        addCurentBtn(targetEl);
+        try {
+          await addToWatchedFb(localUserId, onCardTransform(e.target));
+          addCurentBtn(targetEl);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         localStorageMovi.watched.push(onCardTransform(e.target));
         localStorage.setItem('watched', JSON.stringify(localStorageMovi));
@@ -212,8 +210,12 @@ function changeWatched(e, targetEl) {
       }
     } else {
       if (localUserId) {
-        removeFromWatchedFb(localUserId, onCardTransform(e.target));
-        removeCurentBtn(targetEl);
+        try {
+          await removeFromWatchedFb(localUserId, onCardTransform(e.target));
+          removeCurentBtn(targetEl);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         const ingexEl = localStorageMovi.watched.indexOf(
           onCardTransform(e.target)
@@ -225,96 +227,122 @@ function changeWatched(e, targetEl) {
         removeCurentBtn(targetEl);
       }
     }
-    if (
-      JSON.parse(localStorage.getItem('watched')).queue.includes(
-        onCardTransform(e.target)
-      )
-    ) {
-      // const modalMoviInfoBtnWatched = document.querySelector(
-      //   '.modal-movie__btn-watched'
-      // );
-      // const modalMoviInfoBtnQueue = document.querySelector(
-      //   '.modal-movie__btn-queue'
-      // );
-      const ingexElrem = localStorageMovi.queue.indexOf(
-        onCardTransform(e.target)
-      );
+    if (localUserId) {
+      try {
+        const getDataQueue = await getQueueFb(localUserId);
+        if (getDataQueue.includes(onCardTransform(e.target))) {
+          await removeFromQueueFb(localUserId, onCardTransform(e.target));
+          removeCurentBtn(modalMoviInfoBtnQueue);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      if (
+        JSON.parse(localStorage.getItem('watched')).queue.includes(
+          onCardTransform(e.target)
+        )
+      ) {
+        // const modalMoviInfoBtnWatched = document.querySelector(
+        //   '.modal-movie__btn-watched'
+        // );
+        // const modalMoviInfoBtnQueue = document.querySelector(
+        //   '.modal-movie__btn-queue'
+        // );
+        const ingexElrem = localStorageMovi.queue.indexOf(
+          onCardTransform(e.target)
+        );
 
-      localStorageMovi.queue.splice(ingexElrem, 1);
-      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      removeCurentBtn(modalMoviInfoBtnQueue);
+        localStorageMovi.queue.splice(ingexElrem, 1);
+        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+        removeCurentBtn(modalMoviInfoBtnQueue);
+      }
     }
+
     textCurentBtnWatched(targetEl);
     modalMoviInfoBtnQueue.innerHTML = 'add to Queue';
   };
 }
 
-async function changeQueue(e, targetEl) {
+function changeQueue(e, targetEl) {
   return async function () {
-    const modalMoviInfoBtnWatched = document.querySelector(
-      '.modal-movie__btn-watched'
-    );
-    // console.log(targetEl.dataset.ls);
-    // !JSON.parse(localStorage.getItem('watched')).queue.includes(onCardTransform(e.target))
-    if (targetEl.dataset.ls === 'false') {
+    try {
+      const modalMoviInfoBtnWatched = document.querySelector(
+        '.modal-movie__btn-watched'
+      );
+      // console.log(targetEl.dataset.ls);
+      // !JSON.parse(localStorage.getItem('watched')).queue.includes(onCardTransform(e.target))
+      if (targetEl.dataset.ls === 'false') {
+        if (localUserId) {
+          try {
+            await addToQueueFb(localUserId, onCardTransform(e.target));
+            addCurentBtn(targetEl);
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          localStorageMovi.queue.push(onCardTransform(e.target));
+          localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+          // console.log(JSON.stringify(localStorageMovi));
+          addCurentBtn(targetEl);
+        }
+      } else {
+        if (localUserId) {
+          try {
+            await removeFromQueueFb(localUserId, onCardTransform(e.target));
+            removeCurentBtn(targetEl);
+          } catch (error) {
+            console.log(error);
+          }
+        } else {
+          const ingexEl = localStorageMovi.queue.indexOf(
+            onCardTransform(e.target)
+          );
+
+          localStorageMovi.queue.splice(ingexEl, 1);
+          localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+          removeCurentBtn(targetEl);
+        }
+      }
       if (localUserId) {
         try {
-          await addToQueueFb(userLocalId, onCardTransform(e.target));
-          addCurentBtn(targetEl);
+          const fetchDataWatched = await getWatchedFb(localUserId);
+          if (fetchDataWatched.includes(onCardTransform(e.target))) {
+            await removeFromWatchedFb(localUserId, onCardTransform(e.target));
+            removeCurentBtn(modalMoviInfoBtnWatched);
+          }
         } catch (error) {
           console.log(error);
         }
       } else {
-        localStorageMovi.queue.push(onCardTransform(e.target));
-        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-        // console.log(JSON.stringify(localStorageMovi));
-        addCurentBtn(targetEl);
-      }
-    } else {
-      if (userLocalId) {
-        try {
-          await removeFromQueueFb(userLocalId, onCardTransform(e.target));
-          removeCurentBtn(targetEl);
-        } catch (error) {
-          console.log(error);
+        if (
+          JSON.parse(localStorage.getItem('watched')).watched.includes(
+            onCardTransform(e.target)
+          )
+        ) {
+          // const modalMoviInfoBtnWatched = document.querySelector(
+          //   '.modal-movie__btn-watched'
+          // );
+          // const modalMoviInfoBtnQueue = document.querySelector(
+          //   '.modal-movie__btn-queue'
+          // );
+          const ingexElrem = localStorageMovi.watched.indexOf(
+            onCardTransform(e.target)
+          );
+
+          localStorageMovi.watched.splice(ingexElrem, 1);
+          localStorage.setItem('watched', JSON.stringify(localStorageMovi));
+          removeCurentBtn(modalMoviInfoBtnWatched);
         }
-      } else {
-        const ingexEl = localStorageMovi.queue.indexOf(
-          onCardTransform(e.target)
-        );
-
-        localStorageMovi.queue.splice(ingexEl, 1);
-        localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-        removeCurentBtn(targetEl);
       }
-    }
-    if (
-      JSON.parse(localStorage.getItem('watched')).watched.includes(
-        onCardTransform(e.target)
-      )
-    ) {
-      // const modalMoviInfoBtnWatched = document.querySelector(
-      //   '.modal-movie__btn-watched'
-      // );
-      // const modalMoviInfoBtnQueue = document.querySelector(
-      //   '.modal-movie__btn-queue'
-      // );
-      const ingexElrem = localStorageMovi.watched.indexOf(
-        onCardTransform(e.target)
-      );
-
-      localStorageMovi.watched.splice(ingexElrem, 1);
-      localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-      removeCurentBtn(modalMoviInfoBtnWatched);
-    }
-    textCurentBtnQueue(targetEl);
-    modalMoviInfoBtnWatched.innerHTML = 'add to Watched';
+      textCurentBtnQueue(targetEl);
+      modalMoviInfoBtnWatched.innerHTML = 'add to Watched';
+    } catch {}
   };
 }
 
 //перероблює ліжко
 function onCardTransform(element) {
-  console.dir(element);
   return `<li class="movie-popular__item" data-id="${element.dataset.id}">
     <a href="\" class="movie-popular__reference" target="_blank">
   ${element.firstElementChild.innerHTML}
