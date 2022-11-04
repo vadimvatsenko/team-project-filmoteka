@@ -104,9 +104,12 @@ export async function getWatchedFb(id) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
+    const result = docSnap.data().watched;
+    localStorage.setItem('WatchedFb', result.length);
     return docSnap.data().watched;
   } else {
     console.log('No such document!');
+    localStorage.setItem('WatchedFb', 0);
     return null;
   }
 }
@@ -148,9 +151,12 @@ export async function getQueueFb(id) {
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
+    const result = docSnap.data().queue;
+    localStorage.setItem('QueueFb', result.length);
     return docSnap.data().queue;
   } else {
     console.log('No such document!');
+    localStorage.setItem('QueueFb', 0);
     return null;
   }
 }
