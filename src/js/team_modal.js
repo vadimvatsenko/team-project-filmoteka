@@ -103,7 +103,7 @@ const markupTeamCard = team
   })
   .join('');
 
-const markupTeamModal = `<p class="team-title">OUR<span class="space"></span>TEAM</p>
+const markupTeamModal = `<p class="team-title">MOVIE _43<span class="space"></span>TEAM</p>
 <ul class="team-wrapper">
 ${markupTeamCard}
 </ul>`;
