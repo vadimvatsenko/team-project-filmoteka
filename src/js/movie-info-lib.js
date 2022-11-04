@@ -197,6 +197,7 @@ function changeWatched(e, targetEl) {
         try {
           await addToWatchedFb(localUserId, e.target.outerHTML);
           addCurentBtn(targetEl);
+          rebootLib();
         } catch (error) {
           console.log(error);
         }
@@ -205,12 +206,14 @@ function changeWatched(e, targetEl) {
         localStorage.setItem('watched', JSON.stringify(localStorageMovi));
         // console.log(JSON.stringify(localStorageMovi));
         addCurentBtn(targetEl);
+        rebootLib();
       }
     } else {
       if (localUserId) {
         try {
           await removeFromWatchedFb(localUserId, e.target.outerHTML);
           removeCurentBtn(targetEl);
+          rebootLib();
         } catch (error) {
           console.log(error);
         }
@@ -219,8 +222,8 @@ function changeWatched(e, targetEl) {
 
         localStorageMovi.watched.splice(ingexEl, 1);
         localStorage.setItem('watched', JSON.stringify(localStorageMovi));
-
         removeCurentBtn(targetEl);
+        rebootLib();
       }
     }
     if (localUserId) {
@@ -229,6 +232,7 @@ function changeWatched(e, targetEl) {
         if (getDataQueue.includes(e.target.outerHTML)) {
           await removeFromQueueFb(localUserId, e.target.outerHTML);
           removeCurentBtn(modalMoviInfoBtnQueue);
+          rebootLib();
         }
       } catch (error) {
         console.log(error);
@@ -250,6 +254,7 @@ function changeWatched(e, targetEl) {
         localStorageMovi.queue.splice(ingexElrem, 1);
         localStorage.setItem('watched', JSON.stringify(localStorageMovi));
         removeCurentBtn(modalMoviInfoBtnQueue);
+        rebootLib();
       }
     }
 
@@ -271,6 +276,7 @@ function changeQueue(e, targetEl) {
           try {
             await addToQueueFb(localUserId, e.target.outerHTML);
             addCurentBtn(targetEl);
+            rebootLib();
           } catch (error) {
             console.log(error);
           }
@@ -279,12 +285,14 @@ function changeQueue(e, targetEl) {
           localStorage.setItem('watched', JSON.stringify(localStorageMovi));
           // console.log(JSON.stringify(localStorageMovi));
           addCurentBtn(targetEl);
+          rebootLib();
         }
       } else {
         if (localUserId) {
           try {
             await removeFromQueueFb(localUserId, e.target.outerHTML);
             removeCurentBtn(targetEl);
+            rebootLib();
           } catch (error) {
             console.log(error);
           }
@@ -294,6 +302,7 @@ function changeQueue(e, targetEl) {
           localStorageMovi.queue.splice(ingexEl, 1);
           localStorage.setItem('watched', JSON.stringify(localStorageMovi));
           removeCurentBtn(targetEl);
+          rebootLib();
         }
       }
       if (localUserId) {
@@ -302,6 +311,7 @@ function changeQueue(e, targetEl) {
           if (fetchDataWatched.includes(e.target.outerHTML)) {
             await removeFromWatchedFb(localUserId, e.target.outerHTML);
             removeCurentBtn(modalMoviInfoBtnWatched);
+            rebootLib();
           }
         } catch (error) {
           console.log(error);
@@ -325,6 +335,7 @@ function changeQueue(e, targetEl) {
           localStorageMovi.watched.splice(ingexElrem, 1);
           localStorage.setItem('watched', JSON.stringify(localStorageMovi));
           removeCurentBtn(modalMoviInfoBtnWatched);
+          rebootLib();
         }
       }
       textCurentBtnQueue(targetEl);

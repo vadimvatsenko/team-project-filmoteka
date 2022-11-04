@@ -24,12 +24,23 @@ async function getOnlineOrOfflineStorage() {
     try {
       localWatched = await getWatchedFb(localUserId);
       localQueue = await getQueueFb(localUserId);
+
+      if (localWatched.length === 0) {
+        rQueue();
+      } else {
+        rWatched();
+      }
     } catch (error) {
       console.log(error);
     }
   } else {
     localWatched = JSON.parse(localStorage.getItem('watched')).watched;
     localQueue = JSON.parse(localStorage.getItem('watched')).queue;
+    if (localWatched.length === 0) {
+      rQueue();
+    } else {
+      rWatched();
+    }
   }
 }
 
@@ -121,12 +132,6 @@ export async function rQueue() {
     btnQueue.dataset.active = true;
     btnWatched.dataset.active = false;
   }
-}
-
-if (localWatched.length === 0) {
-  rQueue();
-} else {
-  rWatched();
 }
 
 export async function getWatched(name, page) {
