@@ -51,12 +51,16 @@ body.dark-theme {
    .basicLightbox__placeholder {
       background-color: #413e3e;
    }
+
    .slider {
       background-color: var(--dark-theme-background-color);
    }
+
    .wrapper {
       background-color: var(--dark-theme-background-color);
    }
+
+
 }
 
 body.light-theme {
@@ -127,17 +131,17 @@ body.light-theme {
    transition: transform 250ms;
 }
 
-.theme-switch__toggle:checked + .theme-switch__track {
+.theme-switch__toggle:checked+.theme-switch__track {
    background-color: #928f8f;
 }
 
-.theme-switch__toggle:checked ~ .theme-switch__marker {
+.theme-switch__toggle:checked~.theme-switch__marker {
    transform: translateX(35px);
 }
 
-.theme-switch__toggle:focus + .theme-switch__track,
-.theme-switch__toggle:active + .theme-switch__track,
-.theme-switch__toggle:hover + .theme-switch__track {
+.theme-switch__toggle:focus+.theme-switch__track,
+.theme-switch__toggle:active+.theme-switch__track,
+.theme-switch__toggle:hover+.theme-switch__track {
    box-shadow: 0 0 0 3px #ff6b01;
 }
 

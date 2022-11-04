@@ -7,12 +7,7 @@
         </svg> -->
         <div class="animation-running-tape">
           <div class="animation-wrapper">
-            <img
-              src="/src/images/logo-for-animation.svg"
-              alt="logo"
-              width="24"
-              height="24"
-            />
+            <img src="/src/images/logo-for-animation.svg" alt="logo" width="24" height="24" />
           </div>
         </div>
         <span class="header__logo-name">Filmoteka</span>
@@ -20,11 +15,7 @@
 
       <ul class="header__nav">
         <li class="header__nav-item">
-          <a
-            class="header__nav-link header__nav-link--current"
-            href="./index.html"
-            >HOME</a
-          >
+          <a class="header__nav-link header__nav-link--current" href="./index.html">HOME</a>
         </li>
 
         <li class="header__nav-item">
@@ -35,26 +26,13 @@
 
     <div class="toolbar">
       <div class="theme-switch">
-        <svg
-          class="theme-switch__icon stormtroopers"
-          role="img"
-          aria-label="Иконка stormtroopers"
-        >
+        <svg class="theme-switch__icon stormtroopers" role="img" aria-label="Иконка stormtroopers">
           <use href="/src/images/symbol-defs.svg#stormtroopers"></use>
         </svg>
         <div class="theme-switch__control">
-          <input
-            class="theme-switch__toggle"
-            type="checkbox"
-            name="theme"
-            id="theme-switch-toggle"
-            aria-label="Переключить между тёмной и светлой темой"
-          />
-          <label
-            aria-hidden="true"
-            class="theme-switch__track"
-            for="theme-switch-toggle"
-          >
+          <input class="theme-switch__toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+            aria-label="Переключить между тёмной и светлой темой" />
+          <label aria-hidden="true" class="theme-switch__track" for="theme-switch-toggle">
           </label>
           <div aria-hidden="true" class="theme-switch__marker"></div>
         </div>
@@ -66,17 +44,8 @@
     </div>
 
     <form class="header__form">
-      <input
-        type="text"
-        name="search"
-        placeholder="Movie search"
-        class="header__input"
-      />
-      <button
-        class="header__search-btn"
-        type="submit"
-        aria-label="search button"
-      >
+      <input type="text" name="search" placeholder="Movie search" class="header__input" />
+      <button class="header__search-btn" type="submit" aria-label="search button">
         <svg class="search-svg" width="12" height="12px">
           <use href="./images/symbol-defs.svg#icon-search"></use>
         </svg>
@@ -86,11 +55,7 @@
     <h1 class="visually-hidden">Movie Service</h1>
 
     <form class="filter__form" id="filter-form">
-      <select
-        class="filter__form-select filter__form-select--genres"
-        name="genreForm"
-        id="genreForm"
-      >
+      <select class="filter__form-select filter__form-select--genres" name="genreForm" id="genreForm">
         <option class="filter__form-genres" value="start">Genre</option>
         <option class="filter__form-genres" value="28">Action</option>
         <option class="filter__form-genres" value="12">Adventure</option>
@@ -113,14 +78,10 @@
         <option class="filter__form-genres" value="37">Western</option>
       </select>
 
-      <select class="filter__form-select" name="yearForm" id="yearForm">
+      <select class="filter__form-select filter__form-select--year" name="yearForm" id="yearForm">
         <option value="start">Year</option>
       </select>
-      <select
-        class="filter__form-select filter__form-select--sort"
-        name="sortForm"
-        id="sortForm"
-      >
+      <select class="filter__form-select filter__form-select--sort" name="sortForm" id="sortForm">
         <option class="filter__form-sort" value="start">Sort</option>
         <option class="filter__form-sort" value="popularity.asc">
           Popularity (ascending)

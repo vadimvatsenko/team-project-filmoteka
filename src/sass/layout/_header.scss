@@ -139,7 +139,7 @@ nav {
   align-items: center;
 }
 
-.header__nav-item + .header__nav-item {
+.header__nav-item+.header__nav-item {
   margin-left: 40px;
 }
 
@@ -228,14 +228,16 @@ nav {
   width: 65px;
 }
 
-.filter__form-select > option {
+.filter__form-select>option {
   align-items: center;
   background-color: var(--btn-text-color);
   padding: 5px;
 }
+
 .filter__form.is-hidden {
   visibility: hidden;
 }
+
 .button__reset {
   width: 70px;
   background-color: transparent;
@@ -249,5 +251,12 @@ nav {
   &:focus {
     background-color: var(--hover-color);
     color: var(--btn-text-color);
+  }
+}
+
+.filter__form-select--genres,
+.filter__form-select--year {
+  @include only-mobile {
+    display: none;
   }
 }
