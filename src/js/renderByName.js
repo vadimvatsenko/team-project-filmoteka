@@ -11,7 +11,7 @@ import { pasteContent } from './createListItem';
 //import { spinerStart, spinerStop } from './spiner';
 import { Loading, Notify } from 'notiflix';
 import { filterItem } from './filter';
-export async function getMovieNameAPI(movie, page) {
+export async function getMovieNameAPI(movie, page = 1) {
   await fetch(`${BASE_FIND_WORD_URL}&page=${page}&query=${movie}`)
     .then(response => {
       if (!response.ok) {
