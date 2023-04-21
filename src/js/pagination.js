@@ -139,7 +139,7 @@ const optionsPop = {
   },
 };
 
-console.log(optionsPop.visiblePages);
+
 
 export const paginationPop = new Pagination('pagination', optionsPop);
 

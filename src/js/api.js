@@ -35,7 +35,6 @@ console.dir(refs.input);
 refs.input.addEventListener('input', listenInput);
 
 function listenInput(event) {
-  console.log(event.currentTarget.value);
   localStorage.setItem('searchWord', JSON.stringify(event.currentTarget.value));
   if (event.currentTarget.value === '') {
     refs.list.innerHTML = '';
@@ -77,8 +76,8 @@ async function handleSubmit(event) {
   refs.list.innerHTML = '';
   await getMovieNameAPI(movie);
 
-  console.log(JSON.parse(localStorage.getItem('itemsPerPage')));
-  console.log(JSON.parse(localStorage.getItem('totalItems')));
+  // console.log(JSON.parse(localStorage.getItem('itemsPerPage')));
+  // console.log(JSON.parse(localStorage.getItem('totalItems')));
   statusSearch = true;
 
   poginationSearch(movie);

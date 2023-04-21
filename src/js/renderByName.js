@@ -34,7 +34,7 @@ export async function getMovieNameAPI(movie, page = 1) {
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
       });
 
-      console.log(data);
+
       localStorage.setItem('totalItems', data.total_results);
       localStorage.setItem('itemsPerPage', data.results.length);
       if (data.results.length !== 0) {
